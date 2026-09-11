@@ -1,0 +1,3 @@
+genome_file	species_id	role
+test/manual/annotation/focal.fa	Species_A	focal
+test/manual/annotation/outgroup.fa	Outgroup	outgroup
