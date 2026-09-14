@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use Reconaming, please cite it as below."
+type: software
+title: "Reconaming"
+abstract: "Ortholog-aware multigenefamily reconciliation and naming pipeline."
+authors:
+  - family-names: "Alev"
+    given-names: "Simon"
+    orcid: "https://orcid.org/0009-0005-8959-9041"
+url: "https://github.com/scie-mon/Reconaming"
+version: "0.1.0-beta"
+date-released: 2026-09-09
+license: "GPL-3.0-or-later"
