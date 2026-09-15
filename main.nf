@@ -8,6 +8,7 @@ params.protein_fasta     = params.protein_fasta ?: null
 params.sequence_species  = params.sequence_species ?: null
 params.isoform_selection = params.isoform_selection ?: null
 params.species_tree        = params.species_tree ?: null
+params.species_tree_outgroup = params.species_tree_outgroup ?: null
 params.busco_lineage       = params.busco_lineage ?: null
 params.busco_auto_lineage  = params.busco_auto_lineage ?: true
 params.busco_threads       = params.busco_threads ?: 8
@@ -25,6 +26,7 @@ include { MERGE_ISOFORM_OUTPUTS }          from './modules/local/merge_isoform_o
 include { VALIDATE_PROTEIN_FASTA }         from './modules/local/validate_protein_fasta'
 include { SELECT_REPRESENTATIVE_ISOFORMS } from './modules/local/select_representative_isoforms'
 include { INFER_SPECIES_TREE }             from './modules/local/infer_species_tree'
+include { VALIDATE_SUPPLIED_SPECIES_TREE } from './modules/local/validate_supplied_species_tree'
 
 workflow {
     if (params.input_mode == 'protein') {
@@ -51,7 +53,12 @@ workflow {
     else error "Unknown --input_mode '${params.input_mode}'; use annotation or protein."
 
     if (params.species_tree) {
-        species_tree = Channel.of(file(params.species_tree))
+        VALIDATE_SUPPLIED_SPECIES_TREE(
+            Channel.of(file(params.species_tree)),
+            representative_manifest,
+            params.species_tree_outgroup ?: ''
+        )
+        species_tree = VALIDATE_SUPPLIED_SPECIES_TREE.out.species_tree
     }
     else {
         if (!params.species_inputs) error 'Internal species-tree inference requires --species_inputs; alternatively provide --species_tree.'
@@ -59,5 +66,5 @@ workflow {
         species_tree = INFER_SPECIES_TREE.out.species_tree
     }
 
-    // Jobs 06–18 consume representative_proteins, representative_manifest, and species_tree.
+    // Jobs 07–18 consume representative_proteins, representative_manifest, and species_tree.
 }
