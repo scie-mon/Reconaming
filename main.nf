@@ -2,17 +2,29 @@
 nextflow.enable.dsl=2
 
 params.input_mode        = params.input_mode ?: 'annotation'
-params.genome_to_species = params.genome_to_species ?: null
+params.species_inputs    = params.species_inputs ?: null
 params.ir_gff            = params.ir_gff ?: null
 params.protein_fasta     = params.protein_fasta ?: null
 params.sequence_species  = params.sequence_species ?: null
 params.isoform_selection = params.isoform_selection ?: null
+params.species_tree        = params.species_tree ?: null
+params.busco_lineage       = params.busco_lineage ?: null
+params.busco_auto_lineage  = params.busco_auto_lineage ?: true
+params.busco_threads       = params.busco_threads ?: 8
+params.busco_mode          = params.busco_mode ?: 'auto'
+params.busco_warn_complete = params.busco_warn_complete ?: 90
+params.species_tree_bootstrap = params.species_tree_bootstrap ?: 1000
+params.species_tree_threads   = params.species_tree_threads ?: params.busco_threads
+params.species_tree_min_taxa  = params.species_tree_min_taxa ?: 3
+params.species_tree_container = params.species_tree_container ?: null
 
+include { PREPARE_FOCAL_GENOME_MAP }      from './modules/local/prepare_focal_genome_map'
 include { BUILD_INPUT_MANIFEST }          from './modules/local/build_input_manifest'
 include { PREPARE_PROTEINS }               from './modules/local/prepare_proteins'
 include { MERGE_ISOFORM_OUTPUTS }          from './modules/local/merge_isoform_outputs'
 include { VALIDATE_PROTEIN_FASTA }         from './modules/local/validate_protein_fasta'
 include { SELECT_REPRESENTATIVE_ISOFORMS } from './modules/local/select_representative_isoforms'
+include { INFER_SPECIES_TREE }             from './modules/local/infer_species_tree'
 
 workflow {
     if (params.input_mode == 'protein') {
@@ -22,12 +34,12 @@ workflow {
         representative_manifest = VALIDATE_PROTEIN_FASTA.out.manifest
     }
     else if (params.input_mode == 'annotation') {
-        if (!params.genome_to_species || !params.ir_gff) error 'Annotation mode requires --genome_to_species and --ir_gff.'
-        BUILD_INPUT_MANIFEST(Channel.fromPath(params.genome_to_species, checkIfExists: true))
+        if (!params.species_inputs || !params.ir_gff) error 'Annotation mode requires --species_inputs and --ir_gff.'
+        PREPARE_FOCAL_GENOME_MAP(Channel.fromPath(params.species_inputs, checkIfExists: true))
+        BUILD_INPUT_MANIFEST(PREPARE_FOCAL_GENOME_MAP.out.focal_genome_map)
         gffs = Channel.fromPath(params.ir_gff, checkIfExists: true).collect()
-        focal_genomes = Channel.fromPath(params.genome_to_species)
+        focal_genomes = PREPARE_FOCAL_GENOME_MAP.out.focal_genome_map
             .splitCsv(header: true, sep: '\t')
-            .filter { row -> row.role == 'focal' }
             .map { row -> tuple(row.species_id, file(row.genome_file)) }
         PREPARE_PROTEINS(focal_genomes.combine(gffs).map { s, genome, files -> tuple(s, genome, files) })
         MERGE_ISOFORM_OUTPUTS(PREPARE_PROTEINS.out.proteins.collect(), PREPARE_PROTEINS.out.manifest.collect())
@@ -38,5 +50,14 @@ workflow {
     }
     else error "Unknown --input_mode '${params.input_mode}'; use annotation or protein."
 
-    // Jobs 05–18 consume representative_proteins and representative_manifest.
+    if (params.species_tree) {
+        species_tree = Channel.of(file(params.species_tree))
+    }
+    else {
+        if (!params.species_inputs) error 'Internal species-tree inference requires --species_inputs; alternatively provide --species_tree.'
+        INFER_SPECIES_TREE(representative_manifest, Channel.fromPath(params.species_inputs, checkIfExists: true))
+        species_tree = INFER_SPECIES_TREE.out.species_tree
+    }
+
+    // Jobs 06–18 consume representative_proteins, representative_manifest, and species_tree.
 }

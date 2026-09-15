@@ -1,0 +1,5 @@
+species_id	input_file	input_type	role
+Species_1	test/spec_tree/CM058173.1.fa	genome	focal
+Species_2	test/spec_tree/CM023194.1.fa	genome	focal
+Species_3	test/spec_tree/NC_081337.1.fa	genome	focal
+Root_species	test/spec_tree/CM061115.fa	genome	outgroup

@@ -1,15 +1,26 @@
 process MERGE_ISOFORM_OUTPUTS {
-    tag 'merge focal-genome isoforms'
+    tag 'merge isoform outputs'
+
     input:
-    path fastas
-    path manifests
+    path protein_files, stageAs: 'proteins/??/*'
+    path manifest_files, stageAs: 'manifests/??/*'
+
     output:
-    path 'all_isoform_proteins.faa', emit: proteins
-    path 'all_isoform_manifest.tsv', emit: manifest
+    path 'isoform_proteins.faa', emit: proteins
+    path 'isoform_manifest.tsv', emit: manifest
+
     script:
     """
-    python3 ${projectDir}/bin/merge_isoform_outputs.py \\
-      --fastas ${fastas} --manifests ${manifests} \\
-      --proteins all_isoform_proteins.faa --manifest all_isoform_manifest.tsv
+    shopt -s nullglob
+    proteins=(proteins/*/*.faa)
+    manifests=(manifests/*/*.tsv)
+    (( \${#proteins[@]} > 0 )) || { echo 'No isoform protein FASTA files received.' >&2; exit 1; }
+    (( \${#manifests[@]} > 0 )) || { echo 'No isoform manifest TSV files received.' >&2; exit 1; }
+
+    cat "\${proteins[@]}" > isoform_proteins.faa
+    head -n 1 "\${manifests[0]}" > isoform_manifest.tsv
+    for manifest in "\${manifests[@]}"; do
+        tail -n +2 "\$manifest"
+    done >> isoform_manifest.tsv
     """
 }
