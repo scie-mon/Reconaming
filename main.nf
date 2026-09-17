@@ -8,6 +8,8 @@ params.protein_fasta     = params.protein_fasta ?: null
 params.id_species        = null
 params.isoform_selection = params.isoform_selection ?: null
 params.outgroup_genes    = null
+params.famsa_args        = null
+params.iqtree_args       = null
 params.species_tree        = params.species_tree ?: null
 params.species_tree_outgroup = params.species_tree_outgroup ?: null
 params.busco_lineage       = params.busco_lineage ?: null
@@ -29,6 +31,9 @@ include { SELECT_REPRESENTATIVE_ISOFORMS } from './modules/local/select_represen
 include { INFER_SPECIES_TREE }             from './modules/local/infer_species_tree'
 include { VALIDATE_SUPPLIED_SPECIES_TREE } from './modules/local/validate_supplied_species_tree'
 include { DERIVE_GENE_TO_SPECIES }         from './modules/local/derive_gene_to_species'
+include { ALIGN_PROTEINS }                 from './modules/local/align_proteins'
+include { TRIM_ALIGNMENT }                 from './modules/local/trim_alignment'
+include { INFER_GENE_TREE }                from './modules/local/infer_gene_tree'
 
 workflow {
     if (params.input_mode == 'protein') {
@@ -71,8 +76,13 @@ workflow {
     DERIVE_GENE_TO_SPECIES(representative_manifest)
     gene_to_species = DERIVE_GENE_TO_SPECIES.out.gene_to_species
 
+    ALIGN_PROTEINS(representative_proteins, params.famsa_args ?: '')
+    TRIM_ALIGNMENT(ALIGN_PROTEINS.out.alignment)
+    INFER_GENE_TREE(TRIM_ALIGNMENT.out.trimmed_alignment, params.iqtree_args ?: '')
+    gene_tree = INFER_GENE_TREE.out.gene_tree
+
     outgroup_genes = params.outgroup_genes ? file(params.outgroup_genes) : null
 
-    // Jobs 09–18 consume representative_proteins, representative_manifest,
-    // species_tree, gene_to_species, and (when supplied) outgroup_genes.
+    // Jobs 12–18 consume representative_manifest, species_tree, gene_to_species,
+    // gene_tree, and (when supplied) outgroup_genes.
 }
