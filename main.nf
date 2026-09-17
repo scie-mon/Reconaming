@@ -5,8 +5,9 @@ params.input_mode        = params.input_mode ?: 'annotation'
 params.species_inputs    = params.species_inputs ?: null
 params.ir_gff            = params.ir_gff ?: null
 params.protein_fasta     = params.protein_fasta ?: null
-params.sequence_species  = params.sequence_species ?: null
+params.id_species        = null
 params.isoform_selection = params.isoform_selection ?: null
+params.outgroup_genes    = null
 params.species_tree        = params.species_tree ?: null
 params.species_tree_outgroup = params.species_tree_outgroup ?: null
 params.busco_lineage       = params.busco_lineage ?: null
@@ -27,11 +28,12 @@ include { VALIDATE_PROTEIN_FASTA }         from './modules/local/validate_protei
 include { SELECT_REPRESENTATIVE_ISOFORMS } from './modules/local/select_representative_isoforms'
 include { INFER_SPECIES_TREE }             from './modules/local/infer_species_tree'
 include { VALIDATE_SUPPLIED_SPECIES_TREE } from './modules/local/validate_supplied_species_tree'
+include { DERIVE_GENE_TO_SPECIES }         from './modules/local/derive_gene_to_species'
 
 workflow {
     if (params.input_mode == 'protein') {
-        if (!params.protein_fasta || !params.sequence_species) error 'Protein mode requires --protein_fasta and --sequence_species.'
-        VALIDATE_PROTEIN_FASTA(Channel.of(tuple(file(params.protein_fasta), file(params.sequence_species))))
+        if (!params.protein_fasta || !params.id_species) error 'Protein mode requires --protein_fasta and --id_species (gene_id to species_id mapping).'
+        VALIDATE_PROTEIN_FASTA(Channel.of(tuple(file(params.protein_fasta), file(params.id_species))))
         representative_proteins = VALIDATE_PROTEIN_FASTA.out.proteins
         representative_manifest = VALIDATE_PROTEIN_FASTA.out.manifest
     }
@@ -66,5 +68,11 @@ workflow {
         species_tree = INFER_SPECIES_TREE.out.species_tree
     }
 
-    // Jobs 07–18 consume representative_proteins, representative_manifest, and species_tree.
+    DERIVE_GENE_TO_SPECIES(representative_manifest)
+    gene_to_species = DERIVE_GENE_TO_SPECIES.out.gene_to_species
+
+    outgroup_genes = params.outgroup_genes ? file(params.outgroup_genes) : null
+
+    // Jobs 09–18 consume representative_proteins, representative_manifest,
+    // species_tree, gene_to_species, and (when supplied) outgroup_genes.
 }
