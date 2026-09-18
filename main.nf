@@ -94,7 +94,8 @@ workflow {
         .combine(TRIM_ALIGNMENT.out.trimmed_alignment)
         .combine(species_tree)
         .combine(gene_to_species)
-        .map { tree, report, alignment, tree_species, mapping -> tuple(tree, report, alignment, tree_species, mapping, outgroup_genes) }
+        .combine(representative_manifest)
+        .map { tree, report, alignment, tree_species, mapping, manifest -> tuple(tree, report, alignment, tree_species, mapping, manifest, outgroup_genes) }
 
     RECONCILE_GENE_TREE(
         reconciliation_input,
@@ -109,5 +110,5 @@ workflow {
     )
     reconciled_gene_tree = RECONCILE_GENE_TREE.out.reconciled_tree
 
-    // Jobs 15–18 consume reconciled_gene_tree and the existing upstream manifests.
+    // Jobs 15–18 consume reconciled_gene_tree and RECONCILE_GENE_TREE.out.mapping.
 }

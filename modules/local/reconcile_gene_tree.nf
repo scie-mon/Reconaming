@@ -6,7 +6,7 @@ process RECONCILE_GENE_TREE {
     container { generax_container }
 
     input:
-    tuple path(gene_tree), path(iqtree_report), path(trimmed_alignment), path(species_tree), path(gene_to_species), path(outgroup_genes)
+    tuple path(gene_tree), path(iqtree_report), path(trimmed_alignment), path(species_tree), path(gene_to_species), path(representative_manifest), path(outgroup_genes)
     path prepare_generax_inputs
     path normalise_generax_output
     val generax_cpus
@@ -19,6 +19,8 @@ process RECONCILE_GENE_TREE {
     output:
     path 'reconciled_gene_tree.nhx', emit: reconciled_tree
     path 'generax_raw_reconciled_tree.nhx', emit: raw_reconciled_tree
+    path 'generax_gene_tree.nwk', emit: generax_gene_tree
+    path 'generax_alignment.faa', emit: generax_alignment
     path 'families.txt', emit: families
     path 'generax_mapping.tsv', emit: mapping
     path 'reconciliation_summary.tsv', emit: summary
@@ -35,9 +37,12 @@ process RECONCILE_GENE_TREE {
         --alignment ${trimmed_alignment} \\
         --species-tree ${species_tree} \\
         --gene-to-species ${gene_to_species} \\
+        --representative-manifest ${representative_manifest} \\
         --outgroup-genes ${outgroup_genes} \\
         --families-out families.txt \\
         --mapping-out generax_mapping.tsv \\
+        --generax-tree-out generax_gene_tree.nwk \\
+        --generax-alignment-out generax_alignment.faa \\
         --summary-out reconciliation_input_summary.tsv
 
     mpiexec --oversubscribe -np ${task.cpus} generax \\
@@ -51,7 +56,7 @@ process RECONCILE_GENE_TREE {
 
     python3 ${normalise_generax_output} \\
         --generax-results . \\
-        --expected-gene-tree ${gene_tree} \\
+        --expected-gene-tree generax_gene_tree.nwk \\
         --input-summary reconciliation_input_summary.tsv \\
         --raw-out generax_raw_reconciled_tree.nhx \\
         --normalised-out reconciled_gene_tree.nhx \\
