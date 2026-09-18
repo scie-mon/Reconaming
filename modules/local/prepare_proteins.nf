@@ -3,6 +3,7 @@ process PREPARE_PROTEINS {
 
     input:
     tuple val(species_id), path(genome), path(gff)
+    path prepare_proteins_script
 
     output:
     path 'isoform_proteins.faa', emit: proteins
@@ -11,12 +12,12 @@ process PREPARE_PROTEINS {
 
     script:
     """
-    python3 ${projectDir}/bin/prepare_proteins.py \\
-        --genome ${genome} \\
-        --gff ${gff} \\
-        --species-id '${species_id}' \\
-        --proteins isoform_proteins.faa \\
-        --manifest isoform_manifest.tsv \\
+    python3 prepare_proteins.py \
+        --genome ${genome} \
+        --gff ${gff} \
+        --species-id '${species_id}' \
+        --proteins isoform_proteins.faa \
+        --manifest isoform_manifest.tsv \
         --report protein_preparation_report.tsv
     """
 }
