@@ -115,14 +115,20 @@ def main(args):
 
         selected = {}
         unresolved_marker_groups = set()
+        candidate_rows_present = False
 
         for line_number, supplied in enumerate(supplied_rows, start=2):
             gene_id = (supplied.get('gene_id') or '').strip()
             transcript_id = (supplied.get('transcript_id') or '').strip()
             context = f'line {line_number}'
 
-            if not gene_id:
-                validation_rows.append(['info', context, '', '', transcript_id, '', 'ignored_candidate_row', 'Row has an empty gene_id and is ignored.'])
+            if not gene_id and transcript_id:
+                candidate_rows_present = True
+                validation_rows.append(['warning', context, '', '', transcript_id, '', 'candidate_row_requires_removal', 'Candidate rows are template hints and are not selections.'])
+                continue
+            if not gene_id and not transcript_id:
+                errors.append(f'{context}: both gene_id and transcript_id are empty.')
+                validation_rows.append(['error', context, '', '', '', '', 'empty_row', 'Both fields are empty.'])
                 continue
             if gene_id and not transcript_id:
                 unresolved_marker_groups.add(gene_id)
@@ -168,7 +174,7 @@ def main(args):
             chosen[gene_key] = row
             modes[gene_key] = 'manual'
 
-        needs_template = bool(errors or missing or unresolved_marker_groups)
+        needs_template = bool(errors or missing or unresolved_marker_groups or candidate_rows_present)
         if needs_template:
             status = 'manual_selection_required'
             template_rows = []

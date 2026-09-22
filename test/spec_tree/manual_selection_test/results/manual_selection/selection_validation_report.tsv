@@ -1,0 +1,4 @@
+severity	source	gene_id	gene_key	transcript_id	sequence_id	code	message
+info	line 2	CM058173.1_7666491-7673931r	CM058173.1_7666491-7673931r	CM058173.1_7666491-7673931r_X2-7671810-7673931-IRN_000007	seq_U3BlY2llc18xH0NNMDU4MTczLjFfNzY2NjQ5MS03NjczOTMxcl9YMi03NjcxODEwLTc2NzM5MzEtSVJOXzAwMDAwNw	valid_selection	Selection accepted.
+info	line 3			CM058173.1_7666491-7673931r_X1-7666491-7673931-IRN_000001		ignored_candidate_row	Row has an empty gene_id and is ignored.
+info	line 4			CM058173.1_7666491-7673931r_X2-7671810-7673931-IRN_000007		ignored_candidate_row	Row has an empty gene_id and is ignored.

@@ -1,0 +1,35 @@
+process REQUIRE_COMPLETE_MANUAL_SELECTION {
+    tag 'manual isoform selection gate'
+
+    input:
+    path selection_status
+    val template_destination
+
+    output:
+    path 'manual_selection_ready.txt', emit: ready
+
+    script:
+    """
+    status=\$(awk -F '\\t' 'NR == 2 { print \$1 }' ${selection_status})
+    if [[ "\$status" != 'complete' ]]; then
+        cat >&2 <<'MESSAGE'
+Manual isoform selection is incomplete.
+
+A template and validation report have been written to:
+MESSAGE
+        printf '%s\n' '${template_destination}/selection_template.tsv' >&2
+        printf '%s\n' '${template_destination}/selection_validation_report.tsv' >&2
+        cat >&2 <<'MESSAGE'
+
+For every gene with more than one isoform, retain exactly one completed:
+  gene_id<TAB>transcript_id
+row. Copy the desired candidate transcript into that gene's row and delete
+all blank-gene candidate rows. Then rerun with the revised file as:
+  --selection_table path/to/revised_selection.tsv
+and add -resume.
+MESSAGE
+        exit 70
+    fi
+    touch manual_selection_ready.txt
+    """
+}

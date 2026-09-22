@@ -6,8 +6,9 @@ params.species_inputs    = params.species_inputs ?: null
 params.ir_gff            = params.ir_gff ?: null
 params.protein_fasta     = params.protein_fasta ?: null
 params.id_species        = null
-params.isoform_selection = params.isoform_selection ?: null
+params.selection_table   = params.selection_table ?: null
 params.outgroup_genes    = null
+params.outdir            = params.outdir ?: 'results'
 params.famsa_args        = null
 params.iqtree_args       = null
 params.species_tree        = params.species_tree ?: null
@@ -27,6 +28,9 @@ params.generax_strategy      = params.generax_strategy ?: 'SPR'
 params.generax_seed          = params.generax_seed ?: 12345
 params.generax_args          = params.generax_args ?: ''
 params.generax_container     = params.generax_container ?: 'reconaming-generax:2.0.4'
+params.gene_id_attribute       = params.gene_id_attribute ?: 'ID'
+params.transcript_id_attribute = params.transcript_id_attribute ?: 'ID'
+params.protein_id_attribute    = params.protein_id_attribute ?: ''
 
 include { PREPARE_FOCAL_GENOME_MAP }      from './modules/local/prepare_focal_genome_map'
 include { BUILD_INPUT_MANIFEST }          from './modules/local/build_input_manifest'
@@ -34,6 +38,7 @@ include { PREPARE_PROTEINS }               from './modules/local/prepare_protein
 include { MERGE_ISOFORM_OUTPUTS }          from './modules/local/merge_isoform_outputs'
 include { VALIDATE_PROTEIN_FASTA }         from './modules/local/validate_protein_fasta'
 include { SELECT_REPRESENTATIVE_ISOFORMS } from './modules/local/select_representative_isoforms'
+include { REQUIRE_COMPLETE_MANUAL_SELECTION } from './modules/local/require_complete_manual_selection'
 include { INFER_SPECIES_TREE }             from './modules/local/infer_species_tree'
 include { VALIDATE_SUPPLIED_SPECIES_TREE } from './modules/local/validate_supplied_species_tree'
 include { DERIVE_GENE_TO_SPECIES }         from './modules/local/derive_gene_to_species'
@@ -60,11 +65,25 @@ workflow {
         prepare_proteins_script = file("${projectDir}/bin/prepare_proteins.py", checkIfExists: true)
         PREPARE_PROTEINS(
             focal_genomes.combine(gffs).map { s, genome, files -> tuple(s, genome, files) },
-            prepare_proteins_script
+            prepare_proteins_script,
+            params.gene_id_attribute,
+            params.transcript_id_attribute,
+            params.protein_id_attribute
         )
         MERGE_ISOFORM_OUTPUTS(PREPARE_PROTEINS.out.proteins.collect(), PREPARE_PROTEINS.out.manifest.collect())
-        selection = params.isoform_selection ? file(params.isoform_selection).toAbsolutePath().toString() : ''
-        SELECT_REPRESENTATIVE_ISOFORMS(MERGE_ISOFORM_OUTPUTS.out.proteins, MERGE_ISOFORM_OUTPUTS.out.manifest, selection)
+        selection_table = params.selection_table ? file(params.selection_table, checkIfExists: true) : file("${projectDir}/assets/empty_selection_table.tsv", checkIfExists: true)
+        selection_table_supplied = params.selection_table ? true : false
+        SELECT_REPRESENTATIVE_ISOFORMS(
+            MERGE_ISOFORM_OUTPUTS.out.proteins,
+            MERGE_ISOFORM_OUTPUTS.out.manifest,
+            selection_table,
+            file("${projectDir}/bin/select_representative_isoforms.py", checkIfExists: true),
+            selection_table_supplied
+        )
+        REQUIRE_COMPLETE_MANUAL_SELECTION(
+            SELECT_REPRESENTATIVE_ISOFORMS.out.status,
+            "${params.outdir}/manual_selection"
+        )
         representative_proteins = SELECT_REPRESENTATIVE_ISOFORMS.out.proteins
         representative_manifest = SELECT_REPRESENTATIVE_ISOFORMS.out.manifest
     }
