@@ -1,0 +1,7 @@
+# Test inputs, fixtures, expected outputs, and runtime reports are excluded
+# from the repository language breakdown but remain normally reviewable.
+test/** linguist-detectable=false
+
+# Generated Nextflow HTML execution reports are also collapsed in diffs.
+test/**/report.html linguist-generated=true
+test/**/gene_tree_report.html linguist-generated=true
