@@ -31,6 +31,10 @@ params.generax_container     = params.generax_container ?: 'reconaming-generax:2
 params.gene_id_attribute       = params.gene_id_attribute ?: 'ID'
 params.transcript_id_attribute = params.transcript_id_attribute ?: 'ID'
 params.protein_id_attribute    = params.protein_id_attribute ?: ''
+params.revision_registry       = params.revision_registry ?: null
+params.revision_tag            = params.revision_tag ?: null
+params.reconaming_opt          = params.reconaming_opt ?: "${projectDir}/conf/reconaming_opt.ctl"
+params.reconaming_container    = params.reconaming_container ?: 'reconaming-core:6.2'
 
 include { PREPARE_FOCAL_GENOME_MAP }      from './modules/local/prepare_focal_genome_map'
 include { BUILD_INPUT_MANIFEST }          from './modules/local/build_input_manifest'
@@ -46,6 +50,7 @@ include { ALIGN_PROTEINS }                 from './modules/local/align_proteins'
 include { TRIM_ALIGNMENT }                 from './modules/local/trim_alignment'
 include { INFER_GENE_TREE }                from './modules/local/infer_gene_tree'
 include { RECONCILE_GENE_TREE }            from './modules/local/reconcile_gene_tree'
+include { RUN_RECONAMING }                 from './modules/local/run_reconaming'
 
 workflow {
     if (params.input_mode == 'protein') {
@@ -81,9 +86,7 @@ workflow {
             selection_table_supplied
         )
         REQUIRE_COMPLETE_MANUAL_SELECTION(
-            SELECT_REPRESENTATIVE_ISOFORMS.out.status,
-            "${params.outdir}/manual_selection"
-        )
+            SELECT_REPRESENTATIVE_ISOFORMS.out.status, "${params.outdir}/manual_selection")
         representative_proteins = SELECT_REPRESENTATIVE_ISOFORMS.out.proteins
         representative_manifest = SELECT_REPRESENTATIVE_ISOFORMS.out.manifest
     }
@@ -101,7 +104,6 @@ workflow {
 
     DERIVE_GENE_TO_SPECIES(representative_manifest)
     gene_to_species = DERIVE_GENE_TO_SPECIES.out.gene_to_species
-
     ALIGN_PROTEINS(representative_proteins, params.famsa_args ?: '')
     TRIM_ALIGNMENT(ALIGN_PROTEINS.out.alignment)
     INFER_GENE_TREE(TRIM_ALIGNMENT.out.trimmed_alignment, params.iqtree_args ?: '')
@@ -120,14 +122,25 @@ workflow {
         reconciliation_input,
         file("${projectDir}/bin/prepare_generax_inputs.py", checkIfExists: true),
         file("${projectDir}/bin/normalise_generax_output.py", checkIfExists: true),
-        params.generax_cpus,
-        params.generax_rec_model,
-        params.generax_strategy,
-        params.generax_seed,
-        params.generax_args,
-        params.generax_container
+        params.generax_cpus, params.generax_rec_model, params.generax_strategy,
+        params.generax_seed, params.generax_args, params.generax_container
     )
-    reconciled_gene_tree = RECONCILE_GENE_TREE.out.reconciled_tree
 
-    // Jobs 15–18 consume reconciled_gene_tree and RECONCILE_GENE_TREE.out.mapping.
+    if (!params.revision_tag) error 'Job 15 requires --revision_tag (for example rev_20260922).'
+    revision_registry = params.revision_registry ? file(params.revision_registry, checkIfExists: true) : file("${projectDir}/assets/empty_revision_registry.csv", checkIfExists: true)
+    reconaming_input = RECONCILE_GENE_TREE.out.reconciled_tree
+        .map { reconciled_tree -> tuple(reconciled_tree, outgroup_genes, revision_registry) }
+
+    RUN_RECONAMING(
+        reconaming_input,
+        file("${projectDir}/bin/reconaming_core.py", checkIfExists: true),
+        file("${projectDir}/bin/run_reconaming.py", checkIfExists: true),
+        file(params.reconaming_opt, checkIfExists: true),
+        params.revision_tag,
+        params.reconaming_container
+    )
+    named_gene_tree = RUN_RECONAMING.out.named_tree
+    updated_revision_registry = RUN_RECONAMING.out.revision_registry
+
+    // Jobs 16–18 consume named_gene_tree, updated_revision_registry, and the name table.
 }
