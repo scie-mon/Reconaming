@@ -35,6 +35,7 @@ params.revision_registry       = params.revision_registry ?: null
 params.revision_tag            = params.revision_tag ?: null
 params.reconaming_opt          = params.reconaming_opt ?: "${projectDir}/conf/reconaming_opt.ctl"
 params.reconaming_container    = params.reconaming_container ?: 'reconaming-core:6.2'
+params.gff_output              = params.gff_output ?: 'update'
 
 include { PREPARE_FOCAL_GENOME_MAP }      from './modules/local/prepare_focal_genome_map'
 include { BUILD_INPUT_MANIFEST }          from './modules/local/build_input_manifest'
@@ -51,6 +52,8 @@ include { TRIM_ALIGNMENT }                 from './modules/local/trim_alignment'
 include { INFER_GENE_TREE }                from './modules/local/infer_gene_tree'
 include { RECONCILE_GENE_TREE }            from './modules/local/reconcile_gene_tree'
 include { RUN_RECONAMING }                 from './modules/local/run_reconaming'
+include { POSTPROCESS_RECONAMING_ANNOTATION } from './modules/local/postprocess_reconaming'
+include { POSTPROCESS_RECONAMING_PROTEIN }    from './modules/local/postprocess_reconaming'
 
 workflow {
     if (params.input_mode == 'protein') {
@@ -64,6 +67,7 @@ workflow {
         PREPARE_FOCAL_GENOME_MAP(Channel.fromPath(params.species_inputs, checkIfExists: true))
         BUILD_INPUT_MANIFEST(PREPARE_FOCAL_GENOME_MAP.out.focal_genome_map)
         gffs = Channel.fromPath(params.ir_gff, checkIfExists: true).collect()
+        source_gffs = gffs
         focal_genomes = PREPARE_FOCAL_GENOME_MAP.out.focal_genome_map
             .splitCsv(header: true, sep: '\t')
             .map { row -> tuple(row.species_id, file(row.genome_file)) }
@@ -142,5 +146,28 @@ workflow {
     named_gene_tree = RUN_RECONAMING.out.named_tree
     updated_revision_registry = RUN_RECONAMING.out.revision_registry
 
-    // Jobs 16–18 consume named_gene_tree, updated_revision_registry, and the name table.
+    postprocess_common = RUN_RECONAMING.out.named_tree
+        .combine(RUN_RECONAMING.out.name_table)
+        .combine(RUN_RECONAMING.out.revision_registry)
+        .combine(RUN_RECONAMING.out.temporary_partition)
+        .combine(RUN_RECONAMING.out.report)
+        .map { tree, table, registry, partition, report -> tuple(tree, table, registry, partition, report) }
+
+    if (params.input_mode == 'annotation') {
+        annotation_postprocess_input = postprocess_common.combine(source_gffs)
+            .map { tree, table, registry, partition, report, source_gff_list -> tuple(tree, table, registry, partition, report, source_gff_list) }
+        POSTPROCESS_RECONAMING_ANNOTATION(
+            annotation_postprocess_input,
+            file("${projectDir}/bin/postprocess_reconaming.py", checkIfExists: true),
+            params.gff_output, params.gene_id_attribute, params.revision_tag,
+            params.outdir, params.reconaming_container
+        )
+    }
+    else {
+        POSTPROCESS_RECONAMING_PROTEIN(
+            postprocess_common,
+            file("${projectDir}/bin/postprocess_reconaming.py", checkIfExists: true),
+            params.gff_output, params.revision_tag, params.outdir, params.reconaming_container
+        )
+    }
 }

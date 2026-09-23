@@ -33,6 +33,10 @@ automatic_isoform_tiebreak=longest_then_lexical
 # Output
 outdir=results
 
+# Annotation output after Reconaming: update, minimal, or none.
+# Protein input mode requires none.
+gff_output=update
+
 # -----------------------------------------------------------------------------
 # Reconaming (Job 15)
 # -----------------------------------------------------------------------------
@@ -54,7 +58,7 @@ ignore_sco=
 minimal_id=
 
 # true: name the rooted outgroup too; false/default: exclude it from naming.
-include_outgroup=true
+include_outgroup=
 
 # true/default: ladderize/core-order the tree; false: preserve existing ordering.
 sort_tree=
