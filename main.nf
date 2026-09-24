@@ -3,7 +3,7 @@ nextflow.enable.dsl=2
 
 params.input_mode        = params.input_mode ?: 'annotation'
 params.species_inputs    = params.species_inputs ?: null
-params.ir_gff            = params.ir_gff ?: null
+params.annotation        = params.annotation ?: null
 params.protein_fasta     = params.protein_fasta ?: null
 params.id_species        = null
 params.selection_table   = params.selection_table ?: null
@@ -63,10 +63,10 @@ workflow {
         representative_manifest = VALIDATE_PROTEIN_FASTA.out.manifest
     }
     else if (params.input_mode == 'annotation') {
-        if (!params.species_inputs || !params.ir_gff) error 'Annotation mode requires --species_inputs and --ir_gff.'
+        if (!params.species_inputs || !params.annotation) error 'Annotation mode requires --species_inputs and --annotation.'
         PREPARE_FOCAL_GENOME_MAP(Channel.fromPath(params.species_inputs, checkIfExists: true))
         BUILD_INPUT_MANIFEST(PREPARE_FOCAL_GENOME_MAP.out.focal_genome_map)
-        gffs = Channel.fromPath(params.ir_gff, checkIfExists: true).collect()
+        gffs = Channel.fromPath(params.annotation, checkIfExists: true).collect()
         source_gffs = gffs
         focal_genomes = PREPARE_FOCAL_GENOME_MAP.out.focal_genome_map
             .splitCsv(header: true, sep: '\t')

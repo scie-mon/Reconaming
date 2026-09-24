@@ -12,7 +12,7 @@ input_mode=auto
 
 # Annotation mode: genome FASTA plus IR annotation GFF/GFF3
 genome_fasta=
-ir_gff=
+annotation=
 
 # Protein mode: pre-extracted isoform protein FASTA plus TSV mapping
 protein_fasta=

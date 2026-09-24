@@ -2,7 +2,7 @@
 import argparse, csv, re, shutil, subprocess, sys
 from pathlib import Path
 
-PIPELINE_OPTIONS = {"input_mode","genome_fasta","ir_gff","protein_fasta","sequence_mapping","isoform_selection","minimum_protein_length","invalid_protein_policy","allow_terminal_stop","automatic_isoform_tiebreak","outdir","gff_output"}
+PIPELINE_OPTIONS = {"input_mode","genome_fasta","annotation","protein_fasta","sequence_mapping","isoform_selection","minimum_protein_length","invalid_protein_policy","allow_terminal_stop","automatic_isoform_tiebreak","outdir","gff_output"}
 CORE_OPTIONS = {"prefix","threshold","aliases","ignore_sco","minimal_id","include_outgroup","sort_tree","root_by","pgignore_nodes","max_pg_size","allow_revive_pg","force_pg_root","show_single_para","force_boundary_true","force_boundary_false"}
 
 def fail(message): raise SystemExit(f"ERROR: {message}")

@@ -1,6 +1,6 @@
 # Reconaming
 
-Reconaming is an ortholog-aware multigene-family reconciliation and naming pipeline. Starting from either IR gene annotations and genomic sequences or a prepared protein set, it infers or validates a species tree, infers and reconciles a gene tree, and assigns consistent Reconaming names. A revision registry carries forward unambiguous historical ParentGroup assignments between annotation or dataset revisions.
+Reconaming (RECONciliated NAMING) is an ortholog-aware multigene-family reconciliation and naming pipeline. Starting from either gene annotations and genomic sequences or a prepared protein set, it infers or validates a species tree, infers and reconciles a gene tree, and assigns consistent ortholog-aware gene names. A revision registry carries forward unambiguous historical ParentGroup assignments between annotation or dataset revisions.
 
 **Workflow:**
 
@@ -10,12 +10,9 @@ Reconaming is an ortholog-aware multigene-family reconciliation and naming pipel
 
 ### Software requirements
 
-Reconaming is implemented in Nextflow DSL 2. You need:
-
 - [Nextflow](https://www.nextflow.io/)
-- A POSIX-compatible shell with Bash available
+- Java, as required by the installed Nextflow release
 - Either Docker or Apptainer/Singularity to run the configured containers
-- Sufficient local disk space for Nextflow task directories and intermediate sequence/tree files
 
 The workflow currently uses Nextflow's `local` executor by default. Docker and Singularity/Apptainer profiles are provided. Scheduler-based HPC execution is described as experimental below.
 
@@ -42,7 +39,7 @@ The configured workflow stages use separate images for species-tree inference, g
 
 ### Run the bundled test dataset
 
-The repository includes small integration-test datasets under `test/`, including a species-tree-inference case in `test/spec_tree/` and supplied-species-tree cases in `test/provide_spec_tree/`. These datasets include test genome FASTA files, an IR GFF3, a species-input table, and—where relevant—outgroup genes or a supplied species tree.
+The repository includes small integration-test datasets under `test/`, including a species-tree-inference case in `test/spec_tree/` and supplied-species-tree cases in `test/provide_spec_tree/`. These datasets include test genome FASTA files, a GFF3, a species-input table, and—where relevant—outgroup genes or a supplied species tree.
 
 The following is the intended smoke-test pattern. Run it in a new output directory and set a deliberately modest GeneRax CPU allocation appropriate to the machine:
 
@@ -51,27 +48,23 @@ nextflow run main.nf \
   -profile docker \
   --input_mode annotation \
   --species_inputs test/spec_tree/test_species_tree_inputs.tsv \
-  --ir_gff test/spec_tree/merged.rev0.gff3 \
+  --annotation test/spec_tree/merged.rev0.gff3 \
   --outgroup_genes test/spec_tree/outgroup_genes.txt \
   --revision_tag test_rev_001 \
   --generax_cpus 4 \
   --outdir results_test
 ```
 
-Do not write test results into the versioned `test/` directory. The committed HTML reports and trace files there are test artifacts, not destinations for a new run.
-
-> **Note:** Confirm this command against the repository's current CI or test procedure before treating it as a release-validation command. It is a documented smoke-test invocation assembled from the bundled `test/spec_tree` inputs.
-
 ## Quick start
 
-For a standard analysis that starts from genome FASTA files and IR annotations, run:
+For a standard analysis that starts from genome FASTA files and annotations, run:
 
 ```bash
 nextflow run main.nf \
   -profile docker \
   --input_mode annotation \
   --species_inputs path/to/species_inputs.tsv \
-  --ir_gff 'path/to/ir_annotations/*.gff3' \
+  --annotation 'path/to/ir_annotations/*.gff3' \
   --revision_tag rev_001 \
   --generax_cpus 8 \
   --outdir results \
@@ -102,14 +95,14 @@ Reconaming has two input routes. Both converge on protein alignment, gene-tree i
 
 ### Annotation route
 
-Use `--input_mode annotation` when beginning with genome sequences and IR annotations. This is the default route.
+Use `--input_mode annotation` when beginning with genome sequences and annotation. This is the default route.
 
 Required inputs:
 
 | Parameter | Description |
 |---|---|
 | `--species_inputs` | Tab-separated species-input table that identifies focal species and their genome FASTA files |
-| `--ir_gff` | IR annotation GFF/GFF3 file or path/glob resolving to the annotation file(s) |
+| `--annotation` | annotation GFF/GFF3 file or path/glob resolving to the annotation file(s) |
 | `--revision_tag` | Identifier for this naming revision round |
 | `--generax_cpus` | CPU allocation to use for GeneRax reconciliation |
 
@@ -162,7 +155,7 @@ Provide Nextflow parameters as `--name value`. The parameters below are grouped 
 | Parameter | Default | Meaning |
 |---|---:|---|
 | `--species_inputs` | none | Species-input table for annotation mode and internal species-tree inference |
-| `--ir_gff` | none | IR annotation GFF/GFF3 for annotation mode |
+| `--annotation` | none | annotation GFF/GFF3 for annotation mode |
 | `--selection_table` | empty project table | Optional manual representative-isoform selection table |
 | `--protein_fasta` | none | Representative protein FASTA for protein mode |
 | `--id_species` | none | Gene-to-species mapping for protein mode |
@@ -246,7 +239,7 @@ The actual policy is controlled by the Reconaming control file. In particular:
 
 `conf/reconaming_opt.ctl` is an advanced configuration file for the Reconaming core. Empty values are ignored. It contains options for support thresholds, aliases, outgroup treatment, ParentGroup limits and overrides, rooting, tree ordering, and boundary behaviour.
 
-Do not use its input-preparation-looking entries as a substitute for the Nextflow command-line interface. Invoke the pipeline with `--species_inputs`, `--ir_gff`, `--protein_fasta`, `--id_species`, and the other documented Nextflow options; use `--reconaming_opt` only to select the naming-core configuration file.
+Do not use its input-preparation-looking entries as a substitute for the Nextflow command-line interface. Invoke the pipeline with `--species_inputs`, `--annotation`, `--protein_fasta`, `--id_species`, and the other documented Nextflow options; use `--reconaming_opt` only to select the naming-core configuration file.
 
 ## Output
 
