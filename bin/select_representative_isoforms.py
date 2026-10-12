@@ -226,7 +226,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--proteins', required=True)
     parser.add_argument('--manifest', required=True)
-    parser.add_argument('--selection-table', required=True)
+    parser.add_argument('--selection-table')
     parser.add_argument('--selection-table-supplied', choices=('true', 'false'), required=True)
     parser.add_argument('--representatives', required=True)
     parser.add_argument('--output-manifest', required=True)
@@ -236,4 +236,6 @@ if __name__ == '__main__':
     parser.add_argument('--status', required=True)
     arguments = parser.parse_args()
     arguments.selection_table_supplied = arguments.selection_table_supplied == 'true'
+    if arguments.selection_table_supplied and not arguments.selection_table:
+        parser.error('--selection-table is required when --selection-table-supplied is true.')
     main(arguments)

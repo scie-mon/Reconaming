@@ -1,10 +1,11 @@
 # Reconaming
 
-Reconaming (RECONciliated NAMING) is an ortholog-aware multigene-family reconciliation and naming pipeline. Starting from either gene annotations and genomic sequences or a prepared protein set, it infers or validates a species tree, infers and reconciles a gene tree, and assigns consistent ortholog-aware gene names. A revision registry carries forward unambiguous historical ParentGroup assignments between annotation or dataset revisions.
-
-**Workflow:**
+Reconaming (**Recon**ciliated **naming**) is an ortholog-aware multigene-family reconciliation and naming pipeline. Starting from either gene annotations and genomic sequences or a prepared protein set, it infers or validates a species tree, infers and reconciles a gene tree, and assigns consistent ortholog-aware gene names. A revision registry carries forward unambiguous historical orthology group assignments between annotation or dataset revisions.
 
 ![Reconaming workflow](assets/Reconaming_FlowChart.png)
+
+## Contents
+...
 
 ## Installation and prerequisites
 
@@ -16,7 +17,7 @@ Reconaming (RECONciliated NAMING) is an ortholog-aware multigene-family reconcil
 
 The workflow currently uses Nextflow's `local` executor by default. Docker and Singularity/Apptainer profiles are provided. Scheduler-based HPC execution is described as experimental below.
 
-Clone the repository and enter it:
+### Obtain Reconaming
 
 ```bash
 git clone https://github.com/scie-mon/Reconaming.git
@@ -35,7 +36,14 @@ nextflow run main.nf -profile docker [options]
 nextflow run main.nf -profile singularity [options]
 ```
 
-The configured workflow stages use separate images for species-tree inference, gene-tree inference, GeneRax reconciliation, and Reconaming. Make sure the relevant images are available to the container runtime before starting a production run.
+The four container build recipes are supplied in the repository:
+
+- Species-tree inference: `containers/Dockerfile.species-tree`
+- Gene-tree inference: `containers/Dockerfile.gene-tree`
+- GeneRax reconciliation: `containers/Dockerfile.generax`
+- Reconaming core: `containers/Dockerfile.reconaming-core`
+
+Prebuilt Reconaming images are not currently published. The profiles do not build images automatically: before running the pipeline, build or otherwise provide the required images under the names configured for the workflow. The Dockerfiles are recipes, not images that Apptainer/Singularity can run directly; building them on a system without Docker requires a suitable container-build facility.
 
 ### Run the bundled test dataset
 
@@ -46,8 +54,7 @@ The following is the intended smoke-test pattern. Run it in a new output directo
 ```bash
 nextflow run main.nf \
   -profile docker \
-  --input_mode annotation \
-  --species_inputs test/spec_tree/test_species_tree_inputs.tsv \
+  --sequence_inputs test/spec_tree/test_species_tree_inputs.tsv \
   --annotation test/spec_tree/merged.rev0.gff3 \
   --outgroup_genes test/spec_tree/outgroup_genes.txt \
   --revision_tag test_rev_001 \
@@ -62,23 +69,21 @@ For a standard analysis that starts from genome FASTA files and annotations, run
 ```bash
 nextflow run main.nf \
   -profile docker \
-  --input_mode annotation \
-  --species_inputs path/to/species_inputs.tsv \
-  --annotation 'path/to/ir_annotations/*.gff3' \
+  --sequence_inputs path/to/sequence_inputs.tsv \
+  --annotation 'path/to/annotations/*.gff3' \
   --revision_tag rev_001 \
   --generax_cpus 8 \
   --outdir results \
   -resume
 ```
 
-Replace the placeholder paths and choose a `--generax_cpus` value that fits the allocation actually available to the run. `--revision_tag` is required. Use `-resume` when repeating or restarting a run with unchanged inputs and configuration; it lets Nextflow reuse valid completed tasks retained in the work directory.
+Replace the placeholder paths. `--revision_tag` is required. Use `-resume` when repeating or restarting a run with unchanged inputs and configuration; it lets Nextflow reuse valid completed tasks retained in the work directory.
 
 A protein-route run, using pre-extracted representative proteins, has the following form:
 
 ```bash
 nextflow run main.nf \
   -profile docker \
-  --input_mode protein \
   --protein_fasta path/to/representative_proteins.faa \
   --id_species path/to/gene_to_species.tsv \
   --species_tree path/to/species_tree.nwk \
@@ -95,13 +100,13 @@ Reconaming has two input routes. Both converge on protein alignment, gene-tree i
 
 ### Annotation route
 
-Use `--input_mode annotation` when beginning with genome sequences and annotation. This is the default route.
+Annotation mode is selected automatically when `--annotation` is supplied and `--sequence_inputs` contains focal genome inputs. All focal inputs used for annotation preparation must have `input_type=genome`. There is no explicit mode selector.
 
 Required inputs:
 
 | Parameter | Description |
 |---|---|
-| `--species_inputs` | Tab-separated species-input table that identifies focal species and their genome FASTA files |
+| `--sequence_inputs` | Tab-separated sequence-input table identifying focal species and their genome FASTA files |
 | `--annotation` | annotation GFF/GFF3 file or path/glob resolving to the annotation file(s) |
 | `--revision_tag` | Identifier for this naming revision round |
 | `--generax_cpus` | CPU allocation to use for GeneRax reconciliation |
@@ -110,7 +115,7 @@ The pipeline prepares proteins from the annotations, builds an input manifest, a
 
 ### Protein route
 
-Use `--input_mode protein` when representative protein sequences are already available.
+Protein mode is selected automatically when both `--protein_fasta` and `--id_species` are supplied.
 
 Required inputs:
 
@@ -121,7 +126,7 @@ Required inputs:
 | `--revision_tag` | Identifier for this naming revision round |
 | `--generax_cpus` | CPU allocation to use for GeneRax reconciliation |
 
-Protein mode validates the supplied proteins and mapping, but does not have source GFF/GFF3 records to rewrite. Use `--gff_output none` in this mode.
+`--id_species` is a TSV with `sequence_id` and `species_id` columns; sequence IDs must match protein FASTA identifiers. Protein mode validates the supplied proteins and mapping, but does not have source GFF/GFF3 records to rewrite. Use `--gff_output none` in this mode.
 
 ### Shared optional inputs
 
@@ -133,8 +138,37 @@ Protein mode validates the supplied proteins and mapping, but does not have sour
 | `--revision_registry` | Revision registry from a previous naming round; an empty project registry is used for a first round |
 | `--reconaming_opt` | Path to the advanced Reconaming-core control file; defaults to `conf/reconaming_opt.ctl` |
 | `--outdir` | Destination for final results; defaults to `results` |
+| `--sequence_inputs` (protein route) | In protein route this can be also used to configure the species tree inference input |
 
-If no `--species_tree` is given, the pipeline infers one internally. Internal species-tree inference requires `--species_inputs`; therefore, protein-mode analyses normally supply a species tree.
+Analysis-input selection and species-tree selection are independent.
+
+| Analysis route | Complete required input set |
+|---|---|
+| Annotation | `--annotation` + focal genomes in `--sequence_inputs` |
+| Protein | `--protein_fasta` + `--id_species` |
+
+Exactly one analysis input set must be complete. If neither or both are complete, startup validation stops the run. Incomplete alternative input sets do not select another route.
+
+Species-tree selection uses the following precedence:
+
+A species tree supplied through `--species_tree` takes precedence over internal inference. The pipeline validates the supplied tree before using it; validation failure stops the run rather than triggering inference.
+
+When no species tree is supplied, the pipeline infers one from suitable focal-species and auxiliary-outgroup inputs listed in --sequence_inputs. If the required inference inputs are missing or incomplete, the run stops with an error identifying the missing prerequisites.
+
+`--sequence_inputs` is a TSV with these columns:
+
+| Column | Meaning |
+|---|---|
+| `species_id` | Species identifier |
+| `input_file` | Genome or proteome FASTA path, accessible from the run directory |
+| `input_type` | `genome` or `proteome` |
+| `role` | `focal` or `outgroup` |
+
+For inference, supply one input for every analysed focal species and exactly one auxiliary outgroup. Species identifiers must be unique, the focal set must match the representative-protein manifest exactly, and the auxiliary outgroup must not be a gene-family species. With `--busco_mode auto`, each row's `input_type` is used; genome, proteome and mixed inputs are supported. Here, `auto` follows the table rather than detecting sequence type. The inference workflow roots on the auxiliary outgroup and then prunes it.
+
+The per-species proteomes used for species-tree inference are separate from the representative gene-family `--protein_fasta`. Protein mode can therefore infer a species tree when the required per-species sequence inputs are supplied.
+
+Annotation preparation still requires focal genomes. If a tree is supplied, auxiliary inference rows are not required or used; a table containing them is not a route conflict. Protein mode with a supplied tree does not need `--sequence_inputs`, and an unused sequence table is not read unless annotation inputs also need evaluation.
 
 ## Parameters
 
@@ -144,7 +178,6 @@ Provide Nextflow parameters as `--name value`. The parameters below are grouped 
 
 | Parameter | Default | Meaning |
 |---|---:|---|
-| `--input_mode` | `annotation` | Select `annotation` or `protein` input route |
 | `--outdir` | `results` | Final-results directory |
 | `--revision_tag` | none; required | Name for the current revision round, for example `rev_001` |
 | `--revision_registry` | empty project registry | Previous revision registry to continue from |
@@ -154,7 +187,7 @@ Provide Nextflow parameters as `--name value`. The parameters below are grouped 
 
 | Parameter | Default | Meaning |
 |---|---:|---|
-| `--species_inputs` | none | Species-input table for annotation mode and internal species-tree inference |
+| `--sequence_inputs` | none | Species-labelled genome/proteome table; focal genomes prepare annotations, while focal + outgroup sequences enable inference |
 | `--annotation` | none | annotation GFF/GFF3 for annotation mode |
 | `--selection_table` | empty project table | Optional manual representative-isoform selection table |
 | `--protein_fasta` | none | Representative protein FASTA for protein mode |
@@ -171,7 +204,7 @@ Provide Nextflow parameters as `--name value`. The parameters below are grouped 
 | `--species_tree_outgroup` | none | Outgroup for supplied-tree validation/rooting |
 | `--busco_lineage` | none | BUSCO lineage dataset to use, if specified |
 | `--busco_auto_lineage` | `true` | Let BUSCO choose a lineage automatically |
-| `--busco_mode` | `auto` | BUSCO analysis mode |
+| `--busco_mode` | `auto` | Follow each row's `input_type`; `genome` or `proteome` forces one type for all inference inputs |
 | `--busco_threads` | `4` | Threads for BUSCO |
 | `--busco_warn_complete` | `90` | Completeness threshold that triggers a warning |
 | `--species_tree_threads` | `4` | Threads for species-tree inference |
@@ -206,7 +239,7 @@ Provide Nextflow parameters as `--name value`. The parameters below are grouped 
 
 ### Why revisioning exists
 
-Gene-family naming is often repeated as annotations improve, taxa are added, gene models change, or phylogenetic evidence is updated. Reconaming treats each such analysis as a revision round. The goal is to preserve unambiguous historical ParentGroup assignments where possible while allowing names to change when the underlying reconciliation genuinely changes.
+Gene-family naming might be required to be repeated as annotations improve, taxa are added, gene models change, or phylogenetic evidence is updated. Reconaming treats each such analysis as a revision round. The goal is to preserve unambiguous historical ParentGroup assignments where possible while allowing names to change when the underlying reconciliation genuinely changes. Deprecated gene numbers are never re-used and stay associated with their gene as an alias. A revision matrix keeps track of this, declaring legacy names of each gene and orthology of all contained genes with the current name set.
 
 ### Starting a revision round
 
@@ -218,7 +251,6 @@ For a first round, omit `--revision_registry`; the workflow starts from the proj
 nextflow run main.nf -profile docker \
   --revision_tag rev_002 \
   --revision_registry path/to/rev_001_revision_registry.csv \
-  --generax_cpus 8 \
   [other input and run parameters]
 ```
 
@@ -239,7 +271,7 @@ The actual policy is controlled by the Reconaming control file. In particular:
 
 `conf/reconaming_opt.ctl` is an advanced configuration file for the Reconaming core. Empty values are ignored. It contains options for support thresholds, aliases, outgroup treatment, ParentGroup limits and overrides, rooting, tree ordering, and boundary behaviour.
 
-Do not use its input-preparation-looking entries as a substitute for the Nextflow command-line interface. Invoke the pipeline with `--species_inputs`, `--annotation`, `--protein_fasta`, `--id_species`, and the other documented Nextflow options; use `--reconaming_opt` only to select the naming-core configuration file.
+Do not use its input-preparation-looking entries as a substitute for the Nextflow command-line interface. Invoke the pipeline with `--sequence_inputs`, `--annotation`, `--protein_fasta`, `--id_species`, and the other documented Nextflow options; use `--reconaming_opt` only to select the naming-core configuration file.
 
 ## Output
 
@@ -257,7 +289,7 @@ The Reconaming stage produces the material needed to interpret and continue a na
 
 ### Annotation-mode outputs
 
-When `--input_mode annotation` and `--gff_output update` are used, post-processing applies Reconaming results to the supplied annotation data. `--gff_output minimal` requests a reduced annotation-oriented output, while `--gff_output none` suppresses GFF/GFF3 output.
+When annotation mode is selected and `--gff_output update` is used, post-processing applies Reconaming results to the supplied annotation data. `--gff_output minimal` requests a reduced annotation-oriented output, while `--gff_output none` suppresses GFF/GFF3 output.
 
 ### Protein-mode outputs
 
@@ -265,7 +297,7 @@ Protein mode produces the naming outputs but has no source GFF/GFF3 records to u
 
 ### Run state and intermediate files
 
-The Nextflow `work/` directory and `.nextflow/` contain execution state, staged inputs, logs, task scripts, caches, and intermediates. They support `-resume` but are not scientific deliverables and should not be committed to Git. Remove them only after deciding that the associated run no longer needs to be resumed.
+The Nextflow `work/` directory and `.nextflow/` contain execution state, staged inputs, logs, task scripts, caches, and intermediates. Remove them only after deciding that the associated run no longer needs to be resumed.
 
 If reports, traces, or timelines are enabled for a run, treat them as execution diagnostics. They are useful for troubleshooting and provenance, but they are distinct from the final named tree, name table, revision registry, and annotation outputs.
 

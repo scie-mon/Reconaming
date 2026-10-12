@@ -19,12 +19,14 @@ process RUN_RECONAMING {
     path 'resolved_reconaming_options.tsv', emit: resolved_options
 
     script:
+    def outgroup_args = outgroup_genes ? "--outgroup-genes '${outgroup_genes}'" : ''
+    def registry_args = revision_registry ? "--revision-registry '${revision_registry}'" : ''
     """
     python ${runner_script} \\
         --core-script ${core_script} \\
         --tree ${reconciled_tree} \\
-        --outgroup-genes ${outgroup_genes} \\
-        --revision-registry ${revision_registry} \\
+        ${outgroup_args} \\
+        ${registry_args} \\
         --revision-tag '${revision_tag}' \\
         --options ${options_file}
     """

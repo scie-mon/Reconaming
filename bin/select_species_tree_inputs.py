@@ -4,7 +4,7 @@ import csv
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--representative-manifest', required=True)
-parser.add_argument('--species-tree-inputs', required=True)
+parser.add_argument('--sequence-inputs', required=True)
 parser.add_argument('--busco-mode', choices=('auto', 'genome', 'proteome'), default='auto')
 parser.add_argument('--output', required=True)
 args = parser.parse_args()
@@ -17,11 +17,11 @@ gene_species = {row['species_id'].strip() for row in manifest_rows if row.get('s
 if not gene_species:
     raise SystemExit('Representative manifest contains no species_id values.')
 
-with open(args.species_tree_inputs, newline='') as handle:
+with open(args.sequence_inputs, newline='') as handle:
     reader = csv.DictReader(handle, delimiter='\t')
     required = {'species_id', 'input_file', 'input_type', 'role'}
     if reader.fieldnames is None or not required.issubset(reader.fieldnames):
-        raise SystemExit('species_inputs must contain: species_id, input_file, input_type, role.')
+        raise SystemExit('sequence_inputs must contain: species_id, input_file, input_type, role.')
     rows = list(reader)
 
 seen = set()
@@ -33,9 +33,9 @@ for row in rows:
     input_type = row['input_type'].strip().lower()
     role = row['role'].strip()
     if not species_id or not input_file:
-        raise SystemExit('species_inputs contains an empty species_id or input_file.')
+        raise SystemExit('sequence_inputs contains an empty species_id or input_file.')
     if species_id in seen:
-        raise SystemExit(f'Duplicate species_id in species_inputs: {species_id}')
+        raise SystemExit(f'Duplicate species_id in sequence_inputs: {species_id}')
     seen.add(species_id)
     if input_type not in {'genome', 'proteome'}:
         raise SystemExit(f'Unsupported input_type for {species_id}: {input_type}')
@@ -50,7 +50,7 @@ for row in rows:
         raise SystemExit(f'Unsupported role for {species_id}: {role}')
 
 if len(outgroups) != 1:
-    raise SystemExit('species_inputs must contain exactly one outgroup row.')
+    raise SystemExit('sequence_inputs must contain exactly one outgroup row.')
 focal_species = {row['species_id'] for row in focal}
 missing = gene_species - focal_species
 extra = focal_species - gene_species

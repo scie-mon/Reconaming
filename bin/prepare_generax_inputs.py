@@ -110,7 +110,7 @@ parser.add_argument('--alignment', required=True)
 parser.add_argument('--species-tree', required=True)
 parser.add_argument('--gene-to-species', required=True)
 parser.add_argument('--representative-manifest', required=True)
-parser.add_argument('--outgroup-genes', required=True)
+parser.add_argument('--outgroup-genes')
 parser.add_argument('--families-out', required=True)
 parser.add_argument('--mapping-out', required=True)
 parser.add_argument('--generax-tree-out', required=True)
@@ -134,7 +134,7 @@ if set(canonical_mapping.values()) - species_leaves:
 
 labels = {sequence_id: gene_id for sequence_id, (gene_id, _) in manifest.items()}
 generax_gene_ids = set(labels.values())
-outgroups = outgroup_ids(args.outgroup_genes)
+outgroups = outgroup_ids(args.outgroup_genes) if args.outgroup_genes else set()
 if outgroups - generax_gene_ids:
     raise ValueError(f"Outgroup gene IDs absent from user-facing GeneRax tree: {sorted(outgroups - generax_gene_ids)[:10]}")
 

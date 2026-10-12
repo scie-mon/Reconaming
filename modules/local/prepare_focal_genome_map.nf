@@ -2,7 +2,7 @@ process PREPARE_FOCAL_GENOME_MAP {
     tag 'focal genome inputs'
 
     input:
-    path species_inputs
+    path sequence_inputs
 
     output:
     path 'focal_genome_map.tsv', emit: focal_genome_map
@@ -10,7 +10,7 @@ process PREPARE_FOCAL_GENOME_MAP {
     script:
     """
     python3 ${projectDir}/bin/prepare_focal_genome_map.py \\
-      --species-inputs ${species_inputs} \\
+      --sequence-inputs ${sequence_inputs} \\
       --output focal_genome_map.tsv
     """
 }

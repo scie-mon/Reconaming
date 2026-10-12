@@ -240,7 +240,9 @@ def _parse_pgpara_cell(x):
     return None
 
 def _load_revlog(path: str) -> pd.DataFrame:
-    """Load CSV/Parquet revision table. Empty DF if file missing."""
+    """Load CSV/Parquet revision table. Empty DF when no input is supplied."""
+    if path is None:
+        return pd.DataFrame()
     if not os.path.exists(path):
         return pd.DataFrame()
     if path.lower().endswith((".parquet", ".pq")):
@@ -441,8 +443,8 @@ ap.add_argument("--PGignore-nodes", nargs="+",
 ap.add_argument("--max-pg-size", type=int, default=0,
                 help="Max leaves allowed for a PG subtree. "
                      "If a candidate PG root exceeds this, it is skipped. 0 = no limit.")
-ap.add_argument("--revlog", required=True, type=str,
-                help="Path to the revision log table (CSV or Parquet). Index = immutable gene UID; columns = revisions. "
+ap.add_argument("--revlog", type=str,
+                help="Optional revision log table (CSV or Parquet); omission starts a new registry. Index = immutable gene UID; columns = revisions. "
                      "The new column named by --revtag is inserted at position 0.")
 ap.add_argument("--revtag", required=True, type=str,
                 help="Name/label for the current revision column (e.g., 'rev_20251031').")

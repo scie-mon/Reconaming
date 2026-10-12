@@ -9,6 +9,7 @@ RUN micromamba install --yes --name base --channel conda-forge --channel biocond
         busco=5.8.2 \
         busco_phylogenomics \
         ete3 \
+        dendropy=4.5.2 \
     && micromamba clean --all --yes
 
 USER $MAMBA_USER

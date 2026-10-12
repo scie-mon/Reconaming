@@ -3,15 +3,15 @@ import argparse
 import csv
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--species-inputs', required=True)
+parser.add_argument('--sequence-inputs', required=True)
 parser.add_argument('--output', required=True)
 args = parser.parse_args()
 
-with open(args.species_inputs, newline='') as handle:
+with open(args.sequence_inputs, newline='') as handle:
     reader = csv.DictReader(handle, delimiter='\t')
     required = {'species_id', 'input_file', 'input_type', 'role'}
     if reader.fieldnames is None or not required.issubset(reader.fieldnames):
-        raise SystemExit('species_inputs must contain: species_id, input_file, input_type, role.')
+        raise SystemExit('sequence_inputs must contain: species_id, input_file, input_type, role.')
     rows = list(reader)
 
 focal = []
@@ -34,7 +34,7 @@ for row in rows:
     focal.append({'species_id': species_id, 'genome_file': input_file, 'role': 'focal'})
 
 if not focal:
-    raise SystemExit('species_inputs contains no focal genome rows for annotation mode.')
+    raise SystemExit('sequence_inputs contains no focal genome rows for annotation mode.')
 
 with open(args.output, 'w', newline='') as handle:
     writer = csv.DictWriter(handle, fieldnames=['species_id', 'genome_file', 'role'], delimiter='\t')

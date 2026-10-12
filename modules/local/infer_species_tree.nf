@@ -2,12 +2,12 @@ process SELECT_SPECIES_TREE_INPUTS {
     tag 'select BUSCO species'
     input:
     path representative_manifest
-    path species_inputs
+    path sequence_inputs
     output:
     path 'selected_species_inputs.tsv', emit: selected_inputs
     script:
     """
-    select_species_tree_inputs.py --representative-manifest ${representative_manifest} --species-tree-inputs ${species_inputs} --busco-mode ${params.busco_mode} --output selected_species_inputs.tsv
+    select_species_tree_inputs.py --representative-manifest ${representative_manifest} --sequence-inputs ${sequence_inputs} --busco-mode ${params.busco_mode} --output selected_species_inputs.tsv
     """
 }
 
@@ -94,9 +94,9 @@ process ROOT_AND_PRUNE_SPECIES_TREE {
 workflow INFER_SPECIES_TREE {
     take:
     representative_manifest
-    species_inputs
+    sequence_inputs
     main:
-    SELECT_SPECIES_TREE_INPUTS(representative_manifest, species_inputs)
+    SELECT_SPECIES_TREE_INPUTS(representative_manifest, sequence_inputs)
     busco_rows = SELECT_SPECIES_TREE_INPUTS.out.selected_inputs
         .splitCsv(header: true, sep: '\t')
         .map { row -> tuple(row.species_id, file(row.input_file), row.input_type) }

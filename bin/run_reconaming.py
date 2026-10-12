@@ -41,11 +41,18 @@ def core_args(options, outgroups):
     return args, roots
 def main():
     p=argparse.ArgumentParser()
-    for key in ("core_script","tree","outgroup_genes","revision_registry","revision_tag","options"): p.add_argument("--"+key.replace("_","-"), required=True)
+    for key in ("core_script","tree","revision_tag","options"): p.add_argument("--"+key.replace("_","-"), required=True)
+    p.add_argument("--outgroup-genes")
+    p.add_argument("--revision-registry")
     a=p.parse_args()
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*", a.revision_tag): fail("revision tag contains invalid characters")
-    options=read_ctl(a.options); args, roots=core_args(options,outgroup_tips(a.outgroup_genes))
-    command=[sys.executable,a.core_script,"--infile",a.tree,"--outfile","named_reconaming.nhx","--revlog",a.revision_registry,"--revtag",a.revision_tag,"--temp-partition-out","temporary_partition.csv",*args]
+    for label, value in (("outgroup-genes", a.outgroup_genes), ("revision-registry", a.revision_registry)):
+        if value is not None and not Path(value).is_file():
+            fail(f"--{label} file does not exist or is not a regular file: {value}")
+    options=read_ctl(a.options); args, roots=core_args(options,outgroup_tips(a.outgroup_genes) if a.outgroup_genes else [])
+    command=[sys.executable,a.core_script,"--infile",a.tree,"--outfile","named_reconaming.nhx","--revtag",a.revision_tag,"--temp-partition-out","temporary_partition.csv",*args]
+    if a.revision_registry is not None:
+        command += ["--revlog", a.revision_registry]
     result=subprocess.run(command,text=True,capture_output=True)
     Path("reconaming_core.stdout.log").write_text(result.stdout,encoding="utf-8"); Path("reconaming_core.stderr.log").write_text(result.stderr,encoding="utf-8")
     if result.returncode: sys.stderr.write(result.stderr); raise SystemExit(result.returncode)

@@ -1,0 +1,5 @@
+metric	value
+revision_tag	smoke_b1_annotation_no_optional_files
+named_loci	5
+gff_output	update
+gff_named_genes	5

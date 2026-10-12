@@ -28,6 +28,7 @@ process RECONCILE_GENE_TREE {
 
     script:
     def args = generax_args ?: ''
+    def outgroup_args = outgroup_genes ? "--outgroup-genes '${outgroup_genes}'" : ''
     """
     set -euo pipefail
 
@@ -38,7 +39,7 @@ process RECONCILE_GENE_TREE {
         --species-tree ${species_tree} \\
         --gene-to-species ${gene_to_species} \\
         --representative-manifest ${representative_manifest} \\
-        --outgroup-genes ${outgroup_genes} \\
+        ${outgroup_args} \\
         --families-out families.txt \\
         --mapping-out generax_mapping.tsv \\
         --generax-tree-out generax_gene_tree.nwk \\

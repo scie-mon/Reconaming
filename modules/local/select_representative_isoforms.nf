@@ -21,11 +21,12 @@ process SELECT_REPRESENTATIVE_ISOFORMS {
     path 'selection_template.tsv', emit: template, optional: true
 
     script:
+    def selection_args = selection_table_supplied ? "--selection-table '${selection_table}'" : ''
     """
-    python3 select_representative_isoforms.py \\
+    python3 ${selector_script} \\
       --proteins ${proteins} \\
       --manifest ${manifest} \\
-      --selection-table ${selection_table} \\
+      ${selection_args} \\
       --selection-table-supplied ${selection_table_supplied} \\
       --representatives representative_proteins.faa \\
       --output-manifest representative_manifest.tsv \\
