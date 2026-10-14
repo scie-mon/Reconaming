@@ -214,10 +214,13 @@ Set pipeline parameters in the params block of nextflow.config. It is the author
 | `--generax_rec_model` | `UndatedDL` | GeneRax reconciliation model |
 | `--generax_strategy` | `SPR` | GeneRax search strategy |
 | `--generax_seed` | `12345` | Random seed for GeneRax |
-| `--generax_args` | empty | Additional arguments passed to GeneRax |
+| `--generax_args` | empty | Additional arguments passed to GeneRax; not MPI launcher options |
+| `--generax_oversubscribe` | `true` | Permit the requested MPI ranks to exceed Open MPI's recognised slot count; set to `false` to omit `--oversubscribe` |
 | `--generax_container` | `reconaming-generax:2.0.4` | Container for GeneRax reconciliation |
 
-`--generax_cpus` should always be selected for the resources available to the run. The README intentionally treats it as an explicit user decision rather than recommending a high fixed default.
+GeneRax runs through MPI with one rank per allocated process CPU (`-np task.cpus`). Configure that allocation through `params.process_cpus.RECONCILE_GENE_TREE`, not a separate GeneRax CPU parameter.
+
+`generax_oversubscribe` defaults to `true`, preserving the existing local/container launch behaviour. It permits ranks beyond Open MPI's recognised slot count; it does not increase the rank count or allocate additional CPUs. Set `generax_oversubscribe = false` in the configuration, or pass `--generax_oversubscribe false`, to omit the flag and retain MPI's normal slot-limit check. The setting must be Boolean, not a quoted configuration string. It is an MPI launch policy, not a GeneRax thread setting.
 
 ### Per-process CPU allocation
 
@@ -322,17 +325,11 @@ If reports, traces, or timelines are enabled for a run, treat them as execution 
 
 ## HPC and container configuration
 
-HPC schedulers and non-local executors are not yet fully supported or fully validated by Reconaming. The checked-in configuration defaults to Nextflow's local executor and supplies Docker and Singularity/Apptainer profiles as starting points.
+Scheduler-based HPC/cluster execution is not currently developed or validated. The checked-in configuration uses Nextflow's local executor and provides Docker and Singularity/Apptainer profiles; these container profiles are not scheduler profiles. No scheduler or multi-node MPI support is claimed.
 
-Before production use on an HPC system:
+Resource requests remain separate from the reconciliation command: `params.process_cpus.RECONCILE_GENE_TREE` sets the task CPU allocation, and GeneRax's MPI rank count follows `task.cpus`. The `generax_oversubscribe` switch allows the current launcher flag to be disabled without editing the process module. These configuration points leave room for future site-specific execution; they do not establish HPC compatibility.
 
-- Run the bundled test dataset with the intended container runtime.
-- Configure the executor and process-resource settings for the local scheduler policy.
-- Verify that input, output, temporary, and container-cache filesystems are visible on compute nodes.
-- Set `--generax_cpus` to the CPU allocation granted to the GeneRax task; do not assume a machine-wide or fixed pipeline default.
-- Validate memory limits, walltime, container mounts, and writable output ownership.
-
-A scheduler-specific profile—for example, Slurm, PBS, LSF, or SGE—should be considered site configuration and tested before it is presented as supported.
+Future HPC deployment will require site-specific executor, memory, walltime, filesystem and container configuration, plus validation of MPI launching and CPU placement. That work is outside the current development scope.
 
 ## License
 

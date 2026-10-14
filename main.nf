@@ -21,6 +21,15 @@ include { POSTPROCESS_RECONAMING_ANNOTATION } from './modules/local/postprocess_
 include { POSTPROCESS_RECONAMING_PROTEIN }    from './modules/local/postprocess_reconaming'
 
 workflow {
+    // Strict-parser CLI values are strings; normalise before process dispatch.
+    def generax_oversubscribe_raw = params.generax_oversubscribe
+    def generax_oversubscribe_text = generax_oversubscribe_raw?.toString()?.trim()?.toLowerCase()
+    if (!(generax_oversubscribe_raw instanceof Boolean ||
+          (generax_oversubscribe_raw instanceof CharSequence && generax_oversubscribe_text in ['true', 'false']))) {
+        error 'params.generax_oversubscribe must be true or false (Boolean or CLI string).'
+    }
+    def generax_oversubscribe = generax_oversubscribe_text == 'true'
+
     def cpu_processes = ['PREPARE_PROTEINS', 'RUN_BUSCO', 'RUN_BUSCO_PHYLOGENOMICS', 'INFER_SUPERMATRIX_TREE', 'ALIGN_PROTEINS', 'INFER_GENE_TREE', 'RECONCILE_GENE_TREE']
     if (!(params.process_cpus instanceof Map)) error 'params.process_cpus must be a map in nextflow.config.'
     cpu_processes.each { process_name ->
@@ -167,7 +176,8 @@ workflow {
         file("${projectDir}/bin/prepare_generax_inputs.py", checkIfExists: true),
         file("${projectDir}/bin/normalise_generax_output.py", checkIfExists: true),
         params.generax_rec_model, params.generax_strategy,
-        params.generax_seed, params.generax_args, params.generax_container
+        params.generax_seed, params.generax_args, params.generax_container,
+        generax_oversubscribe
     )
 
     if (!params.revision_tag) error 'Job 15 requires --revision_tag (for example rev_20260922).'

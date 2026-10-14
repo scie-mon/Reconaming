@@ -12,6 +12,7 @@ process RECONCILE_GENE_TREE {
     val generax_seed
     val generax_args
     val generax_container
+    val generax_oversubscribe
     output:
     path 'reconciled_gene_tree.nhx', emit: reconciled_tree
     path 'generax_raw_reconciled_tree.nhx', emit: raw_reconciled_tree
@@ -23,11 +24,12 @@ process RECONCILE_GENE_TREE {
     path 'generax.log', emit: log
     script:
     def args = generax_args ?: ''
+    def mpi_oversubscribe = generax_oversubscribe ? '--oversubscribe' : ''
     def outgroup_args = outgroup_genes ? "--outgroup-genes '${outgroup_genes}'" : ''
     """
     set -euo pipefail
     python3 ${prepare_generax_inputs} --gene-tree ${gene_tree} --iqtree-report ${iqtree_report} --alignment ${trimmed_alignment} --species-tree ${species_tree} --gene-to-species ${gene_to_species} --representative-manifest ${representative_manifest} ${outgroup_args} --families-out families.txt --mapping-out generax_mapping.tsv --generax-tree-out generax_gene_tree.nwk --generax-alignment-out generax_alignment.faa --summary-out reconciliation_input_summary.tsv
-    mpiexec --oversubscribe -np ${task.cpus} generax --families families.txt --species-tree ${species_tree} --rec-model '${generax_rec_model}' --strategy '${generax_strategy}' --seed '${generax_seed}' ${args} > generax.log 2>&1
+    mpiexec ${mpi_oversubscribe} -np ${task.cpus} generax --families families.txt --species-tree ${species_tree} --rec-model '${generax_rec_model}' --strategy '${generax_strategy}' --seed '${generax_seed}' ${args} > generax.log 2>&1
     python3 ${normalise_generax_output} --generax-results . --expected-gene-tree generax_gene_tree.nwk --input-summary reconciliation_input_summary.tsv --raw-out generax_raw_reconciled_tree.nhx --normalised-out reconciled_gene_tree.nhx --summary-out reconciliation_summary.tsv
     """
 }
