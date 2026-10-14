@@ -1,1 +1,0 @@
-/home/primeline/Data/Reconaming/bin/select_representative_isoforms.py

@@ -1,4 +1,0 @@
-SPECIES: FAMILY_COVERAGE
-Species_1: 1
-Species_2: 1
-Species_3: 1

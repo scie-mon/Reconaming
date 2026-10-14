@@ -1,6 +1,0 @@
-[FAMILIES]
-- gene_family
-starting_gene_tree = generax_gene_tree.nwk
-alignment = generax_alignment.faa
-mapping = generax_mapping.tsv
-subst_model = LG+G4

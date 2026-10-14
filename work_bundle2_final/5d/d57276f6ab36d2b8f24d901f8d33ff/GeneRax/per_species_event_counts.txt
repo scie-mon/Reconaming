@@ -1,6 +1,0 @@
-#S #SL #D #T #TL
-Species_3 S=3 SL=0 D=1 T=0 TL=0
-Species_1 S=3 SL=0 D=1 T=0 TL=0
-Species_2 S=2 SL=0 D=1 T=0 TL=0
-node_0 S=1 SL=1 D=0 T=0 TL=0
-node_1 S=2 SL=0 D=1 T=0 TL=0

@@ -1,4 +1,0 @@
-genome_file	species_id	role	contig_id	original_defline	length
-test/spec_tree/CM058173.1.fa	Species_1	focal	CM058173.1	CM058173.1 Daphnia magna isolate LRV0_1 linkage group LG3, whole genome shotgun sequence	13877352
-test/spec_tree/CM023194.1.fa	Species_2	focal	CM023194.1	CM023194.1	10383136
-test/spec_tree/NC_081337.1.fa	Species_3	focal	NC_081337.1	NC_081337.1	11596001

@@ -1,7 +1,0 @@
-Writing sequences:   0%|          | 0/10 [00:00<?, ?it/s]Writing sequences: 100%|██████████| 10/10 [00:00<00:00, 6605.20it/s]
-Aligning sequences:   0%|          | 0/10 [00:00<?, ?it/s]Aligning sequences:  10%|█         | 1/10 [00:00<00:01,  7.58it/s]Aligning sequences: 100%|██████████| 10/10 [00:00<00:00, 49.40it/s]Aligning sequences: 100%|██████████| 10/10 [00:00<00:00, 42.33it/s]
-Trimming alignments:   0%|          | 0/10 [00:00<?, ?it/s]Trimming alignments: 100%|██████████| 10/10 [00:00<00:00, 1713.99it/s]
-Writing sequences:   0%|          | 0/11 [00:00<?, ?it/s]Writing sequences: 100%|██████████| 11/11 [00:00<00:00, 7973.96it/s]
-Aligning sequences:   0%|          | 0/11 [00:00<?, ?it/s]Aligning sequences:   9%|▉         | 1/11 [00:00<00:01,  7.47it/s]Aligning sequences: 100%|██████████| 11/11 [00:00<00:00, 53.28it/s]Aligning sequences: 100%|██████████| 11/11 [00:00<00:00, 45.58it/s]
-Trimming sequences:   0%|          | 0/11 [00:00<?, ?it/s]Trimming sequences: 100%|██████████| 11/11 [00:00<00:00, 2199.74it/s]
-Generating gene trees:   0%|          | 0/11 [00:00<?, ?it/s]Generating gene trees:   9%|▉         | 1/11 [00:00<00:02,  4.78it/s]Generating gene trees:  36%|███▋      | 4/11 [00:00<00:00,  9.28it/s]Generating gene trees:  55%|█████▍    | 6/11 [00:00<00:00, 10.32it/s]Generating gene trees:  91%|█████████ | 10/11 [00:01<00:00,  9.70it/s]Generating gene trees: 100%|██████████| 11/11 [00:01<00:00,  7.97it/s]Generating gene trees: 100%|██████████| 11/11 [00:01<00:00,  8.47it/s]
