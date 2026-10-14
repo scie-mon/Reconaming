@@ -1,0 +1,114 @@
+IQ-TREE version 3.1.4 for Linux x86 64-bit built Sep 29 2026
+Developed by Bui Quang Minh, Thomas Wong, Nhan Ly-Trong, Huaiyan Ren
+Contributed by Lam-Tung Nguyen, Dominik Schrempf, Chris Bielow,
+Olga Chernomor, Michael Woodhams, Diep Thi Hoang, Heiko Schmidt
+
+Host:    31c18287b280 (AVX512, FMA3, 503 GB RAM)
+Command: iqtree --quiet -T 1 -s /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/gene_trees/trimmed_alignments/3763at2759.trimmed.aln --prefix /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/gene_trees/trees/3763at2759
+Seed:    696005 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Wed Oct 14 08:45:42 2026
+Kernel:  AVX+FMA - 1 threads (64 CPU cores detected)
+
+HINT: Use -nt option to specify number of threads because your CPU has 64 cores!
+HINT: -nt AUTO will automatically determine the best number of threads to use.
+
+Reading alignment file /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/gene_trees/trimmed_alignments/3763at2759.trimmed.aln ... Fasta format detected
+Reading fasta file: done in 6.60419e-05 secs
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.000428915 secs
+Alignment has 3 sequences with 424 columns, 102 distinct patterns
+0 parsimony-informative, 100 singleton sites, 324 constant sites
+              Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 6.91414e-06 secs
+   1  Species_1       0.00%    passed    100.00%
+   2  Root_species    0.00%    passed    100.00%
+   3  Species_3       0.00%    passed    100.00%
+****  TOTAL           0.00%  0 sequences failed composition chi2 test (p-value<5%; df=19)
+Checking for duplicate sequences: done in 1.09673e-05 secs
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.000 seconds
+Perform fast likelihood tree search using LG+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -1817.316
+Optimal log-likelihood: -1817.305
+Proportion of invariable sites: 0.384
+Gamma shape alpha: 998.403
+Parameters optimization took 1 rounds (0.002 sec)
+Time for fast ML tree search: 0.004 seconds
+
+NOTE: ModelFinder requires 0 MB RAM!
+ModelFinder will test up to 1232 protein models (sample size: 424 epsilon: 0.100) ...
+Akaike Information Criterion:           Q.PLANT+G4
+Corrected Akaike Information Criterion: Q.PLANT+G4
+Bayesian Information Criterion:         Q.PLANT
+Best-fit model: Q.PLANT chosen according to BIC
+
+All model information printed to /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/gene_trees/trees/3763at2759.model.gz
+CPU time for ModelFinder: 0.172 seconds (0h:0m:0s)
+Wall-clock time for ModelFinder: 0.176 seconds (0h:0m:0s)
+
+NOTE: 0 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -1805.275
+Optimal log-likelihood: -1805.205
+Parameters optimization took 1 rounds (0.000 sec)
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 0.000148058 secs using 95.91% CPU
+Computing ML distances took 0.000172 sec (of wall-clock time) 0.000168 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 2.09808e-05 secs
+Constructing RapidNJ tree: done in 1.90735e-06 secs
+Computing RapidNJ tree took 0.000071 sec (of wall-clock time) 0.000000 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -1805.205
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 99 parsimony trees... 0.003 second
+Current best score: -1805.205
+
+Do NNI search on 1 best initial trees
+Finish initializing candidate tree set (1)
+Current best tree score: -1805.205 / CPU time: 0.003
+Number of iterations: 1
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Iteration 10 / LogL: -1805.205 / Time: 0h:0m:0s
+Iteration 20 / LogL: -1805.205 / Time: 0h:0m:0s
+Iteration 30 / LogL: -1805.205 / Time: 0h:0m:0s (0h:0m:0s left)
+Iteration 40 / LogL: -1805.205 / Time: 0h:0m:0s (0h:0m:0s left)
+Iteration 50 / LogL: -1805.205 / Time: 0h:0m:0s (0h:0m:0s left)
+Iteration 60 / LogL: -1805.205 / Time: 0h:0m:0s (0h:0m:0s left)
+Iteration 70 / LogL: -1805.205 / Time: 0h:0m:0s (0h:0m:0s left)
+Iteration 80 / LogL: -1805.205 / Time: 0h:0m:0s (0h:0m:0s left)
+Iteration 90 / LogL: -1805.205 / Time: 0h:0m:0s (0h:0m:0s left)
+Iteration 100 / LogL: -1805.205 / Time: 0h:0m:0s (0h:0m:0s left)
+TREE SEARCH COMPLETED AFTER 101 ITERATIONS / Time: 0h:0m:0s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -1805.205
+Optimal log-likelihood: -1805.205
+Parameters optimization took 1 rounds (0.000 sec)
+BEST SCORE FOUND : -1805.205
+Total tree length: 0.294
+
+Total number of iterations: 101
+CPU time used for tree search: 0.013 sec (0h:0m:0s)
+Wall-clock time used for tree search: 0.006 sec (0h:0m:0s)
+Total CPU time used: 0.195 sec (0h:0m:0s)
+Total wall-clock time used: 0.192 sec (0h:0m:0s)
+
+Analysis results written to: 
+  IQ-TREE report:                /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/gene_trees/trees/3763at2759.iqtree
+  Maximum-likelihood tree:       /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/gene_trees/trees/3763at2759.treefile
+  Likelihood distances:          /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/gene_trees/trees/3763at2759.mldist
+  Screen log file:               /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/gene_trees/trees/3763at2759.log
+
+Date and Time: Wed Oct 14 08:45:42 2026

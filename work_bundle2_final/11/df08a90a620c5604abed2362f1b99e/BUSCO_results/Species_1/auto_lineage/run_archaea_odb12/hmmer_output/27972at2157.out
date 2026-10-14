@@ -1,0 +1,15 @@
+#                                                                                      --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name                  accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#          ------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+CM058173.1:448382-448564|-     -             61 27972                -            157   5.8e-08   33.1   0.0   1   1   5.8e-12   6.4e-08   33.0   0.0    78   115    18    58     7    59 0.81 CM058173.1_732 # 448382 # 448564 # -1 # ID=1_732;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.421
+CM058173.1:11849975-11850238|+ -             88 27972                -            157     0.025   14.8   0.2   1   1   2.7e-06     0.029   14.6   0.2    11    62    17    68    14    81 0.95 CM058173.1_18769 # 11849975 # 11850238 # 1 # ID=1_18769;partial=00;start_type=TTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.360
+#
+# Program:         hmmsearch
+# Version:         3.1b2 (February 2015)
+# Pipeline mode:   SEARCH
+# Query file:      /home/primeline/Data/Reconaming/work_bundle2_final/d3/4b03482337e1d886a523929a3fbcd0/busco_downloads/lineages/archaea_odb12/hmms/27972at2157.hmm
+# Target file:     /home/primeline/Data/Reconaming/work_bundle2_final/d3/4b03482337e1d886a523929a3fbcd0/busco/Species_1/prodigal_output/predicted_genes/predicted.faa
+# Option settings: hmmsearch --domtblout /home/primeline/Data/Reconaming/work_bundle2_final/d3/4b03482337e1d886a523929a3fbcd0/busco/Species_1/auto_lineage/run_archaea_odb12/hmmer_output/27972at2157.out --cpu 1 /home/primeline/Data/Reconaming/work_bundle2_final/d3/4b03482337e1d886a523929a3fbcd0/busco_downloads/lineages/archaea_odb12/hmms/27972at2157.hmm /home/primeline/Data/Reconaming/work_bundle2_final/d3/4b03482337e1d886a523929a3fbcd0/busco/Species_1/prodigal_output/predicted_genes/predicted.faa 
+# Current dir:     /home/primeline/Data/Reconaming/work_bundle2_final/d3/4b03482337e1d886a523929a3fbcd0
+# Date:            Wed Oct 14 08:40:14 2026
+# [ok]

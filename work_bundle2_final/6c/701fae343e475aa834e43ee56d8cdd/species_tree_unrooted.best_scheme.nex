@@ -1,0 +1,24 @@
+#nexus
+begin sets;
+  charset 4249at2759 = SUPERMATRIX.phylip: 1-256;
+  charset 10249667at2759 = SUPERMATRIX.phylip: 257-455;
+  charset 15082at2759 = SUPERMATRIX.phylip: 456-990;
+  charset 28947at2759 = SUPERMATRIX.phylip: 991-1913;
+  charset 17948at2759 = SUPERMATRIX.phylip: 1914-2125;
+  charset 1847590at2759 = SUPERMATRIX.phylip: 2126-2385;
+  charset 124397at2759 = SUPERMATRIX.phylip: 2386-2607;
+  charset 1726137at2759 = SUPERMATRIX.phylip: 2608-3023;
+  charset 10263536at2759 = SUPERMATRIX.phylip: 3024-3406;
+  charset 10267436at2759 = SUPERMATRIX.phylip: 3407-3886;
+  charpartition mymodels =
+    Q.BIRD+G4: 4249at2759,
+    BLOSUM62+I+G4: 10249667at2759,
+    LG+I: 15082at2759,
+    Q.PLANT+I: 28947at2759,
+    Q.PLANT+I: 17948at2759,
+    RTREV: 1847590at2759,
+    Q.INSECT: 124397at2759,
+    PMB+G4: 1726137at2759,
+    JTTDCMUT+G4: 10263536at2759,
+    WAG+I: 10267436at2759;
+end;

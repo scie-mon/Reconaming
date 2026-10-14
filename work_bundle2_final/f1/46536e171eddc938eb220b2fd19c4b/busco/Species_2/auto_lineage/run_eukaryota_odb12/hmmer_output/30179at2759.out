@@ -1,0 +1,19 @@
+#                                                                                                                --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name                                            accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#                                    ------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+30179at2759_55577_0:0001d0|CM023194.1:8104805-8104964|+  -             54 30179                -            228     0.011    6.0  22.0   1   1    0.0025      0.01    6.1  22.0    99   132    17    50     3    54 0.67 <unknown description>
+30179at2759_55577_0:0001d0|CM023194.1:8106022-8106181|-  -             54 30179                -            228     0.011    6.0  22.0   1   1    0.0025      0.01    6.1  22.0    99   132    17    50     3    54 0.67 <unknown description>
+30179at2759_714518_0:000197|CM023194.1:8104850-8104964|+ -             39 30179                -            228      0.22    1.7  26.3   1   1     0.057      0.23    1.7  26.3   104   132     7    35     2    39 0.61 <unknown description>
+30179at2759_714518_0:000197|CM023194.1:8106022-8106136|- -             39 30179                -            228      0.22    1.7  26.3   1   1     0.057      0.23    1.7  26.3   104   132     7    35     2    39 0.61 <unknown description>
+30179at2759_3988_0:004197|CM023194.1:8104691-8104946|+   -             86 30179                -            228       1.1   -0.6  25.6   1   1      0.29       1.1   -0.6  25.6    91   129    46    85     2    86 0.62 <unknown description>
+30179at2759_3988_0:004197|CM023194.1:8106040-8106295|-   -             86 30179                -            228       1.1   -0.6  25.6   1   1      0.29       1.1   -0.6  25.6    91   129    46    85     2    86 0.62 <unknown description>
+#
+# Program:         hmmsearch
+# Version:         3.1b2 (February 2015)
+# Pipeline mode:   SEARCH
+# Query file:      /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco_downloads/lineages/eukaryota_odb12/hmms/30179at2759.hmm
+# Target file:     /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/auto_lineage/run_eukaryota_odb12/miniprot_output/translated_proteins/30179at2759.faa
+# Option settings: hmmsearch --domtblout /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/auto_lineage/run_eukaryota_odb12/hmmer_output/30179at2759.out --cpu 1 /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco_downloads/lineages/eukaryota_odb12/hmms/30179at2759.hmm /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/auto_lineage/run_eukaryota_odb12/miniprot_output/translated_proteins/30179at2759.faa 
+# Current dir:     /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b
+# Date:            Wed Oct 14 08:41:32 2026
+# [ok]

@@ -1,0 +1,14 @@
+#                                                                                    --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name                accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#        ------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+CM023194.1:7382149-7382421|- -             91 35908                -            207      0.12   11.5   0.1   1   1   8.5e-06      0.14   11.3   0.1   148   205    19    70     9    72 0.80 CM023194.1_11525 # 7382149 # 7382421 # -1 # ID=1_11525;partial=00;start_type=TTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.381
+#
+# Program:         hmmsearch
+# Version:         3.1b2 (February 2015)
+# Pipeline mode:   SEARCH
+# Query file:      /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco_downloads/lineages/archaea_odb12/hmms/35908at2157.hmm
+# Target file:     /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/prodigal_output/predicted_genes/predicted.faa
+# Option settings: hmmsearch --domtblout /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/auto_lineage/run_archaea_odb12/hmmer_output/35908at2157.out --cpu 1 /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco_downloads/lineages/archaea_odb12/hmms/35908at2157.hmm /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/prodigal_output/predicted_genes/predicted.faa 
+# Current dir:     /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b
+# Date:            Wed Oct 14 08:40:04 2026
+# [ok]

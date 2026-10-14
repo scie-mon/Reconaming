@@ -1,0 +1,30 @@
+[M::mp_idx_restore@0.071*0.84] loaded the index
+[M::mp_mapopt_set_max_intron] set max intron size to 13411
+[M::mp_idx_print_stat] 1327089 distinct k-mers; mean occ of infrequent k-mers: 5.27; 0 frequent k-mers accounting for 0 occurrences
+[M::worker_pipeline::3.554*13.49] mapped 1786 sequences
+[M::worker_pipeline::6.337*14.51] mapped 2049 sequences
+[M::worker_pipeline::9.247*14.91] mapped 2153 sequences
+[M::worker_pipeline::12.793*15.07] mapped 2259 sequences
+[M::worker_pipeline::15.379*15.21] mapped 2372 sequences
+[M::worker_pipeline::17.455*15.29] mapped 2494 sequences
+[M::worker_pipeline::19.344*15.34] mapped 2643 sequences
+[M::worker_pipeline::21.089*15.39] mapped 2799 sequences
+[M::worker_pipeline::22.824*15.42] mapped 2947 sequences
+[M::worker_pipeline::24.402*15.45] mapped 3126 sequences
+[M::worker_pipeline::25.916*15.47] mapped 3304 sequences
+[M::worker_pipeline::27.522*15.49] mapped 3485 sequences
+[M::worker_pipeline::28.783*15.51] mapped 3764 sequences
+[M::worker_pipeline::29.983*15.53] mapped 4066 sequences
+[M::worker_pipeline::31.141*15.54] mapped 4335 sequences
+[M::worker_pipeline::32.324*15.54] mapped 4646 sequences
+[M::worker_pipeline::33.508*15.55] mapped 4957 sequences
+[M::worker_pipeline::34.707*15.55] mapped 5335 sequences
+[M::worker_pipeline::35.820*15.57] mapped 5858 sequences
+[M::worker_pipeline::36.875*15.58] mapped 6386 sequences
+[M::worker_pipeline::38.014*15.58] mapped 6967 sequences
+[M::worker_pipeline::39.406*15.59] mapped 8083 sequences
+[M::worker_pipeline::40.729*15.60] mapped 10670 sequences
+[M::worker_pipeline::40.851*15.60] mapped 2735 sequences
+[M::main] Version: 0.18-r281
+[M::main] CMD: miniprot --trans -u -I --outs 0.95 -t 16 --gff /home/primeline/Data/Reconaming/work_bundle2_final/d3/4b03482337e1d886a523929a3fbcd0/busco/Species_1/auto_lineage/run_eukaryota_odb12/miniprot_output/ref.mpi /home/primeline/Data/Reconaming/work_bundle2_final/d3/4b03482337e1d886a523929a3fbcd0/busco_downloads/lineages/eukaryota_odb12/refseq_db.faa
+[M::main] Real time: 40.858 sec; CPU: 637.138 sec; Peak RSS: 0.300 GB

@@ -1,0 +1,8 @@
+[M::mp_ntseq_read@0.039*1.08] read 10383136 bases in 1 contigs
+[M::mp_idx_build@0.039*1.08] 81120 blocks
+[M::mp_idx_build@0.285*1.78] collected syncmers
+[M::mp_idx_build@0.351*1.64] 5254723 kmer-block pairs
+[M::mp_idx_print_stat] 1218175 distinct k-mers; mean occ of infrequent k-mers: 4.31; 0 frequent k-mers accounting for 0 occurrences
+[M::main] Version: 0.18-r281
+[M::main] CMD: miniprot -t 16 -d /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/auto_lineage/run_eukaryota_odb12/miniprot_output/ref.mpi /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/CM023194.1.fa
+[M::main] Real time: 0.380 sec; CPU: 0.604 sec; Peak RSS: 0.189 GB

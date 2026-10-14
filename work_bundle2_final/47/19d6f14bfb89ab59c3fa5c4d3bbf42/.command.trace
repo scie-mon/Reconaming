@@ -1,0 +1,17 @@
+nextflow.trace/v2
+realtime=35382
+%cpu=62236
+cpu_model=AMD EPYC 9334 32-Core Processor
+rchar=900088
+wchar=75848
+syscr=301
+syscw=728
+read_bytes=33913
+write_bytes=59889
+%mem=0
+vmem=4699644
+rss=43272
+peak_vmem=7844844
+peak_rss=43272
+vol_ctxt=245
+inv_ctxt=2096

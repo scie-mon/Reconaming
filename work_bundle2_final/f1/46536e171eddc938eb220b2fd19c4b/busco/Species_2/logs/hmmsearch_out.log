@@ -1,0 +1,1034 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco_downloads/lineages/eukaryota_odb12/hmms/28947at2759.hmm
+# target sequence database:        /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/auto_lineage/run_eukaryota_odb12/miniprot_output/translated_proteins/28947at2759.faa
+# per-dom hits tabular output:     /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/auto_lineage/run_eukaryota_odb12/hmmer_output/28947at2759.out
+# number of worker threads:        1
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       28947  [M=810]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence                                                    Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------                                                    -----------
+   1.2e-238  784.3  35.9     1e-237  781.2  10.3    2.2  2  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|-     <unknown description>
+   2.5e-235  773.3  45.7   5.4e-234  768.9  13.1    2.1  2  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|-   <unknown description>
+   1.9e-233  767.1  48.8     8e-231  758.4   2.4    2.0  2  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|-   <unknown description>
+   3.5e-214  703.4   0.3   4.7e-214  703.0   0.2    1.2  1  28947at2759_259920_0:001725|CM023194.1:10373802-10376310|-   <unknown description>
+   8.5e-213  698.8  24.4     3e-212  697.0  24.4    1.7  1  28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|-     <unknown description>
+   1.5e-193  635.2   0.9   1.7e-193  635.0   0.9    1.0  1  28947at2759_175836_0:00083b|CM023194.1:10373889-10379332|-   <unknown description>
+   1.5e-172  565.7  49.3     6e-170  557.1   1.5    2.2  2  28947at2759_52239_0:005a5e|CM023194.1:10372583-10375143|-    <unknown description>
+   2.2e-172  565.2   0.1   2.4e-172  565.0   0.1    1.0  1  28947at2759_6579_0:00611a|CM023194.1:10373588-10375248|-     <unknown description>
+     1e-170  559.6   1.8   1.2e-170  559.4   1.8    1.0  1  28947at2759_144197_0:004c2b|CM023194.1:10374025-10375605|-   <unknown description>
+   1.4e-139  456.7  47.0    1.9e-81  264.4   1.7    2.2  2  28947at2759_70779_0:004e02|CM023194.1:10373145-10375605|-    <unknown description>
+   7.7e-128  417.8   0.1   8.9e-128  417.6   0.1    1.0  1  28947at2759_93504_0:0015f3|CM023194.1:10374595-10375974|-    <unknown description>
+   3.6e-117  382.5   1.3     4e-117  382.4   1.3    1.0  1  28947at2759_188344_0:0031b9|CM023194.1:10374592-10375605|-   <unknown description>
+    8.6e-94  305.2  54.8    3.8e-92  299.8  21.1    2.0  2  28947at2759_1203425_0:003173|CM023194.1:10372634-10374466|-  <unknown description>
+    6.4e-89  289.1   4.0    7.1e-89  288.9   4.0    1.0  1  28947at2759_8208_0:0047d8|CM023194.1:10374298-10375056|-     <unknown description>
+    1.4e-47  152.4  51.3    1.4e-44  142.5  19.5    2.1  2  28947at2759_144197_0:0056ef|CM023194.1:10372634-10374019|-   <unknown description>
+
+
+Domain annotation for each sequence (and alignments):
+>> 28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|-  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  781.2  10.3    1e-237    1e-237      57     804 ..       2     750 ..       1     756 [. 0.88
+   2 !    6.1  23.4    0.0023    0.0023     711     807 ..     743     884 ..     725     887 .. 0.48
+
+  Alignments for each domain:
+  == domain 1  score: 781.2 bits;  conditional E-value: 1e-237
+                                                     28947  57 lliepggkwyeaeleeekkskkeelseelveklkeeAeklleaevelyeskk. 108
+                                                               lli+p+  wy++++++++     e+s+++v+k ++e+++ le+++ +y++ + 
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|-   2 LLIKPDVPWYQQDKPLKAVR---EVSPDEVNKCEQEGKRYLEEDALNYQKVRa 51 
+                                                               799************99965...689*************************** PP
+
+                                                     28947 109 .kksssdskwlktvlssGTlsDkvaAltllvqespvhnlkslesLlsmakkkk 160
+                                                                 +++s++kw++tvl+sG  +Dk+aA+tll+qespvhnl sl+ L+s+     
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|-  52 vGSDRSETKWIQTVLKSGAFADKIAAHTLLLQESPVHNLPSLKFLISLLD-V- 102
+                                                               *99***********************************************.6. PP
+
+                                                     28947 161 ksrrealmaldalkdLflsd..LppdrkLryfsqqpllkleelsgnkdardrh 211
+                                                               k+rre++  ldal  Lf++   L p+ kL  ++++p+++l++   + ++r+++
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|- 103 KGRRECMASLDALIRLFTEGrvLNPNAKLFLMNKKPISALST--VTPRERKEL 153
+                                                               79****************98899***************9964..689****** PP
+
+                                                     28947 212 LllwyfEdqLKkryaefvqaleelshdtleavkskalktvyeLLkekpEqEqn 264
+                                                               L+lw fE+qLK++y++f  al+ l++d ++++++k ++++ +LL+  pEqEq 
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|- 154 LALWSFEHQLKDYYSQFFVALDGLLKDAVDTTRRKGIAAIATLLAYSPEQEQG 206
+                                                               ***************************************************** PP
+
+                                                     28947 265 LLrllVnKLGDpdkkvaskasylLlqLlqkhpnmkavvvreverllfrpnise 317
+                                                               LL+ lVnK+GDp + va+ ++ +L++Llq+hp+mk vvv everll+r+ni++
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|- 207 LLARLVNKVGDPTRAVATSTVGQLERLLQQHPQMKLVVVAEVERLLYRSNINT 259
+                                                               ***************************************************** PP
+
+                                                     28947 318 kaqyyavcfLnqivlskkeeelankLieiYfslFkallkkkkeeeeeeeevds 370
+                                                               kaqyya+cfL+qi l++++  la+kLi iY+++Fka++kk         evds
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|- 260 KAQYYALCFLSQILLDSDDVPLATKLIIIYVTFFKACVKKG--------EVDS 304
+                                                               ***************************************96........9*** PP
+
+                                                     28947 371 kllsalLtGVnRAfpyaktdd...ekleehldtLFkivhssnfntsvqaLmLl 420
+                                                               kl++alLtG++RA+py+kt       l+ h+dtLFk+vh++ f+ + q L+ l
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|- 305 KLMAALLTGLKRAYPYSKTVAisgGPLDGHVDTLFKLVHMVRFSLATQVLCIL 357
+                                                               *****************9864111569************************** PP
+
+                                                     28947 421 fqvsss.qsvsdRfyraLYekLldprlltsskqamfLnLlykslkaDvslkRv 472
+                                                                q+++  +s sdRfy++L++kL+dp++  s kq+mfLnLly++lk+D+sl R+
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|- 358 DQIVDVdKSNSDRFYSVLFRKLFDPDVGLSAKQSMFLNLLYRALKRDESLPRL 410
+                                                               ***************************************************** PP
+
+                                                     28947 473 kAfvKRLlqvalqqqppficGaLfllsellkakpglrsl....lqepeeee.d 520
+                                                               + fvKR+lqv+l ++p+++c++L+l+sel+k++p+l+++    ++++  ee d
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|- 411 RTFVKRILQVCLACPPQLACALLYLVSELIKSRPQLQNFpkdiVTKEYVEEdD 463
+                                                               ************************************98733324444444559 PP
+
+                                                     28947 521 deeehfeDvdeedeeeeeeekeee..................eekkekkkses 555
+                                                               d+eeh++Dvd++d+eee++ ke+e                   ++++ k++ +
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|- 464 DDEEHYKDVDNDDDEEEDAPKEDEarkgneektvtstwvhrkGSQSKPKSKLA 516
+                                                               *****************99999999****************95567777889* PP
+
+                                                     28947 556 YdprkrnPlyanAeks.clwELtllskHfHPSValfAktllsgepieysgdPl 607
+                                                               Ydp +rnP ya+Ae s  +wE++ll++HfHPSValfAkt+++g+piey+gdPl
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|- 517 YDPLARNPMYARAELSgGMWEINLLTNHFHPSVALFAKTIVEGTPIEYTGDPL 569
+                                                               **************8846*********************************** PP
+
+                                                     28947 608 qdftlirFLDRFvyknpKkkkkkek..ssimqpkaksd.skkkgarslpvnse 657
+                                                               qdftl rFLDRFv++npK  ++++     + +   k++ + ++g+r+++v+s+
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|- 570 QDFTLPRFLDRFVFRNPKLISAAQAnlPAQRRVLGKRSiYVPRGVRAMAVDSK 622
+                                                               *******************9988875644455555666799************ PP
+
+                                                     28947 658 eflklkeedvpvdevFfhkYfkkkakkkkkkkkkkkkkddddeedeedvdede 710
+                                                               ef+k+ ++++pvde+F+++Yfk++ +++ + +k++    ddd++d+e+v ++e
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|- 623 EFAKQPKNSIPVDEMFLYQYFKQRISRDPRVEKNS----DDDDSDHESVASEE 671
+                                                               ******************************87654....689*********** PP
+
+                                                     28947 711 fekaldksepeeegdddd.ddd.edf.edd.d.ddddddeddeddeedfdded 758
+                                                               fe++l +  +   + + + ++d + + ++d d +d+dd+e d d ++d++d++
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|- 672 FEQYLAENTDFASDMKPKsKSDkK-KkKSDkDgEDEDDEEADGDGDDDLQDAE 723
+                                                               *****9976665544433321221.1111112222222222222223333333 PP
+
+                                                     28947 759 edeedlldedkeekkkkkkkkkkkkkkkklstfasaeeyaelleen 804
+                                                                d+e+++d+d                   ++   ++++++++++ n
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|- 724 VDSEEDFDND-------------------KEFQDAFKDFDDMIDGN 750
+                                                               2222222222...................22223334555555555 PP
+
+  == domain 2  score: 6.1 bits;  conditional E-value: 0.0023
+                                                     28947 711 fekaldksepeeegdddd..ddd.........edf.................. 734
+                                                               f++++d  ++++ +d+d+  d+d         e +                  
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|- 743 FDDMIDGNNASDVEDEDEnlDEDdleeggfreE-Dvafsdgwfysdiflniki 794
+                                                               222222222222222222221112333444330.1333344444445566666 PP
+
+                                                     28947 735 .........edddddddddeddedde..edfdded............edeedl 764
+                                                                        eddddd++  +dd+dde                     +     
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|- 795 tnkvssfvtEDDDDDEE--DDDDDDEpsA-----AlpskskskkraiD----- 835
+                                                               65555555322222222..2222222222.....13445654444432..... PP
+
+                                                     28947 765 lded........keekkkkkkkkkkkkkkkklstfasaeeyaelleenees 807
+                                                                 ed         ++ +++kkk+ ++  +++ + f +ae++a++le+n+++
+  28947at2759_6604_0:005ffd|CM023194.1:10372598-10375866|- 836 --EDiddldfafGAQPSSSKKKRGRDLFNTNGNDFVAAEDFAAILEANAGT 884
+                                                               ..4445556778667778888899999999****************99875 PP
+
+>> 28947at2759_609295_0:002338|CM023194.1:10367272-10375839|-  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  768.9  13.1  5.4e-234  5.4e-234      65     768 ..       1     724 [.       1     729 [. 0.89
+   2 !    8.8  32.3   0.00036   0.00036     698     807 ..     714     841 ..     710     844 .. 0.59
+
+  Alignments for each domain:
+  == domain 1  score: 768.9 bits;  conditional E-value: 5.4e-234
+                                                       28947  65 wyeaeleeekkskkeelseelveklkeeAeklleaevelyeskk..kksss 113
+                                                                 wy++++++++     e+s+++v+k ++e+++ le+++ +y++ +   +++s
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|-   1 WYQQDKPLKAVR---EVSPDEVNKCEQEGKRYLEEDALNYQKVRavGSDRS 48 
+                                                                 888888888855...689****************************99*** PP
+
+                                                       28947 114 dskwlktvlssGTlsDkvaAltllvqespvhnlkslesLlsmakkkkksrr 164
+                                                                 ++kw++tvl+sG  +Dk+aA+tll+qespvhnl sl+ L+s+     k+rr
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|-  49 ETKWIQTVLKSGAFADKIAAHTLLLQESPVHNLPSLKFLISLLD-V-KGRR 97 
+                                                                 ********************************************.6.79** PP
+
+                                                       28947 165 ealmaldalkdLflsd..LppdrkLryfsqqpllkleelsgnkdardrhLl 213
+                                                                 e++  ldal  Lf++   L p+ kL  ++++p+++l++   + ++r+++L+
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|-  98 ECMASLDALIRLFTEGrvLNPNAKLFLMNKKPISALST--VTPRERKELLA 146
+                                                                 **************98899***************9964..689******** PP
+
+                                                       28947 214 lwyfEdqLKkryaefvqaleelshdtleavkskalktvyeLLkekpEqEqn 264
+                                                                 lw fE+qLK++y++f  al+ l++d ++++++k ++++ +LL+  pEqEq 
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|- 147 LWSFEHQLKDYYSQFFVALDGLLKDAVDTTRRKGIAAIATLLAYSPEQEQG 197
+                                                                 *************************************************** PP
+
+                                                       28947 265 LLrllVnKLGDpdkkvaskasylLlqLlqkhpnmkavvvreverllfrpni 315
+                                                                 LL+ lVnK+GDp + va+ ++ +L++Llq+hp+mk vvv everll+r+ni
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|- 198 LLARLVNKVGDPTRAVATSTVGQLERLLQQHPQMKLVVVAEVERLLYRSNI 248
+                                                                 *************************************************** PP
+
+                                                       28947 316 sekaqyyavcfLnqivlskkeeelankLieiYfslFkallkkkkeeeeeee 366
+                                                                 ++kaqyya+cfL+qi l++++  la+kLi iY+++Fka++kk         
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|- 249 NTKAQYYALCFLSQILLDSDDVPLATKLIIIYVTFFKACVKKG-------- 291
+                                                                 *****************************************96........ PP
+
+                                                       28947 367 evdskllsalLtGVnRAfpyaktdd...ekleehldtLFkivhssnfntsv 414
+                                                                 evdskl++alLtG++RA+py+kt       l+ h+dtLFk+vh++ f+ + 
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|- 292 EVDSKLMAALLTGLKRAYPYSKTVAisgGPLDGHVDTLFKLVHMVRFSLAT 342
+                                                                 9********************9864111569******************** PP
+
+                                                       28947 415 qaLmLlfqvsss.qsvsdRfyraLYekLldprlltsskqamfLnLlykslk 464
+                                                                 q L+ l q+++  +s sdRfy++L++kL+dp++  s kq+mfLnLly++lk
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|- 343 QVLCILDQIVDVdKSNSDRFYSVLFRKLFDPDVGLSAKQSMFLNLLYRALK 393
+                                                                 *************************************************** PP
+
+                                                       28947 465 aDvslkRvkAfvKRLlqvalqqqppficGaLfllsellkakpglrsl.... 511
+                                                                 +D+sl R++ fvKR+lqv+l ++p+++c++L+l+sel+k++p+l+++    
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|- 394 RDESLPRLRTFVKRILQVCLACPPQLACALLYLVSELIKSRPQLQNFpkdi 444
+                                                                 ********************************************9873332 PP
+
+                                                       28947 512 lqepeeee.ddeeehfeDvdeedeeeeeeekeee................. 544
+                                                                 ++++  ee dd+eeh++Dvd++d+eee++ ke+e                 
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|- 445 VTKEYVEEdDDDEEHYKDVDNDDDEEEDAPKEDEarkgneektvtstwvhr 495
+                                                                 4444444559*****************99999999**************** PP
+
+                                                       28947 545 .eekkekkksesYdprkrnPlyanAeks.clwELtllskHfHPSValfAkt 593
+                                                                   ++++ k++ +Ydp +rnP ya+Ae s  +wE++ll++HfHPSValfAkt
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|- 496 kGSQSKPKSKLAYDPLARNPMYARAELSgGMWEINLLTNHFHPSVALFAKT 546
+                                                                 95567777889***************8846********************* PP
+
+                                                       28947 594 llsgepieysgdPlqdftlirFLDRFvyknpKkkkkkek..ssimqpkaks 642
+                                                                 +++g+piey+gdPlqdftl rFLDRFv++npK  ++++     + +   k+
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|- 547 IVEGTPIEYTGDPLQDFTLPRFLDRFVFRNPKLISAAQAnlPAQRRVLGKR 597
+                                                                 *********************************998887564445555566 PP
+
+                                                       28947 643 d.skkkgarslpvnseeflklkeedvpvdevFfhkYfkkkakkkkkkkkkk 692
+                                                                 + + ++g+r+++v+s+ef+k+ ++++pvde+F+++Yfk++ +++ + +k++
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|- 598 SiYVPRGVRAMAVDSKEFAKQPKNSIPVDEMFLYQYFKQRISRDPRVEKNS 648
+                                                                 6799******************************************87654 PP
+
+                                                       28947 693 kkkddddeedeedvdedefekaldksepeeegdddd.ddd.edf.edd.d. 738
+                                                                     ddd++d+e+v ++efe++l +  +   + + + ++d + + ++d d 
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|- 649 ----DDDDSDHESVASEEFEQYLAENTDFASDMKPKsKSDkK-KkKSDkDg 694
+                                                                 ....689****************9977666555444322331.12222133 PP
+
+                                                       28947 739 ddddddeddeddeedfddededeedllded 768
+                                                                 +d+dd+e d d ++d++d++ d+e+++d+d
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|- 695 EDEDDEEADGDGDDDLQDAEVDSEEDFDND 724
+                                                                 333333333333345555553344444444 PP
+
+  == domain 2  score: 8.8 bits;  conditional E-value: 0.00036
+                                                       28947 698 ddeedeedvdedefekaldksepeeegdddd..dddedf...eddd.dddd 742
+                                                                 + +++e+ ++++ef++a +++ +  +g++ +  + ded+   e dd +   
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|- 714 EVDSEEDFDNDKEFQDAFKDFDDMIDGNNASdvE-DEDEnldE-DDlE--- 759
+                                                                 4566677777888888888877666666655321.22222221.1111... PP
+
+                                                       28947 743 ddeddeddeedfdded...............edeedllded........ke 770
+                                                                  +edd+ddeed dd+d                     +ded         +
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|- 760 -EEDDDDDEEDDDDDDepsaalpskskskkrA-----IDEDiddldfafGA 804
+                                                                 .1111111112122223455677778555441.....44445556677866 PP
+
+                                                       28947 771 ekkkkkkkkkkkkkkkklstfasaeeyaelleenees 807
+                                                                 + +++kkk+ ++  +++ + f +ae++a++le+n+++
+  28947at2759_609295_0:002338|CM023194.1:10367272-10375839|- 805 QPSSSKKKRGRDLFNTNGNDFVAAEDFAAILEANAGT 841
+                                                                 7778888899999999****************99875 PP
+
+>> 28947at2759_132113_0:002545|CM023194.1:10372637-10379966|-  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  758.4   2.4    8e-231    8e-231      63     723 ..      13     689 ..       6     698 .. 0.93
+   2 !   12.6  41.7   2.5e-05   2.5e-05     681     807 ..     694     834 ..     684     837 .. 0.51
+
+  Alignments for each domain:
+  == domain 1  score: 758.4 bits;  conditional E-value: 8e-231
+                                                       28947  63 gkwyeaeleeekkskkeelseelveklkeeAeklleaevelyeskk..kks 111
+                                                                   wy++++++++     e+s+++v+k ++e+++ le+++ +y++ +   ++
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|-  13 VPWYQQDKPLKAVR---EVSPDEVNKCEQEGKRYLEEDALNYQKVRavGSD 60 
+                                                                 68****99999955...689****************************99* PP
+
+                                                       28947 112 ssdskwlktvlssGTlsDkvaAltllvqespvhnlkslesLlsmakkkkks 162
+                                                                 +s++kw++tvl+sG  +Dk+aA+tll+qespvhnl sl+ L+s+     k+
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|-  61 RSETKWIQTVLKSGAFADKIAAHTLLLQESPVHNLPSLKFLISLLD-V-KG 109
+                                                                 **********************************************.6.79 PP
+
+                                                       28947 163 rrealmaldalkdLflsd..LppdrkLryfsqqpllkleelsgnkdardrh 211
+                                                                 rre++  ldal  Lf++   L p+ kL  ++++p+++l++   + ++r+++
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|- 110 RRECMASLDALIRLFTEGrvLNPNAKLFLMNKKPISALST--VTPRERKEL 158
+                                                                 ****************98899***************9964..689****** PP
+
+                                                       28947 212 LllwyfEdqLKkryaefvqaleelshdtleavkskalktvyeLLkekpEqE 262
+                                                                 L+lw fE+qLK++y++f  al+ l++d ++++++k ++++ +LL+  pEqE
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|- 159 LALWSFEHQLKDYYSQFFVALDGLLKDAVDTTRRKGIAAIATLLAYSPEQE 209
+                                                                 *************************************************** PP
+
+                                                       28947 263 qnLLrllVnKLGDpdkkvaskasylLlqLlqkhpnmkavvvreverllfrp 313
+                                                                 q LL+ lVnK+GDp + va+ ++ +L++Llq+hp+mk vvv everll+r+
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|- 210 QGLLARLVNKVGDPTRAVATSTVGQLERLLQQHPQMKLVVVAEVERLLYRS 260
+                                                                 *************************************************** PP
+
+                                                       28947 314 nisekaqyyavcfLnqivlskkeeelankLieiYfslFkallkkkkeeeee 364
+                                                                 ni++kaqyya+cfL+qi l++++  la+kLi iY+++Fka++kk       
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|- 261 NINTKAQYYALCFLSQILLDSDDVPLATKLIIIYVTFFKACVKKG------ 305
+                                                                 *******************************************96...... PP
+
+                                                       28947 365 eeevdskllsalLtGVnRAfpyaktdd...ekleehldtLFkivhssnfnt 412
+                                                                   evdskl++alLtG++RA+py+kt       l+ h+dtLFk+vh++ f+ 
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|- 306 --EVDSKLMAALLTGLKRAYPYSKTVAisgGPLDGHVDTLFKLVHMVRFSL 354
+                                                                 ..9********************9864111569****************** PP
+
+                                                       28947 413 svqaLmLlfqvsss.qsvsdRfyraLYekLldprlltsskqamfLnLlyks 462
+                                                                 + q L+ l q+++  +s sdRfy++L++kL+dp++  s kq+mfLnLly++
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|- 355 ATQVLCILDQIVDVdKSNSDRFYSVLFRKLFDPDVGLSAKQSMFLNLLYRA 405
+                                                                 *************************************************** PP
+
+                                                       28947 463 lkaDvslkRvkAfvKRLlqvalqqqppficGaLfllsellkakpglrsl.. 511
+                                                                 lk+D+sl R++ fvKR+lqv+l ++p+++c++L+l+sel+k++p+l+++  
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|- 406 LKRDESLPRLRTFVKRILQVCLACPPQLACALLYLVSELIKSRPQLQNFpk 456
+                                                                 **********************************************98733 PP
+
+                                                       28947 512 ..lqepeeee.ddeeehfeDvdeedeeeeeeekeee............... 544
+                                                                   ++++  ee dd+eeh++Dvd++d+eee++ ke+e               
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|- 457 diVTKEYVEEdDDDEEHYKDVDNDDDEEEDAPKEDEarkgneektvtstwv 507
+                                                                 324444444559*****************99999999************** PP
+
+                                                       28947 545 ...eekkekkksesYdprkrnPlyanAeks.clwELtllskHfHPSValfA 591
+                                                                     ++++ k++ +Ydp +rnP ya+Ae s  +wE++ll++HfHPSValfA
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|- 508 hrkGSQSKPKSKLAYDPLARNPMYARAELSgGMWEINLLTNHFHPSVALFA 558
+                                                                 **95567777889***************8846******************* PP
+
+                                                       28947 592 ktllsgepieysgdPlqdftlirFLDRFvyknpKkkkkkek..ssimqpka 640
+                                                                 kt+++g+piey+gdPlqdftl rFLDRFv++npK  ++++     + +   
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|- 559 KTIVEGTPIEYTGDPLQDFTLPRFLDRFVFRNPKLISAAQAnlPAQRRVLG 609
+                                                                 ***********************************9988875644455555 PP
+
+                                                       28947 641 ksd.skkkgarslpvnseeflklkeedvpvdevFfhkYfkkkakkkkkkkk 690
+                                                                 k++ + ++g+r+++v+s+ef+k+ ++++pvde+F+++Yfk++ +++ + +k
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|- 610 KRSiYVPRGVRAMAVDSKEFAKQPKNSIPVDEMFLYQYFKQRISRDPRVEK 660
+                                                                 666799******************************************876 PP
+
+                                                       28947 691 kkkkkddddeedeedvdedefekaldksepeee 723
+                                                                 ++    ddd++d+e+v ++efe++l +  +   
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|- 661 NS----DDDDSDHESVASEEFEQYLAENTDFAS 689
+                                                                 54....689****************98765544 PP
+
+  == domain 2  score: 12.6 bits;  conditional E-value: 2.5e-05
+                                                       28947 681 kakkkkkkkkkkkkk.ddddeedeedvdedefekaldksepeeegdddddd 730
+                                                                 k+k++kkkkk++k + +d+d+e+++ + +d++++a ++se++ ++d++ + 
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|- 694 KSKSDKKKKKSDK-DgEDEDDEEADGDGDDDLQDAEVDSEEDFDNDKEFQ- 742
+                                                                 2333333332222.234444444444445555555555444433333221. PP
+
+                                                       28947 731 d..edfedd.dddddddeddeddeedfdded..............edeedl 764
+                                                                 d  +df+d  d+ddddde+d+dd+ d    +                    
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|- 743 DafKDFDDMiDEDDDDDEEDDDDD-D----EpsaalpskskskkrA----- 783
+                                                                 244444322221111111111111.1....1223456667554441..... PP
+
+                                                       28947 765 lded........keekkkkkkkkkkkkkkkklstfasaeeyaelleenees 807
+                                                                 +ded         ++ +++kkk+ ++  +++ + f +ae++a++le+n+++
+  28947at2759_132113_0:002545|CM023194.1:10372637-10379966|- 784 IDEDiddldfafGAQPSSSKKKRGRDLFNTNGNDFVAAEDFAAILEANAGT 834
+                                                                 444455566778667778888899999999****************99875 PP
+
+>> 28947at2759_259920_0:001725|CM023194.1:10373802-10376310|-  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  703.0   0.2  4.7e-214  4.7e-214      35     625 ..     116     735 ..      45     736 .] 0.91
+
+  Alignments for each domain:
+  == domain 1  score: 703.0 bits;  conditional E-value: 4.7e-214
+                                                       28947  35 e............ekekkkkkkkekkkekkkkkklliepggkwyeaeleee 73 
+                                                                 +            +k +  k ++   +++++  +lli+p+  wy+++++++
+  28947at2759_259920_0:001725|CM023194.1:10373802-10376310|- 116 NqnkkivfdedyiSKPSGGKWEEPIPESDNAWYHLLIKPDVPWYQQDKPLK 166
+                                                                 0444444455555555666667777788889999***************99 PP
+
+                                                       28947  74 kkskkeelseelveklkeeAeklleaevelyeskk..kksssdskwlktvl 122
+                                                                 +     e+s+++v+k ++e+++ le+++ +y++ +   +++s++kw++tvl
+  28947at2759_259920_0:001725|CM023194.1:10373802-10376310|- 167 AVR---EVSPDEVNKCEQEGKRYLEEDALNYQKVRavGSDRSETKWIQTVL 214
+                                                                 965...689****************************99************ PP
+
+                                                       28947 123 ssGTlsDkvaAltllvqespvhnlkslesLlsmakkkkksrrealmaldal 173
+                                                                 +sG  +Dk+aA+tll+qespvhnl sl+ L+s+     k+rre++  ldal
+  28947at2759_259920_0:001725|CM023194.1:10373802-10376310|- 215 KSGAFADKIAAHTLLLQESPVHNLPSLKFLISLLD-V-KGRRECMASLDAL 263
+                                                                 ***********************************.6.79*********** PP
+
+                                                       28947 174 kdLflsd..LppdrkLryfsqqpllkleelsgnkdardrhLllwyfEdqLK 222
+                                                                   Lf++   L p+ kL  ++++p+++l++   + ++r+++L+lw fE+qLK
+  28947at2759_259920_0:001725|CM023194.1:10373802-10376310|- 264 IRLFTEGrvLNPNAKLFLMNKKPISALST--VTPRERKELLALWSFEHQLK 312
+                                                                 *****98899***************9964..689***************** PP
+
+                                                       28947 223 kryaefvqaleelshdtleavkskalktvyeLLkekpEqEqnLLrllVnKL 273
+                                                                 ++y++f  al+ l++d ++++++k ++++ +LL+  pEqEq LL+ lVnK+
+  28947at2759_259920_0:001725|CM023194.1:10373802-10376310|- 313 DYYSQFFVALDGLLKDAVDTTRRKGIAAIATLLAYSPEQEQGLLARLVNKV 363
+                                                                 *************************************************** PP
+
+                                                       28947 274 GDpdkkvaskasylLlqLlqkhpnmkavvvreverllfrpnisekaqyyav 324
+                                                                 GDp + va+ ++ +L++Llq+hp+mk vvv everll+r+ni++kaqyya+
+  28947at2759_259920_0:001725|CM023194.1:10373802-10376310|- 364 GDPTRAVATSTVGQLERLLQQHPQMKLVVVAEVERLLYRSNINTKAQYYAL 414
+                                                                 *************************************************** PP
+
+                                                       28947 325 cfLnqivlskkeeelankLieiYfslFkallkkkkeeeeeeeevdskllsa 375
+                                                                 cfL+qi l++++  la+kLi iY+++Fka++kk         evdskl++a
+  28947at2759_259920_0:001725|CM023194.1:10373802-10376310|- 415 CFLSQILLDSDDVPLATKLIIIYVTFFKACVKKG--------EVDSKLMAA 457
+                                                                 ********************************96........9******** PP
+
+                                                       28947 376 lLtGVnRAfpyaktdd...ekleehldtLFkivhssnfntsvqaLmLlfqv 423
+                                                                 lLtG++RA+py+kt       l+ h+dtLFk+vh++ f+ + q L+ l q+
+  28947at2759_259920_0:001725|CM023194.1:10373802-10376310|- 458 LLTGLKRAYPYSKTVAisgGPLDGHVDTLFKLVHMVRFSLATQVLCILDQI 508
+                                                                 ************9864111569***************************** PP
+
+                                                       28947 424 sss.qsvsdRfyraLYekLldprlltsskqamfLnLlykslkaDvslkRvk 473
+                                                                 ++  +s sdRfy++L++kL+dp++  s kq+mfLnLly++lk+D+sl R++
+  28947at2759_259920_0:001725|CM023194.1:10373802-10376310|- 509 VDVdKSNSDRFYSVLFRKLFDPDVGLSAKQSMFLNLLYRALKRDESLPRLR 559
+                                                                 *************************************************** PP
+
+                                                       28947 474 AfvKRLlqvalqqqppficGaLfllsellkakpglrsl....lqepeeee. 519
+                                                                  fvKR+lqv+l ++p+++c++L+l+sel+k++p+l+++    ++++  ee 
+  28947at2759_259920_0:001725|CM023194.1:10373802-10376310|- 560 TFVKRILQVCLACPPQLACALLYLVSELIKSRPQLQNFpkdiVTKEYVEEd 610
+                                                                 ***********************************9873332444444455 PP
+
+                                                       28947 520 ddeeehfeDvdeedeeeeeeekeee..................eekkekkk 552
+                                                                 dd+eeh++Dvd++d+eee++ ke+e                   ++++ k+
+  28947at2759_259920_0:001725|CM023194.1:10373802-10376310|- 611 DDDEEHYKDVDNDDDEEEDAPKEDEarkgneektvtstwvhrkGSQSKPKS 661
+                                                                 9*****************99999999****************955677778 PP
+
+                                                       28947 553 sesYdprkrnPlyanAeks.clwELtllskHfHPSValfAktllsgepiey 602
+                                                                 + +Ydp +rnP ya+Ae s  +wE++ll++HfHPSValfAkt+++g+piey
+  28947at2759_259920_0:001725|CM023194.1:10373802-10376310|- 662 KLAYDPLARNPMYARAELSgGMWEINLLTNHFHPSVALFAKTIVEGTPIEY 712
+                                                                 89***************8846****************************** PP
+
+                                                       28947 603 sgdPlqdftlirFLDRFvyknpK 625
+                                                                 +gdPlqdftl rFLDRFv++npK
+  28947at2759_259920_0:001725|CM023194.1:10373802-10376310|- 713 TGDPLQDFTLPRFLDRFVFRNPK 735
+                                                                 **********************9 PP
+
+>> 28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|-  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  697.0  24.4    3e-212    3e-212     111     785 ..       2     744 ..       1     774 [. 0.85
+
+  Alignments for each domain:
+  == domain 1  score: 697.0 bits;  conditional E-value: 3e-212
+                                                     28947 111 sssdskwlktvlssGTlsDkvaAltllvqespvhnlkslesLlsmakkkkksr 163
+                                                               ++s++kw++tvl+sG  +Dk+aA+tll+qespvhnl sl+ L+s+     k+r
+  28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|-   2 DRSETKWIQTVLKSGAFADKIAAHTLLLQESPVHNLPSLKFLISLLD-V-KGR 52 
+                                                               5799*******************************************.6.79* PP
+
+                                                     28947 164 realmaldalkdLflsd..LppdrkLryfsqqpllkleelsgnkdardrhLll 214
+                                                               re++  ldal  Lf++   L p+ kL  ++++p+++l++   + ++r+++L+l
+  28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|-  53 RECMASLDALIRLFTEGrvLNPNAKLFLMNKKPISALST--VTPRERKELLAL 103
+                                                               ***************98899***************9964..689********* PP
+
+                                                     28947 215 wyfEdqLKkryaefvqaleelshdtleavkskalktvyeLLkekpEqEqnLLr 267
+                                                               w fE+qLK++y++f  al+ l++d ++++++k ++++ +LL+  pEqEq LL+
+  28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|- 104 WSFEHQLKDYYSQFFVALDGLLKDAVDTTRRKGIAAIATLLAYSPEQEQGLLA 156
+                                                               ***************************************************** PP
+
+                                                     28947 268 llVnKLGDpdkkvaskasylLlqLlqkhpnmkavvvreverllfrpnisekaq 320
+                                                                lVnK+GDp + va+ ++ +L++Llq+hp+mk vvv everll+r+ni++kaq
+  28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|- 157 RLVNKVGDPTRAVATSTVGQLERLLQQHPQMKLVVVAEVERLLYRSNINTKAQ 209
+                                                               ***************************************************** PP
+
+                                                     28947 321 yyavcfLnqivlskkeeelankLieiYfslFkallkkkke............. 360
+                                                               yya+cfL+qi l++++  la+kLi iY+++Fka++kk  +             
+  28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|- 210 YYALCFLSQILLDSDDVPLATKLIIIYVTFFKACVKKVWSyyncyfllfhtnv 262
+                                                               ************************************96668************ PP
+
+                                                     28947 361 .eeeeeeevdskllsalLtGVnRAfpyaktdd...ekleehldtLFkivhssn 409
+                                                                  + + evdskl++alLtG++RA+py+kt       l+ h+dtLFk+vh++ 
+  28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|- 263 hVFSIQGEVDSKLMAALLTGLKRAYPYSKTVAisgGPLDGHVDTLFKLVHMVR 315
+                                                               99999***********************9864111569*************** PP
+
+                                                     28947 410 fntsvqaLmLlfqvsss.qsvsdRfyraLYekLldprlltsskqamfLnLlyk 461
+                                                               f+ + q L+ l q+++  +s sdRfy++L++kL+dp++  s kq+mfLnLly+
+  28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|- 316 FSLATQVLCILDQIVDVdKSNSDRFYSVLFRKLFDPDVGLSAKQSMFLNLLYR 368
+                                                               ***************************************************** PP
+
+                                                     28947 462 slkaDvslkRvkAfvKRLlqvalqqqppficGaLfllsellkakpglrsl... 511
+                                                               +lk+D+sl R++ fvKR+lqv+l ++p+++c++L+l+sel+k++p+l+++   
+  28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|- 369 ALKRDESLPRLRTFVKRILQVCLACPPQLACALLYLVSELIKSRPQLQNFpkd 421
+                                                               ***********************************************987333 PP
+
+                                                     28947 512 .lqepeeee.ddeeehfeDvdeedeeeeeeekeee.................. 544
+                                                                ++++  ee dd+eeh++Dvd++d+eee++ ke+e                  
+  28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|- 422 iVTKEYVEEdDDDEEHYKDVDNDDDEEEDAPKEDEarkgneektvtstwvhrk 474
+                                                               24444444559*****************99999999****************9 PP
+
+                                                     28947 545 eekkekkksesYdprkrnPlyanAeks.clwELtllskHfHPSValfAktlls 596
+                                                                ++++ k++ +Ydp +rnP ya+Ae s  +wE++ll++HfHPSValfAkt+++
+  28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|- 475 GSQSKPKSKLAYDPLARNPMYARAELSgGMWEINLLTNHFHPSVALFAKTIVE 527
+                                                               5567777889***************8846************************ PP
+
+                                                     28947 597 gepieysgdPlqdftlirFLDRFvyknpKkkkkkekssimqpkaksdskkkga 649
+                                                               g+piey+gdPlqdftl rFLDRFv++npK  ++++   +  p++++d    ++
+  28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|- 528 GTPIEYTGDPLQDFTLPRFLDRFVFRNPKLISAAQ---ANLPAQRDD---DDS 574
+                                                               *******************************9655...445666654...678 PP
+
+                                                     28947 650 rslpvnseeflklkeedvpvdevFfhkYfkkkakkkkkkkkkkkkkddddeed 702
+                                                               ++ +v seef +       ++   f   +k k+k++kkkkk++k+ +d+d+e+
+  28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|- 575 DHESVASEEFEQ-----YLAENTDFASDMKPKSKSDKKKKKSDKDGEDEDDEE 622
+                                                               999999**9966.....566666666668888888877777666556666666 PP
+
+                                                     28947 703 eedvdedefekaldksepeeegdddd....dddedf.........edd.dddd 741
+                                                               ++ + +d++++a ++se++ ++d++     +   df         + d +d+d
+  28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|- 623 ADGDGDDDLQDAEVDSEEDFDNDKEFqdafK---DFddmidgnnaS-DvEDED 671
+                                                               6666666666666666655544443333321...222345444421.222334 PP
+
+                                                     28947 742 dddeddeddeedfdded.............................edeedll 765
+                                                               ++ ++d+ +e  f +ed                             + ++d+ 
+  28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|- 672 ENLDEDDLEEGGFREEDvafsdgwfysdifliikitnkvssfvtedD-DDDEE 723
+                                                               4444444444666666699999*********************9742.33322 PP
+
+                                                     28947 766 ded..keekkkkkkkkkkkkkk 785
+                                                               d+d  + e +++  +k+k+kk+
+  28947at2759_3218_0:001c28|CM023194.1:10370844-10375614|- 724 DDDddD-EPSAALPSKSKSKKR 744
+                                                               222331.222222222222222 PP
+
+>> 28947at2759_175836_0:00083b|CM023194.1:10373889-10379332|-  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  635.0   0.9  1.7e-193  1.7e-193      35     597 ..     104     682 .]      36     682 .] 0.91
+
+  Alignments for each domain:
+  == domain 1  score: 635.0 bits;  conditional E-value: 1.7e-193
+                                                       28947  35 e.....ekekkkkkkkekkkekkkkkklliepggkwyeaeleeekkskkee 80 
+                                                                 +     +k +  k ++   +++++  +lli+p+  wy++++++++     e
+  28947at2759_175836_0:00083b|CM023194.1:10373889-10379332|- 104 FdedyiSKPSGGKWEEPIPESDNAWYHLLIKPDVPWYQQDKPLKAVR---E 151
+                                                                 044455455566666677778888899***************99965...6 PP
+
+                                                       28947  81 lseelveklkeeAeklleaevelyeskkkksssdskwlktvlssGTlsDkv 131
+                                                                 +s+++v+k ++e+++ le+++ +y++    ++s++kw++tvl+sG  +Dk+
+  28947at2759_175836_0:00083b|CM023194.1:10373889-10379332|- 152 VSPDEVNKCEQEGKRYLEEDALNYQK----DRSETKWIQTVLKSGAFADKI 198
+                                                                 89********************9976....56899**************** PP
+
+                                                       28947 132 aAltllvqespvhnlkslesLlsmakkkkksrrealmaldalkdLflsd.. 180
+                                                                 aA+tll+qespvhnl sl+ L+s+     k+rre++  ldal  Lf++   
+  28947at2759_175836_0:00083b|CM023194.1:10373889-10379332|- 199 AAHTLLLQESPVHNLPSLKFLISLLD-V-KGRRECMASLDALIRLFTEGrv 247
+                                                                 **************************.6.79****************9889 PP
+
+                                                       28947 181 LppdrkLryfsqqpllkleelsgnkdardrhLllwyfEdqLKkryaefvqa 231
+                                                                 L p+ kL  ++++p+++l++   + ++r+++L+lw fE+qLK++y++f  a
+  28947at2759_175836_0:00083b|CM023194.1:10373889-10379332|- 248 LNPNAKLFLMNKKPISALST--VTPRERKELLALWSFEHQLKDYYSQFFVA 296
+                                                                 9***************9964..689************************** PP
+
+                                                       28947 232 leelshdtleavkskalktvyeLLkekpEqEqnLLrllVnKLGDpdkkvas 282
+                                                                 l+ l++d ++++++k ++++ +LL+  pEqEq LL+ lVnK+GDp + va+
+  28947at2759_175836_0:00083b|CM023194.1:10373889-10379332|- 297 LDGLLKDAVDTTRRKGIAAIATLLAYSPEQEQGLLARLVNKVGDPTRAVAT 347
+                                                                 *************************************************** PP
+
+                                                       28947 283 kasylLlqLlqkhpnmkavvvreverllfrpnisekaqyyavcfLnqivls 333
+                                                                  ++ +L++Llq+hp+mk vvv everll+r+ni++kaqyya+cfL+qi l+
+  28947at2759_175836_0:00083b|CM023194.1:10373889-10379332|- 348 STVGQLERLLQQHPQMKLVVVAEVERLLYRSNINTKAQYYALCFLSQILLD 398
+                                                                 *************************************************** PP
+
+                                                       28947 334 kkeeelankLieiYfslFkallkkkkeeeeeeeevdskllsalLtGVnRAf 384
+                                                                 +++  la+kLi iY+++Fka++kk         evdskl++alLtG++RA+
+  28947at2759_175836_0:00083b|CM023194.1:10373889-10379332|- 399 SDDVPLATKLIIIYVTFFKACVKKG--------EVDSKLMAALLTGLKRAY 441
+                                                                 ***********************96........9***************** PP
+
+                                                       28947 385 pyaktdd...ekleehldtLFkivhssnfntsvqaLmLlfqvsss.qsvsd 431
+                                                                 py+kt       l+ h+dtLFk+vh++ f+ + q L+ l q+++  +s sd
+  28947at2759_175836_0:00083b|CM023194.1:10373889-10379332|- 442 PYSKTVAisgGPLDGHVDTLFKLVHMVRFSLATQVLCILDQIVDVdKSNSD 492
+                                                                 ***9864111569************************************** PP
+
+                                                       28947 432 RfyraLYekLldprlltsskqamfLnLlykslkaDvslkRvkAfvKRLlqv 482
+                                                                 Rfy++L++kL+dp++  s kq+mfLnLly++lk+D+sl R++ fvKR+lqv
+  28947at2759_175836_0:00083b|CM023194.1:10373889-10379332|- 493 RFYSVLFRKLFDPDVGLSAKQSMFLNLLYRALKRDESLPRLRTFVKRILQV 543
+                                                                 *************************************************** PP
+
+                                                       28947 483 alqqqppficGaLfllsellkakpglrsl....lqepeeee.ddeeehfeD 528
+                                                                 +l ++p+++c++L+l+sel+k++p+l+++    ++++  ee dd+eeh++D
+  28947at2759_175836_0:00083b|CM023194.1:10373889-10379332|- 544 CLACPPQLACALLYLVSELIKSRPQLQNFpkdiVTKEYVEEdDDDEEHYKD 594
+                                                                 **************************98733324444444559******** PP
+
+                                                       28947 529 vdeedeeeeeeekeee..................eekkekkksesYdprkr 561
+                                                                 vd++d+eee++ ke+e                   ++++ k++ +Ydp +r
+  28947at2759_175836_0:00083b|CM023194.1:10373889-10379332|- 595 VDNDDDEEEDAPKEDEarkgneektvtstwvhrkGSQSKPKSKLAYDPLAR 645
+                                                                 *********99999999****************95567777889******* PP
+
+                                                       28947 562 nPlyanAeks.clwELtllskHfHPSValfAktllsg 597
+                                                                 nP ya+Ae s  +wE++ll++HfHPSValfAkt+++g
+  28947at2759_175836_0:00083b|CM023194.1:10373889-10379332|- 646 NPMYARAELSgGMWEINLLTNHFHPSVALFAKTIVEG 682
+                                                                 ********8846**********************986 PP
+
+>> 28947at2759_52239_0:005a5e|CM023194.1:10372583-10375143|-  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  557.1   1.5    6e-170    6e-170     269     721 ..       1     457 [.       1     464 [. 0.93
+   2 !   13.5  41.4   1.4e-05   1.4e-05     681     807 ..     464     604 ..     456     607 .. 0.51
+
+  Alignments for each domain:
+  == domain 1  score: 557.1 bits;  conditional E-value: 6e-170
+                                                      28947 269 lVnKLGDpdkkvaskasylLlqLlqkhpnmkavvvreverllfrpnisekaq 320
+                                                                lVnK+GDp + va+ ++ +L++Llq+hp+mk vvv everll+r+ni++kaq
+  28947at2759_52239_0:005a5e|CM023194.1:10372583-10375143|-   1 LVNKVGDPTRAVATSTVGQLERLLQQHPQMKLVVVAEVERLLYRSNINTKAQ 52 
+                                                                8*************************************************** PP
+
+                                                      28947 321 yyavcfLnqivlskkeeelankLieiYfslFkallkkkkeeeeeeeevdskl 372
+                                                                yya+cfL+qi l++++  la+kLi iY+++Fka++kk         evdskl
+  28947at2759_52239_0:005a5e|CM023194.1:10372583-10375143|-  53 YYALCFLSQILLDSDDVPLATKLIIIYVTFFKACVKKG--------EVDSKL 96 
+                                                                ************************************96........9***** PP
+
+                                                      28947 373 lsalLtGVnRAfpyaktdd...ekleehldtLFkivhssnfntsvqaLmLlf 421
+                                                                ++alLtG++RA+py+kt       l+ h+dtLFk+vh++ f+ + q L+ l 
+  28947at2759_52239_0:005a5e|CM023194.1:10372583-10375143|-  97 MAALLTGLKRAYPYSKTVAisgGPLDGHVDTLFKLVHMVRFSLATQVLCILD 148
+                                                                ***************9864111569*************************** PP
+
+                                                      28947 422 qvsss.qsvsdRfyraLYekLldprlltsskqamfLnLlykslkaDvslkRv 472
+                                                                q+++  +s sdRfy++L++kL+dp++  s kq+mfLnLly++lk+D+sl R+
+  28947at2759_52239_0:005a5e|CM023194.1:10372583-10375143|- 149 QIVDVdKSNSDRFYSVLFRKLFDPDVGLSAKQSMFLNLLYRALKRDESLPRL 200
+                                                                **************************************************** PP
+
+                                                      28947 473 kAfvKRLlqvalqqqppficGaLfllsellkakpglrsl....lqepeeee. 519
+                                                                + fvKR+lqv+l ++p+++c++L+l+sel+k++p+l+++    ++++  ee 
+  28947at2759_52239_0:005a5e|CM023194.1:10372583-10375143|- 201 RTFVKRILQVCLACPPQLACALLYLVSELIKSRPQLQNFpkdiVTKEYVEEd 252
+                                                                ************************************9873332444444455 PP
+
+                                                      28947 520 ddeeehfeDvdeedeeeeeeekeee..................eekkekkks 553
+                                                                dd+eeh++Dvd++d+eee++ ke+e                   ++++ k++
+  28947at2759_52239_0:005a5e|CM023194.1:10372583-10375143|- 253 DDDEEHYKDVDNDDDEEEDAPKEDEarkgneektvtstwvhrkGSQSKPKSK 304
+                                                                9*****************99999999****************9556777788 PP
+
+                                                      28947 554 esYdprkrnPlyanAeks.clwELtllskHfHPSValfAktllsgepieysg 604
+                                                                 +Ydp +rnP ya+Ae s  +wE++ll++HfHPSValfAkt+++g+piey+g
+  28947at2759_52239_0:005a5e|CM023194.1:10372583-10375143|- 305 LAYDPLARNPMYARAELSgGMWEINLLTNHFHPSVALFAKTIVEGTPIEYTG 356
+                                                                9***************8846******************************** PP
+
+                                                      28947 605 dPlqdftlirFLDRFvyknpKkkkkkekssimqpkaksdskkkgarslpvns 656
+                                                                dPlqdftl rFLDRFv++npK  ++++             +  ++r+++v+s
+  28947at2759_52239_0:005a5e|CM023194.1:10372583-10375143|- 357 DPLQDFTLPRFLDRFVFRNPKLISAAQA------------NLPAQRAMAVDS 396
+                                                                **********************996442............22457899**** PP
+
+                                                      28947 657 eeflklkeedvpvdevFfhkYfkkkakkkkkkkkkkkkkddddeedeedvde 708
+                                                                +ef+k+ ++++pvde+F+++Yfk++ +++ + +k++    ddd++d+e+v +
+  28947at2759_52239_0:005a5e|CM023194.1:10372583-10375143|- 397 KEFAKQPKNSIPVDEMFLYQYFKQRISRDPRVEKNS----DDDDSDHESVAS 444
+                                                                *******************************87654....689********* PP
+
+                                                      28947 709 defekaldksepe 721
+                                                                +efe++l +  + 
+  28947at2759_52239_0:005a5e|CM023194.1:10372583-10375143|- 445 EEFEQYLAENTDF 457
+                                                                *******986654 PP
+
+  == domain 2  score: 13.5 bits;  conditional E-value: 1.4e-05
+                                                      28947 681 kakkkkkkkkkkkkk.ddddeedeedvdedefekaldksepeeegddddddd 731
+                                                                k+k++kkkkk++ k+ +d+d+e+++ + +d++++a ++se++ ++d++ + d
+  28947at2759_52239_0:005a5e|CM023194.1:10372583-10375143|- 464 KSKSDKKKKKSD-KDgEDEDDEEADGDGDDDLQDAEVDSEEDFDNDKEFQ-D 513
+                                                                333333333322.2334444444444445555555555444443333221.2 PP
+
+                                                      28947 732 ..edfedd.d..ddddddeddeddeedfdded..............edeedl 764
+                                                                  +df+d  d  dddd+++dd+dd       +                    
+  28947at2759_52239_0:005a5e|CM023194.1:10372583-10375143|- 514 afKDFDDMiDedDDDDEEDDDDDD-------EpsaalpskskskkrA----- 553
+                                                                344443222211111111111222.......1223456667554441..... PP
+
+                                                      28947 765 lded........keekkkkkkkkkkkkkkkklstfasaeeyaelleenees 807
+                                                                +ded         ++ +++kkk+ ++  +++ + f +ae++a++le+n+++
+  28947at2759_52239_0:005a5e|CM023194.1:10372583-10375143|- 554 IDEDiddldfafGAQPSSSKKKRGRDLFNTNGNDFVAAEDFAAILEANAGT 604
+                                                                444455566778667778888899999999****************99875 PP
+
+>> 28947at2759_6579_0:00611a|CM023194.1:10373588-10375248|-  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  565.0   0.1  2.4e-172  2.4e-172     235     676 ..       2     466 .]       1     466 [] 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 565.0 bits;  conditional E-value: 2.4e-172
+                                                     28947 235 lshdtleavkskalktvyeLLkekpEqEqnLLrllVnKLGDpdkkvaskasyl 287
+                                                               l++d ++++++k ++++ +LL+  pEqEq LL+ lVnK+GDp + va+ ++ +
+  28947at2759_6579_0:00611a|CM023194.1:10373588-10375248|-   2 LLKDAVDTTRRKGIAAIATLLAYSPEQEQGLLARLVNKVGDPTRAVATSTVGQ 54 
+                                                               579************************************************** PP
+
+                                                     28947 288 LlqLlqkhpnmkavvvreverllfrpnisekaqyyavcfLnqivlskkeeela 340
+                                                               L++Llq+hp+mk vvv everll+r+ni++kaqyya+cfL+qi l++++  la
+  28947at2759_6579_0:00611a|CM023194.1:10373588-10375248|-  55 LERLLQQHPQMKLVVVAEVERLLYRSNINTKAQYYALCFLSQILLDSDDVPLA 107
+                                                               ***************************************************** PP
+
+                                                     28947 341 nkLieiYfslFkallkkkkeeeeeeeevdskllsalLtGVnRAfpyaktdd.. 391
+                                                               +kLi iY+++Fka++kk         evdskl++alLtG++RA+py+kt    
+  28947at2759_6579_0:00611a|CM023194.1:10373588-10375248|- 108 TKLIIIYVTFFKACVKKG--------EVDSKLMAALLTGLKRAYPYSKTVAis 152
+                                                               ****************96........9********************986411 PP
+
+                                                     28947 392 .ekleehldtLFkivhssnfntsvqaLmLlfqvsss.qsvsdRfyraLYekLl 442
+                                                                  l+ h+dtLFk+vh++ f+ + q L+ l q+++  +s sdRfy++L++kL+
+  28947at2759_6579_0:00611a|CM023194.1:10373588-10375248|- 153 gGPLDGHVDTLFKLVHMVRFSLATQVLCILDQIVDVdKSNSDRFYSVLFRKLF 205
+                                                               1569************************************************* PP
+
+                                                     28947 443 dprlltsskqamfLnLlykslkaDvslkRvkAfvKRLlqvalqqqppficGaL 495
+                                                               dp++  s kq+mfLnLly++lk+D+sl R++ fvKR+lqv+l ++p+++c++L
+  28947at2759_6579_0:00611a|CM023194.1:10373588-10375248|- 206 DPDVGLSAKQSMFLNLLYRALKRDESLPRLRTFVKRILQVCLACPPQLACALL 258
+                                                               ***************************************************** PP
+
+                                                     28947 496 fllsellkakpglrsl....lqepeeee.ddeeehfeDvdeedeeeeeeekee 543
+                                                               +l+sel+k++p+l+++    ++++  ee dd+eeh++Dvd++d+eee++ ke+
+  28947at2759_6579_0:00611a|CM023194.1:10373588-10375248|- 259 YLVSELIKSRPQLQNFpkdiVTKEYVEEdDDDEEHYKDVDNDDDEEEDAPKED 311
+                                                               *************98733324444444559*****************999999 PP
+
+                                                     28947 544 e..................eekkekkksesYdprkrnPlyanAeks.clwELt 577
+                                                               e                   ++++ k++ +Ydp +rnP ya+Ae s  +wE++
+  28947at2759_6579_0:00611a|CM023194.1:10373588-10375248|- 312 EarkgneektvtstwvhrkGSQSKPKSKLAYDPLARNPMYARAELSgGMWEIN 364
+                                                               99****************95567777889***************8846***** PP
+
+                                                     28947 578 llskHfHPSValfAktllsgepieysgdPlqdftlirFLDRFvyknpKkkkkk 630
+                                                               ll++HfHPSValfAkt+++g+piey+gdPlqdftl rFLDRFv++npK  +++
+  28947at2759_6579_0:00611a|CM023194.1:10373588-10375248|- 365 LLTNHFHPSVALFAKTIVEGTPIEYTGDPLQDFTLPRFLDRFVFRNPKLISAA 417
+                                                               *************************************************9988 PP
+
+                                                     28947 631 ek..ssimqpkaksd.skkkgarslpvnseeflklkeedvpvdevFfhk 676
+                                                               +     + +   k++ + ++g+r+++v+s+ef+k+ ++++pvde+F+++
+  28947at2759_6579_0:00611a|CM023194.1:10373588-10375248|- 418 QAnlPAQRRVLGKRSiYVPRGVRAMAVDSKEFAKQPKNSIPVDEMFLYQ 466
+                                                               875644455555666799****************************996 PP
+
+>> 28947at2759_144197_0:004c2b|CM023194.1:10374025-10375605|-  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  559.4   1.8  1.2e-170  1.2e-170     113     576 ..       1     482 [.       1     483 [] 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 559.4 bits;  conditional E-value: 1.2e-170
+                                                       28947 113 sdskwlktvlssGTlsDkvaAltllvqespvhnlkslesLlsmakkkkksr 163
+                                                                 s++kw++tvl+sG  +Dk+aA+tll+qespvhnl sl+ L+s+     k+r
+  28947at2759_144197_0:004c2b|CM023194.1:10374025-10375605|-   1 SETKWIQTVLKSGAFADKIAAHTLLLQESPVHNLPSLKFLISLLD-V-KGR 49 
+                                                                 578******************************************.6.79* PP
+
+                                                       28947 164 realmaldalkdLflsd..LppdrkLryfsqqpllkleelsgnkdardrhL 212
+                                                                 re++  ldal  Lf++   L p+ kL  ++++p+++l++   + ++r+++L
+  28947at2759_144197_0:004c2b|CM023194.1:10374025-10375605|-  50 RECMASLDALIRLFTEGrvLNPNAKLFLMNKKPISALST--VTPRERKELL 98 
+                                                                 ***************98899***************9964..689******* PP
+
+                                                       28947 213 llwyfEdqLKkryaefvqaleelshdtleavkskalktvyeLLkekpEqEq 263
+                                                                 +lw fE+qLK++y++f  al+ l++d ++++++k ++++ +LL+  pEqEq
+  28947at2759_144197_0:004c2b|CM023194.1:10374025-10375605|-  99 ALWSFEHQLKDYYSQFFVALDGLLKDAVDTTRRKGIAAIATLLAYSPEQEQ 149
+                                                                 *************************************************** PP
+
+                                                       28947 264 nLLrllVnKLGDpdkkvaskasylLlqLlqkhpnmkavvvreverllfrpn 314
+                                                                  LL+ lVnK+GDp + va+ ++ +L++Llq+hp+mk vvv everll+r+n
+  28947at2759_144197_0:004c2b|CM023194.1:10374025-10375605|- 150 GLLARLVNKVGDPTRAVATSTVGQLERLLQQHPQMKLVVVAEVERLLYRSN 200
+                                                                 *************************************************** PP
+
+                                                       28947 315 isekaqyyavcfLnqivlskkeeelankLieiYfslFkallkkkkeeeeee 365
+                                                                 i++kaqyya+cfL+qi l++++  la+kLi iY+++Fka++kk        
+  28947at2759_144197_0:004c2b|CM023194.1:10374025-10375605|- 201 INTKAQYYALCFLSQILLDSDDVPLATKLIIIYVTFFKACVKKG------- 244
+                                                                 ******************************************96....... PP
+
+                                                       28947 366 eevdskllsalLtGVnRAfpyaktdd...ekleehldtLFkivhssnfnts 413
+                                                                  evdskl++alLtG++RA+py+kt       l+ h+dtLFk+vh++ f+ +
+  28947at2759_144197_0:004c2b|CM023194.1:10374025-10375605|- 245 -EVDSKLMAALLTGLKRAYPYSKTVAisgGPLDGHVDTLFKLVHMVRFSLA 294
+                                                                 .9********************9864111569******************* PP
+
+                                                       28947 414 vqaLmLlfqvsss.qsvsdRfyraLYekLldprlltsskqamfLnLlyksl 463
+                                                                  q L+ l q+++  +s sdRfy++L++kL+dp++  s kq+mfLnLly++l
+  28947at2759_144197_0:004c2b|CM023194.1:10374025-10375605|- 295 TQVLCILDQIVDVdKSNSDRFYSVLFRKLFDPDVGLSAKQSMFLNLLYRAL 345
+                                                                 *************************************************** PP
+
+                                                       28947 464 kaDvslkRvkAfvKRLlqvalqqqppficGaLfllsellkakpglrsl... 511
+                                                                 k+D+sl R++ fvKR+lqv+l ++p+++c++L+l+sel+k++p+l+++   
+  28947at2759_144197_0:004c2b|CM023194.1:10374025-10375605|- 346 KRDESLPRLRTFVKRILQVCLACPPQLACALLYLVSELIKSRPQLQNFpkd 396
+                                                                 *********************************************987333 PP
+
+                                                       28947 512 .lqepeeee.ddeeehfeDvdeedeeeeeeekeee................ 544
+                                                                  ++++  ee dd+eeh++Dvd++d+eee++ ke+e                
+  28947at2759_144197_0:004c2b|CM023194.1:10374025-10375605|- 397 iVTKEYVEEdDDDEEHYKDVDNDDDEEEDAPKEDEarkgneektvtstwvh 447
+                                                                 24444444559*****************99999999*************** PP
+
+                                                       28947 545 ..eekkekkksesYdprkrnPlyanAeks.clwEL 576
+                                                                    ++++ k++ +Ydp +rnP ya+Ae s  +wE+
+  28947at2759_144197_0:004c2b|CM023194.1:10374025-10375605|- 448 rkGSQSKPKSKLAYDPLARNPMYARAELSgGMWEI 482
+                                                                 *95567777889***************87358887 PP
+
+>> 28947at2759_70779_0:004e02|CM023194.1:10373145-10375605|-  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  264.4   1.7   1.9e-81   1.9e-81     113     337 ..       1     223 [.       1     224 [. 0.97
+   2 !  199.5  39.2   7.5e-62   7.5e-62     515     794 ..     220     502 ..     217     513 .. 0.74
+
+  Alignments for each domain:
+  == domain 1  score: 264.4 bits;  conditional E-value: 1.9e-81
+                                                      28947 113 sdskwlktvlssGTlsDkvaAltllvqespvhnlkslesLlsmakkkkksrr 164
+                                                                s++kw++tvl+sG  +Dk+aA+tll+qespvhnl sl+ L+s+     k+rr
+  28947at2759_70779_0:004e02|CM023194.1:10373145-10375605|-   1 SETKWIQTVLKSGAFADKIAAHTLLLQESPVHNLPSLKFLISLLD-V-KGRR 50 
+                                                                578******************************************.6.79** PP
+
+                                                      28947 165 ealmaldalkdLflsd..LppdrkLryfsqqpllkleelsgnkdardrhLll 214
+                                                                e++  ldal  Lf++   L p+ kL  ++++p+++l++   + ++r+++L+l
+  28947at2759_70779_0:004e02|CM023194.1:10373145-10375605|-  51 ECMASLDALIRLFTEGrvLNPNAKLFLMNKKPISALST--VTPRERKELLAL 100
+                                                                **************98899***************9964..689********* PP
+
+                                                      28947 215 wyfEdqLKkryaefvqaleelshdtleavkskalktvyeLLkekpEqEqnLL 266
+                                                                w fE+qLK++y++f  al+ l++d ++++++k ++++ +LL+  pEqEq LL
+  28947at2759_70779_0:004e02|CM023194.1:10373145-10375605|- 101 WSFEHQLKDYYSQFFVALDGLLKDAVDTTRRKGIAAIATLLAYSPEQEQGLL 152
+                                                                **************************************************** PP
+
+                                                      28947 267 rllVnKLGDpdkkvaskasylLlqLlqkhpnmkavvvreverllfrpnisek 318
+                                                                + lVnK+GDp + va+ ++ +L++Llq+hp+mk vvv everll+r+ni++k
+  28947at2759_70779_0:004e02|CM023194.1:10373145-10375605|- 153 ARLVNKVGDPTRAVATSTVGQLERLLQQHPQMKLVVVAEVERLLYRSNINTK 204
+                                                                **************************************************** PP
+
+                                                      28947 319 aqyyavcfLnqivlskkee 337
+                                                                aqyya+cfL+qi l++++e
+  28947at2759_70779_0:004e02|CM023194.1:10373145-10375605|- 205 AQYYALCFLSQILLDSDDE 223
+                                                                ***************9975 PP
+
+  == domain 2  score: 199.5 bits;  conditional E-value: 7.5e-62
+                                                      28947 515 peeeeddeeehfeDvdeedeeeeeeekeee..................eekk 548
+                                                                +++e+dd+eeh++Dvd++d+eee++ ke+e                   +++
+  28947at2759_70779_0:004e02|CM023194.1:10373145-10375605|- 220 SDDEDDDDEEHYKDVDNDDDEEEDAPKEDEarkgneektvtstwvhrkGSQS 271
+                                                                344469*****************99999999****************95567 PP
+
+                                                      28947 549 ekkksesYdprkrnPlyanAeks.clwELtllskHfHPSValfAktllsgep 599
+                                                                + k++ +Ydp +rnP ya+Ae s  +wE++ll++HfHPSValfAkt+++g+p
+  28947at2759_70779_0:004e02|CM023194.1:10373145-10375605|- 272 KPKSKLAYDPLARNPMYARAELSgGMWEINLLTNHFHPSVALFAKTIVEGTP 323
+                                                                777889***************8846*************************** PP
+
+                                                      28947 600 ieysgdPlqdftlirFLDRFvyknpKkkkkkekssimqpkaksdskkkgars 651
+                                                                iey+gdPlqdftl rFLDRFv++npK  ++++             +  ++r+
+  28947at2759_70779_0:004e02|CM023194.1:10373145-10375605|- 324 IEYTGDPLQDFTLPRFLDRFVFRNPKLISAAQA------------NLPAQRA 363
+                                                                ***************************996442............2245789 PP
+
+                                                      28947 652 lpvnseeflklkeedvpvdevFfhkYfkkkakkkkkkkkkkkkkddddeede 703
+                                                                ++v+s+ef+k+ ++++pvde+F+++Yfk++ +++ + +k++    ddd++d+
+  28947at2759_70779_0:004e02|CM023194.1:10373145-10375605|- 364 MAVDSKEFAKQPKNSIPVDEMFLYQYFKQRISRDPRVEKNS----DDDDSDH 411
+                                                                9***********************************87654....689**** PP
+
+                                                      28947 704 edvdedefekaldksepeeegdddd.ddd.edf.edd.d.ddddddeddedd 750
+                                                                e+v ++efe++l +  +   + + + ++d + + ++d d +d+dd+e d d 
+  28947at2759_70779_0:004e02|CM023194.1:10373145-10375605|- 412 ESVASEEFEQYLAENTDFASDMKPKsKSDkK-KkKSDkDgEDEDDEEADGDG 462
+                                                                ************9977666554433321221.12111122222222222222 PP
+
+                                                      28947 751 eedfddededeedlldedkeekkkkkkkkkkkkkkkklstfasa 794
+                                                                ++d++d++ d+e+++d+d    k+ ++  k+  +  + +   ++
+  28947at2759_70779_0:004e02|CM023194.1:10373145-10375605|- 463 DDDLQDAEVDSEEDFDND----KEFQDAFKDFDDMIDGNNASDV 502
+                                                                233333332223333332....2333333344444444444444 PP
+
+>> 28947at2759_93504_0:0015f3|CM023194.1:10374595-10375974|-  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  417.6   0.1  8.9e-128  8.9e-128      44     433 ..      25     407 .]       2     407 .] 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 417.6 bits;  conditional E-value: 8.9e-128
+                                                      28947  44 kkekkkekkkkkklliepggkwyeaeleeekkskkeelseelveklkeeAek 95 
+                                                                ++   +++++  +lli+p+  wy++++++++     e+s+++v+k ++e+++
+  28947at2759_93504_0:0015f3|CM023194.1:10374595-10375974|-  25 EEPIPESDNAWYHLLIKPDVPWYQQDKPLKAVR---EVSPDEVNKCEQEGKR 73 
+                                                                45556677778899**************99965...689************* PP
+
+                                                      28947  96 lleaevelyeskk..kksssdskwlktvlssGTlsDkvaAltllvqespvhn 145
+                                                                 le+++ +y++ +   +++s++kw++tvl+sG  +Dk+aA+tll+qespvhn
+  28947at2759_93504_0:0015f3|CM023194.1:10374595-10375974|-  74 YLEEDALNYQKVRavGSDRSETKWIQTVLKSGAFADKIAAHTLLLQESPVHN 125
+                                                                ***************99*********************************** PP
+
+                                                      28947 146 lkslesLlsmakkkkksrrealmaldalkdLflsd..LppdrkLryfsqqpl 195
+                                                                l sl+ L+s+     k+rre++  ldal  Lf++   L p+ kL  ++++p+
+  28947at2759_93504_0:0015f3|CM023194.1:10374595-10375974|- 126 LPSLKFLISLLD-V-KGRRECMASLDALIRLFTEGrvLNPNAKLFLMNKKPI 175
+                                                                ************.6.79****************98899************** PP
+
+                                                      28947 196 lkleelsgnkdardrhLllwyfEdqLKkryaefvqaleelshdtleavkska 247
+                                                                ++l++   + ++r+++L+lw fE+qLK++y++f  al+ l++d ++++++k 
+  28947at2759_93504_0:0015f3|CM023194.1:10374595-10375974|- 176 SALST--VTPRERKELLALWSFEHQLKDYYSQFFVALDGLLKDAVDTTRRKG 225
+                                                                *9964..689****************************************** PP
+
+                                                      28947 248 lktvyeLLkekpEqEqnLLrllVnKLGDpdkkvaskasylLlqLlqkhpnmk 299
+                                                                ++++ +LL+  pEqEq LL+ lVnK+GDp + va+ ++ +L++Llq+hp+mk
+  28947at2759_93504_0:0015f3|CM023194.1:10374595-10375974|- 226 IAAIATLLAYSPEQEQGLLARLVNKVGDPTRAVATSTVGQLERLLQQHPQMK 277
+                                                                **************************************************** PP
+
+                                                      28947 300 avvvreverllfrpnisekaqyyavcfLnqivlskkeeelankLieiYfslF 351
+                                                                 vvv everll+r+ni++kaqyya+cfL+qi l++++  la+kLi iY+++F
+  28947at2759_93504_0:0015f3|CM023194.1:10374595-10375974|- 278 LVVVAEVERLLYRSNINTKAQYYALCFLSQILLDSDDVPLATKLIIIYVTFF 329
+                                                                **************************************************** PP
+
+                                                      28947 352 kallkkkkeeeeeeeevdskllsalLtGVnRAfpyaktdd...ekleehldt 400
+                                                                ka++kk         evdskl++alLtG++RA+py+kt       l+ h+dt
+  28947at2759_93504_0:0015f3|CM023194.1:10374595-10375974|- 330 KACVKKG--------EVDSKLMAALLTGLKRAYPYSKTVAisgGPLDGHVDT 373
+                                                                *****96........9********************9864111569****** PP
+
+                                                      28947 401 LFkivhssnfntsvqaLmLlfqvsss.qsvsdRf 433
+                                                                LFk+vh++ f+ + q L+ l q+++  +s sdR+
+  28947at2759_93504_0:0015f3|CM023194.1:10374595-10375974|- 374 LFKLVHMVRFSLATQVLCILDQIVDVdKSNSDRY 407
+                                                                *********************************9 PP
+
+>> 28947at2759_188344_0:0031b9|CM023194.1:10374592-10375605|-  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  382.4   1.3    4e-117    4e-117     113     433 ..       1     315 [.       1     316 [] 0.97
+
+  Alignments for each domain:
+  == domain 1  score: 382.4 bits;  conditional E-value: 4e-117
+                                                       28947 113 sdskwlktvlssGTlsDkvaAltllvqespvhnlkslesLlsmakkkkksr 163
+                                                                 s++kw++tvl+sG  +Dk+aA+tll+qespvhnl sl+ L+s+     k+r
+  28947at2759_188344_0:0031b9|CM023194.1:10374592-10375605|-   1 SETKWIQTVLKSGAFADKIAAHTLLLQESPVHNLPSLKFLISLLD-V-KGR 49 
+                                                                 578******************************************.6.79* PP
+
+                                                       28947 164 realmaldalkdLflsd..LppdrkLryfsqqpllkleelsgnkdardrhL 212
+                                                                 re++  ldal  Lf++   L p+ kL  ++++p+++l++   + ++r+++L
+  28947at2759_188344_0:0031b9|CM023194.1:10374592-10375605|-  50 RECMASLDALIRLFTEGrvLNPNAKLFLMNKKPISALST--VTPRERKELL 98 
+                                                                 ***************98899***************9964..689******* PP
+
+                                                       28947 213 llwyfEdqLKkryaefvqaleelshdtleavkskalktvyeLLkekpEqEq 263
+                                                                 +lw fE+qLK++y++f  al+ l++d ++++++k ++++ +LL+  pEqEq
+  28947at2759_188344_0:0031b9|CM023194.1:10374592-10375605|-  99 ALWSFEHQLKDYYSQFFVALDGLLKDAVDTTRRKGIAAIATLLAYSPEQEQ 149
+                                                                 *************************************************** PP
+
+                                                       28947 264 nLLrllVnKLGDpdkkvaskasylLlqLlqkhpnmkavvvreverllfrpn 314
+                                                                  LL+ lVnK+GDp + va+ ++ +L++Llq+hp+mk vvv everll+r+n
+  28947at2759_188344_0:0031b9|CM023194.1:10374592-10375605|- 150 GLLARLVNKVGDPTRAVATSTVGQLERLLQQHPQMKLVVVAEVERLLYRSN 200
+                                                                 *************************************************** PP
+
+                                                       28947 315 isekaqyyavcfLnqivlskkeeelankLieiYfslFkallkkkkeeeeee 365
+                                                                 i++kaqyya+cfL+qi l++++  la+kLi iY+++Fka++kk        
+  28947at2759_188344_0:0031b9|CM023194.1:10374592-10375605|- 201 INTKAQYYALCFLSQILLDSDDVPLATKLIIIYVTFFKACVKKG------- 244
+                                                                 ******************************************96....... PP
+
+                                                       28947 366 eevdskllsalLtGVnRAfpyaktdd...ekleehldtLFkivhssnfnts 413
+                                                                  evdskl++alLtG++RA+py+kt       l+ h+dtLFk+vh++ f+ +
+  28947at2759_188344_0:0031b9|CM023194.1:10374592-10375605|- 245 -EVDSKLMAALLTGLKRAYPYSKTVAisgGPLDGHVDTLFKLVHMVRFSLA 294
+                                                                 .9********************9864111569******************* PP
+
+                                                       28947 414 vqaLmLlfqvsss.qsvsdRf 433
+                                                                  q L+ l q+++  +s sdR+
+  28947at2759_188344_0:0031b9|CM023194.1:10374592-10375605|- 295 TQVLCILDQIVDVdKSNSDRY 315
+                                                                 ********************9 PP
+
+>> 28947at2759_1203425_0:003173|CM023194.1:10372634-10374466|-  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  299.8  21.1   3.8e-92   3.8e-92     454     768 ..       1     327 [.       1     329 [. 0.82
+   2 !    9.4  33.2   0.00023   0.00023     697     807 ..     316     444 ..     312     447 .. 0.59
+
+  Alignments for each domain:
+  == domain 1  score: 299.8 bits;  conditional E-value: 3.8e-92
+                                                        28947 454 mfLnLlykslkaDvslkRvkAfvKRLlqvalqqqppficGaLfllsellk 503
+                                                                  mfLnLly++lk+D+sl R++ fvKR+lqv+l ++p+++c++L+l+sel+k
+  28947at2759_1203425_0:003173|CM023194.1:10372634-10374466|-   1 MFLNLLYRALKRDESLPRLRTFVKRILQVCLACPPQLACALLYLVSELIK 50 
+                                                                  9************************************************* PP
+
+                                                        28947 504 akpglrsl....lqepeeee.ddeeehfeDvdeedeeeeeeekeee.... 544
+                                                                  ++p+l+++    ++++  ee dd+eeh++Dvd++d+eee++ ke+e    
+  28947at2759_1203425_0:003173|CM023194.1:10372634-10374466|-  51 SRPQLQNFpkdiVTKEYVEEdDDDEEHYKDVDNDDDEEEDAPKEDEarkg 100
+                                                                  *****98733324444444559*****************99999999*** PP
+
+                                                        28947 545 ..............eekkekkksesYdprkrnPlyanAeks.clwELtll 579
+                                                                                 ++++ k++ +Ydp +rnP ya+Ae s  +wE++ll
+  28947at2759_1203425_0:003173|CM023194.1:10372634-10374466|- 101 neektvtstwvhrkGSQSKPKSKLAYDPLARNPMYARAELSgGMWEINLL 150
+                                                                  *************95567777889***************8846******* PP
+
+                                                        28947 580 skHfHPSValfAktllsgepieysgdPlqdftlirFLDRFvyknpKkkkk 629
+                                                                  ++HfHPSValfAkt+++g+piey+gdPlqdftl rFLDRFv++npK  ++
+  28947at2759_1203425_0:003173|CM023194.1:10372634-10374466|- 151 TNHFHPSVALFAKTIVEGTPIEYTGDPLQDFTLPRFLDRFVFRNPKLISA 200
+                                                                  ***********************************************996 PP
+
+                                                        28947 630 kekssimqpkaksdskkkgarslpvnseeflklkeedvpvdevFfhkYfk 679
+                                                                  ++             +  ++r+++v+s+ef+k+ ++++pvde+F+++Yfk
+  28947at2759_1203425_0:003173|CM023194.1:10372634-10374466|- 201 AQA------------NLPAQRAMAVDSKEFAKQPKNSIPVDEMFLYQYFK 238
+                                                                  442............22457899*************************** PP
+
+                                                        28947 680 kkakkkkkkkkkkkkkddddeedeedvdedefekaldksepeeegdddd. 728
+                                                                  ++ +++ + +k++    ddd++d+e+v ++efe++l +  +   + + + 
+  28947at2759_1203425_0:003173|CM023194.1:10372634-10374466|- 239 QRISRDPRVEKNS----DDDDSDHESVASEEFEQYLAENTDFASDMKPKs 284
+                                                                  ********87654....689****************99776665554443 PP
+
+                                                        28947 729 ddd.edf.edd.d.ddddddeddeddeedfddededeedllded 768
+                                                                  ++d + + ++d d +d+dd+e d d ++d++d++ d+e+++d+d
+  28947at2759_1203425_0:003173|CM023194.1:10372634-10374466|- 285 KSDkK-KkKSDkDgEDEDDEEADGDGDDDLQDAEVDSEEDFDND 327
+                                                                  22331.12222133333333333333345555443344444443 PP
+
+  == domain 2  score: 9.4 bits;  conditional E-value: 0.00023
+                                                        28947 697 dddeedeedvdedefekaldksepeeegdddd..dddedf...eddd.dd 740
+                                                                   + +++e+ ++++ef++a +++ +  +g++ +  + ded+   e dd + 
+  28947at2759_1203425_0:003173|CM023194.1:10372634-10374466|- 316 AEVDSEEDFDNDKEFQDAFKDFDDMIDGNNASdvE-DEDEnldE-DDlE- 362
+                                                                  44566677777888888888887766666655321.22222221.1111. PP
+
+                                                        28947 741 ddddeddeddeedfdded...............edeedllded....... 768
+                                                                     +edd+ddeed dd+d                     +ded       
+  28947at2759_1203425_0:003173|CM023194.1:10372634-10374466|- 363 ---EEDDDDDEEDDDDDDepsaalpskskskkrA-----IDEDiddldfa 404
+                                                                  ...1111111112122223455677778555441.....44445556677 PP
+
+                                                        28947 769 .keekkkkkkkkkkkkkkkklstfasaeeyaelleenees 807
+                                                                    ++ +++kkk+ ++  +++ + f +ae++a++le+n+++
+  28947at2759_1203425_0:003173|CM023194.1:10372634-10374466|- 405 fGAQPSSSKKKRGRDLFNTNGNDFVAAEDFAAILEANAGT 444
+                                                                  8667778888899999999****************99875 PP
+
+>> 28947at2759_8208_0:0047d8|CM023194.1:10374298-10375056|-  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  288.9   4.0   7.1e-89   7.1e-89     298     510 ..       1     209 []       1     209 [] 0.97
+
+  Alignments for each domain:
+  == domain 1  score: 288.9 bits;  conditional E-value: 7.1e-89
+                                                     28947 298 mkavvvreverllfrpnisekaqyyavcfLnqivlskkeeelankLieiYfsl 350
+                                                               mk vvv everll+r+ni++kaqyya+cfL+qi l++++  la+kLi iY+++
+  28947at2759_8208_0:0047d8|CM023194.1:10374298-10375056|-   1 MKLVVVAEVERLLYRSNINTKAQYYALCFLSQILLDSDDVPLATKLIIIYVTF 53 
+                                                               9**************************************************** PP
+
+                                                     28947 351 FkallkkkkeeeeeeeevdskllsalLtGVnRAfpyaktdd...ekleehldt 400
+                                                               Fka++kk         evdskl++alLtG++RA+py+kt       l+ h+dt
+  28947at2759_8208_0:0047d8|CM023194.1:10374298-10375056|-  54 FKACVKKG--------EVDSKLMAALLTGLKRAYPYSKTVAisgGPLDGHVDT 98 
+                                                               ******96........9********************9864111569****** PP
+
+                                                     28947 401 LFkivhssnfntsvqaLmLlfqvsss.qsvsdRfyraLYekLldprlltsskq 452
+                                                               LFk+vh++ f+ + q L+ l q+++  +s sdRfy++L++kL+dp++  s kq
+  28947at2759_8208_0:0047d8|CM023194.1:10374298-10375056|-  99 LFKLVHMVRFSLATQVLCILDQIVDVdKSNSDRFYSVLFRKLFDPDVGLSAKQ 151
+                                                               ***************************************************** PP
+
+                                                     28947 453 amfLnLlykslkaDvslkRvkAfvKRLlqvalqqqppficGaLfllsellkak 505
+                                                               +mfLnLly++lk+D+sl R++ fvKR+lqv+l ++p+++c++L+l+sel+k++
+  28947at2759_8208_0:0047d8|CM023194.1:10374298-10375056|- 152 SMFLNLLYRALKRDESLPRLRTFVKRILQVCLACPPQLACALLYLVSELIKSR 204
+                                                               ***************************************************** PP
+
+                                                     28947 506 pglrs 510
+                                                               p+l++
+  28947at2759_8208_0:0047d8|CM023194.1:10374298-10375056|- 205 PQLQN 209
+                                                               **985 PP
+
+>> 28947at2759_144197_0:0056ef|CM023194.1:10372634-10374019|-  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  142.5  19.5   1.4e-44   1.4e-44     579     755 ..       1     158 [.       1     164 [. 0.76
+   2 !   14.6  42.3   6.1e-06   6.1e-06     681     807 ..     134     274 ..     125     277 .. 0.51
+
+  Alignments for each domain:
+  == domain 1  score: 142.5 bits;  conditional E-value: 1.4e-44
+                                                       28947 579 lskHfHPSValfAktllsgepieysgdPlqdftlirFLDRFvyknpKkkkk 629
+                                                                 l++HfHPSValfAkt+++g+piey+gdPlqdftl rFLDRFv++npK  ++
+  28947at2759_144197_0:0056ef|CM023194.1:10372634-10374019|-   1 LTNHFHPSVALFAKTIVEGTPIEYTGDPLQDFTLPRFLDRFVFRNPKLISA 51 
+                                                                 789*********************************************996 PP
+
+                                                       28947 630 kekssimqpkaksdskkkgarslpvnseeflklkeedvpvdevFfhkYfkk 680
+                                                                 ++             +  ++r+++v+s+ef+k+ ++++pvde+F+++Yfk+
+  28947at2759_144197_0:0056ef|CM023194.1:10372634-10374019|-  52 AQA------------NLPAQRAMAVDSKEFAKQPKNSIPVDEMFLYQYFKQ 90 
+                                                                 442............22457899**************************** PP
+
+                                                       28947 681 kakkkkkkkkkkkkkddddeedeedvdedefekaldksepeeegdddd.dd 730
+                                                                 + +++ + +k++    ddd++d+e+v ++efe++l +  +   + + + ++
+  28947at2759_144197_0:0056ef|CM023194.1:10372634-10374019|-  91 RISRDPRVEKNS----DDDDSDHESVASEEFEQYLAENTDFASDMKPKsKS 137
+                                                                 *******87654....689****************9976665544433321 PP
+
+                                                       28947 731 d.edf.edddddddddeddeddeedfd 755
+                                                                 d + + ++d     +d +deddee+ +
+  28947at2759_144197_0:0056ef|CM023194.1:10372634-10374019|- 138 DkK-KkKSD-----KDGEDEDDEEADG 158
+                                                                 221.11111.....1111111111111 PP
+
+  == domain 2  score: 14.6 bits;  conditional E-value: 6.1e-06
+                                                       28947 681 kakkkkkkkkkkkkk.ddddeedeedvdedefekaldksepeeegdddddd 730
+                                                                 k+k++kkkkk++k + +d+d+e+++ + +d++++a ++se++ ++d++ + 
+  28947at2759_144197_0:0056ef|CM023194.1:10372634-10374019|- 134 KSKSDKKKKKSDK-DgEDEDDEEADGDGDDDLQDAEVDSEEDFDNDKEFQ- 182
+                                                                 2333333332222.234444444444445555555555444433333221. PP
+
+                                                       28947 731 d..edfedd.dddddddeddeddeedfdded..............edeedl 764
+                                                                 d  +df+d  d+ddddde+d+dd+ d    +                    
+  28947at2759_144197_0:0056ef|CM023194.1:10372634-10374019|- 183 DafKDFDDMiDEDDDDDEEDDDDD-D----EpsaalpskskskkrA----- 223
+                                                                 244444322221111111111111.1....1223456667554441..... PP
+
+                                                       28947 765 lded........keekkkkkkkkkkkkkkkklstfasaeeyaelleenees 807
+                                                                 +ded         ++ +++kkk+ ++  +++ + f +ae++a++le+n+++
+  28947at2759_144197_0:0056ef|CM023194.1:10372634-10374019|- 224 IDEDiddldfafGAQPSSSKKKRGRDLFNTNGNDFVAAEDFAAILEANAGT 274
+                                                                 444455566778667778888899999999*****************9875 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (810 nodes)
+Target sequences:                           15  (8876 residues searched)
+Passed MSV filter:                        15  (1); expected 0.3 (0.02)
+Passed bias filter:                       15  (1); expected 0.3 (0.02)
+Passed Vit filter:                        15  (1); expected 0.0 (0.001)
+Passed Fwd filter:                        15  (1); expected 0.0 (1e-05)
+Initial search space (Z):                 15  [actual number of targets]
+Domain search space  (domZ):              15  [number of targets reported over threshold]
+# CPU time: 0.17u 0.01s 00:00:00.18 Elapsed: 00:00:00.18
+# Mc/sec: 39.94
+//
+[ok]

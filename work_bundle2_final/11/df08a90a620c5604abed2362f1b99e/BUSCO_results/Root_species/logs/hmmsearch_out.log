@@ -1,0 +1,221 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco_downloads/lineages/eukaryota_odb12/hmms/4249at2759.hmm
+# target sequence database:        /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco/Root_species/auto_lineage/run_eukaryota_odb12/miniprot_output/translated_proteins/4249at2759.faa
+# per-dom hits tabular output:     /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco/Root_species/auto_lineage/run_eukaryota_odb12/hmmer_output/4249at2759.out
+# number of worker threads:        1
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       4249  [M=245]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence                                                 Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------                                                 -----------
+   5.3e-110  355.2   0.0   6.5e-110  354.9   0.0    1.0  1  4249at2759_79684_0:0006de|CM061115:10264257-10268679|+    <unknown description>
+   8.2e-110  354.6   0.0   9.8e-110  354.4   0.0    1.0  1  4249at2759_139456_0:002b7a|CM061115:10267331-10268685|+   <unknown description>
+   1.4e-108  350.6   0.0   1.6e-108  350.4   0.0    1.0  1  4249at2759_7998_0:005804|CM061115:10267364-10270008|+     <unknown description>
+    2.8e-77  248.1   0.0    3.1e-77  247.9   0.0    1.0  1  4249at2759_2732470_0:00000d|CM061115:10267715-10268679|+  <unknown description>
+    4.7e-69  221.1   0.0    5.5e-69  220.9   0.0    1.0  1  4249at2759_308060_0:000cc2|CM061115:10267364-10268008|+   <unknown description>
+    2.9e-56  179.2   0.1    3.2e-56  179.1   0.1    1.0  1  4249at2759_240206_0:0007eb|CM061115:10267529-10267990|+   <unknown description>
+    3.3e-43  136.5   0.1    3.6e-43  136.4   0.1    1.0  1  4249at2759_37040_0:00050a|CM061115:10267682-10267990|+    <unknown description>
+
+
+Domain annotation for each sequence (and alignments):
+>> 4249at2759_79684_0:0006de|CM061115:10264257-10268679|+  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  354.9   0.0  5.7e-110  6.5e-110       6     236 ..      27     260 ..      24     261 .] 0.98
+
+  Alignments for each domain:
+  == domain 1  score: 354.9 bits;  conditional E-value: 5.7e-110
+                                                    4249   6 ssseseeeekeklyeghiplsplqkall.vgsavaalldprradmvaalGettge 59 
+                                                             ++++++++ +e+ly+ghip++ lq+a+l vgs++++l+dp+r+dm+a+ Ge +g+
+  4249at2759_79684_0:0006de|CM061115:10264257-10268679|+  27 RNHHRHQHPTEPLYDGHIPINLLQRAVLsVGSSIVSLTDPARGDMIAVNGESSGH 81 
+                                                             56778889999******************************************** PP
+
+                                                    4249  60 lalkrlrdkmlsdpeGrrILkerPrinsktvdleklrslpegtlGreYvrfldkn 114
+                                                             +al r+++kml+++eG++IL erP+ins+t+d+ekl+s+p+gtlGreY++fl+ n
+  4249at2759_79684_0:0006de|CM061115:10264257-10268679|+  82 SALVRMQRKMLESEEGQQILMERPKINSSTLDVEKLKSYPDGTLGREYTKFLEVN 136
+                                                             ******************************************************* PP
+
+                                                    4249 115 kvspdtRapvrfvddeelaYvmqRyRevHDllHtllglptnvlgEvavKwfEaaq 169
+                                                             +vspdtR pvrfvdd +laYvmqRyRe+HDl+Htllg+ptn+lgEvavKw+Ea+q
+  4249at2759_79684_0:0006de|CM061115:10264257-10268679|+ 137 NVSPDTRLPVRFVDDVDLAYVMQRYRETHDLVHTLLGCPTNMLGEVAVKWVEALQ 191
+                                                             ******************************************************* PP
+
+                                                    4249 170 tgLpmcalsalfgplrlkke..krlleeylpwalragrkakellnvyyEkrweqd 222
+                                                             tgLpmc+ +a+fgp+rlk++  ++ l++ylpwa+r+g+++++l+nv+yE+rweqd
+  4249at2759_79684_0:0006de|CM061115:10264257-10268679|+ 192 TGLPMCIGGAVFGPIRLKPKnrSTYLSKYLPWAIRVGSTSSFLMNVFYERRWEQD 246
+                                                             ********************987888***************************** PP
+
+                                                    4249 223 leelrkelgieppp 236
+                                                             ++elr+el+ie+pp
+  4249at2759_79684_0:0006de|CM061115:10264257-10268679|+ 247 ITELRDELKIETPP 260
+                                                             ***********998 PP
+
+>> 4249at2759_139456_0:002b7a|CM061115:10267331-10268685|+  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  354.4   0.0  8.6e-110  9.8e-110      11     237 ..       5     234 ..       2     236 .] 0.98
+
+  Alignments for each domain:
+  == domain 1  score: 354.4 bits;  conditional E-value: 8.6e-110
+                                                     4249  11 eeeekeklyeghiplsplqkall.vgsavaalldprradmvaalGettgelalk 63 
+                                                               ++++e+ly+ghip++ lq+a+l vgs++++l+dp+r+dm+a+ Ge +g++al 
+  4249at2759_139456_0:002b7a|CM061115:10267331-10268685|+   5 ITKKSEPLYDGHIPINLLQRAVLsVGSSIVSLTDPARGDMIAVNGESSGHSALV 58 
+                                                              567899************************************************ PP
+
+                                                     4249  64 rlrdkmlsdpeGrrILkerPrinsktvdleklrslpegtlGreYvrfldknkvs 117
+                                                              r+++kml+++eG++IL erP+ins+t+d+ekl+s+p+gtlGreY++fl+ n+vs
+  4249at2759_139456_0:002b7a|CM061115:10267331-10268685|+  59 RMQRKMLESEEGQQILMERPKINSSTLDVEKLKSYPDGTLGREYTKFLEVNNVS 112
+                                                              ****************************************************** PP
+
+                                                     4249 118 pdtRapvrfvddeelaYvmqRyRevHDllHtllglptnvlgEvavKwfEaaqtg 171
+                                                              pdtR pvrfvdd +laYvmqRyRe+HDl+Htllg+ptn+lgEvavKw+Ea+qtg
+  4249at2759_139456_0:002b7a|CM061115:10267331-10268685|+ 113 PDTRLPVRFVDDVDLAYVMQRYRETHDLVHTLLGCPTNMLGEVAVKWVEALQTG 166
+                                                              ****************************************************** PP
+
+                                                     4249 172 Lpmcalsalfgplrlkke..krlleeylpwalragrkakellnvyyEkrweqdl 223
+                                                              Lpmc+ +a+fgp+rlk++  ++ l++ylpwa+r+g+++++l+nv+yE+rweqd+
+  4249at2759_139456_0:002b7a|CM061115:10267331-10268685|+ 167 LPMCIGGAVFGPIRLKPKnrSTYLSKYLPWAIRVGSTSSFLMNVFYERRWEQDI 220
+                                                              ******************987888****************************** PP
+
+                                                     4249 224 eelrkelgiepppk 237
+                                                              +elr+el+ie+pp 
+  4249at2759_139456_0:002b7a|CM061115:10267331-10268685|+ 221 TELRDELKIETPPG 234
+                                                              ***********995 PP
+
+>> 4249at2759_7998_0:005804|CM061115:10267364-10270008|+  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  350.4   0.0  1.4e-108  1.6e-108      18     241 ..       1     227 [.       1     231 [. 0.98
+
+  Alignments for each domain:
+  == domain 1  score: 350.4 bits;  conditional E-value: 1.4e-108
+                                                   4249  18 lyeghiplsplqkall.vgsavaalldprradmvaalGettgelalkrlrdkmlsd 72 
+                                                            ly+ghip++ lq+a+l vgs++++l+dp+r+dm+a+ Ge +g++al r+++kml++
+  4249at2759_7998_0:005804|CM061115:10267364-10270008|+   1 LYDGHIPINLLQRAVLsVGSSIVSLTDPARGDMIAVNGESSGHSALVRMQRKMLES 56 
+                                                            699***************************************************** PP
+
+                                                   4249  73 peGrrILkerPrinsktvdleklrslpegtlGreYvrfldknkvspdtRapvrfvd 128
+                                                            +eG++IL erP+ins+t+d+ekl+s+p+gtlGreY++fl+ n+vspdtR pvrfvd
+  4249at2759_7998_0:005804|CM061115:10267364-10270008|+  57 EEGQQILMERPKINSSTLDVEKLKSYPDGTLGREYTKFLEVNNVSPDTRLPVRFVD 112
+                                                            ******************************************************** PP
+
+                                                   4249 129 deelaYvmqRyRevHDllHtllglptnvlgEvavKwfEaaqtgLpmcalsalfgpl 184
+                                                            d +laYvmqRyRe+HDl+Htllg+ptn+lgEvavKw+Ea+qtgLpmc+ +a+fgp+
+  4249at2759_7998_0:005804|CM061115:10267364-10270008|+ 113 DVDLAYVMQRYRETHDLVHTLLGCPTNMLGEVAVKWVEALQTGLPMCIGGAVFGPI 168
+                                                            ******************************************************** PP
+
+                                                   4249 185 rlkke..krlleeylpwalragrkakellnvyyEkrweqdleelrkelgiepppkl 238
+                                                            rlk++  ++ l++ylpwa+r+g+++++l+nv+yE+rweqd++elr+el+ie+pp +
+  4249at2759_7998_0:005804|CM061115:10267364-10270008|+ 169 RLKPKnrSTYLSKYLPWAIRVGSTSSFLMNVFYERRWEQDITELRDELKIETPPGV 224
+                                                            *****987888*******************************************87 PP
+
+                                                   4249 239 rkk 241
+                                                              +
+  4249at2759_7998_0:005804|CM061115:10267364-10270008|+ 225 LYT 227
+                                                            665 PP
+
+>> 4249at2759_2732470_0:00000d|CM061115:10267715-10268679|+  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  247.9   0.0   2.7e-77   3.1e-77      91     236 ..       2     149 ..       1     150 [] 0.98
+
+  Alignments for each domain:
+  == domain 1  score: 247.9 bits;  conditional E-value: 2.7e-77
+                                                      4249  91 dleklrslpegtlGreYvrfldknkvspdtRapvrfvddeelaYvmqRyRevH 143
+                                                               d+ekl+s+p+gtlGreY++fl+ n+vspdtR pvrfvdd +laYvmqRyRe+H
+  4249at2759_2732470_0:00000d|CM061115:10267715-10268679|+   2 DVEKLKSYPDGTLGREYTKFLEVNNVSPDTRLPVRFVDDVDLAYVMQRYRETH 54 
+                                                               899************************************************** PP
+
+                                                      4249 144 DllHtllglptnvlgEvavKwfEaaqtgLpmcalsalfgplrlkke..krlle 194
+                                                               Dl+Htllg+ptn+lgEvavKw+Ea+qtgLpmc+ +a+fgp+rlk++  ++ l+
+  4249at2759_2732470_0:00000d|CM061115:10267715-10268679|+  55 DLVHTLLGCPTNMLGEVAVKWVEALQTGLPMCIGGAVFGPIRLKPKnrSTYLS 107
+                                                               **********************************************987888* PP
+
+                                                      4249 195 eylpwalragrkakellnvyyEkrweqdleelrkelgieppp 236
+                                                               +ylpwa+r+g+++++l+nv+yE+rweqd++elr+el+ie+pp
+  4249at2759_2732470_0:00000d|CM061115:10267715-10268679|+ 108 KYLPWAIRVGSTSSFLMNVFYERRWEQDITELRDELKIETPP 149
+                                                               ***************************************998 PP
+
+>> 4249at2759_308060_0:000cc2|CM061115:10267364-10268008|+  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  220.9   0.0   4.8e-69   5.5e-69      18     160 ..       1     144 [.       1     146 [. 0.98
+
+  Alignments for each domain:
+  == domain 1  score: 220.9 bits;  conditional E-value: 4.8e-69
+                                                     4249  18 lyeghiplsplqkall.vgsavaalldprradmvaalGettgelalkrlrdkml 70 
+                                                              ly+ghip++ lq+a+l vgs++++l+dp+r+dm+a+ Ge +g++al r+++kml
+  4249at2759_308060_0:000cc2|CM061115:10267364-10268008|+   1 LYDGHIPINLLQRAVLsVGSSIVSLTDPARGDMIAVNGESSGHSALVRMQRKML 54 
+                                                              699*************************************************** PP
+
+                                                     4249  71 sdpeGrrILkerPrinsktvdleklrslpegtlGreYvrfldknkvspdtRapv 124
+                                                              +++eG++IL erP+ins+t+d+ekl+s+p+gtlGreY++fl+ n+vspdtR pv
+  4249at2759_308060_0:000cc2|CM061115:10267364-10268008|+  55 ESEEGQQILMERPKINSSTLDVEKLKSYPDGTLGREYTKFLEVNNVSPDTRLPV 108
+                                                              ****************************************************** PP
+
+                                                     4249 125 rfvddeelaYvmqRyRevHDllHtllglptnvlgEv 160
+                                                              rfvdd +laYvmqRyRe+HDl+Htllg+ptn+lg +
+  4249at2759_308060_0:000cc2|CM061115:10267364-10268008|+ 109 RFVDDVDLAYVMQRYRETHDLVHTLLGCPTNMLGII 144
+                                                              *********************************965 PP
+
+>> 4249at2759_240206_0:0007eb|CM061115:10267529-10267990|+  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  179.1   0.1   2.8e-56   3.2e-56      49     158 ..       1     110 []       1     110 [] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 179.1 bits;  conditional E-value: 2.8e-56
+                                                     4249  49 mvaalGettgelalkrlrdkmlsdpeGrrILkerPrinsktvdleklrslpegt 102
+                                                              m+a+ Ge +g++al r+++kml+++eG++IL erP+ins+t+d+ekl+s+p+gt
+  4249at2759_240206_0:0007eb|CM061115:10267529-10267990|+   1 MIAVNGESSGHSALVRMQRKMLESEEGQQILMERPKINSSTLDVEKLKSYPDGT 54 
+                                                              9***************************************************** PP
+
+                                                     4249 103 lGreYvrfldknkvspdtRapvrfvddeelaYvmqRyRevHDllHtllglptnv 156
+                                                              lGreY++fl+ n+vspdtR pvrfvdd +laYvmqRyRe+HDl+Htllg+ptn+
+  4249at2759_240206_0:0007eb|CM061115:10267529-10267990|+  55 LGREYTKFLEVNNVSPDTRLPVRFVDDVDLAYVMQRYRETHDLVHTLLGCPTNM 108
+                                                              ****************************************************** PP
+
+                                                     4249 157 lg 158
+                                                              lg
+  4249at2759_240206_0:0007eb|CM061115:10267529-10267990|+ 109 LG 110
+                                                              97 PP
+
+>> 4249at2759_37040_0:00050a|CM061115:10267682-10267990|+  <unknown description>
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  136.4   0.1   3.1e-43   3.6e-43      80     158 ..       2      80 .]       1      80 [] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 136.4 bits;  conditional E-value: 3.1e-43
+                                                    4249  80 kerPrinsktvdleklrslpegtlGreYvrfldknkvspdtRapvrfvddeelaY 134
+                                                             +erP+ins+t+d+ekl+s+p+gtlGreY++fl+ n+vspdtR pvrfvdd +laY
+  4249at2759_37040_0:00050a|CM061115:10267682-10267990|+   2 RERPKINSSTLDVEKLKSYPDGTLGREYTKFLEVNNVSPDTRLPVRFVDDVDLAY 56 
+                                                             89***************************************************** PP
+
+                                                    4249 135 vmqRyRevHDllHtllglptnvlg 158
+                                                             vmqRyRe+HDl+Htllg+ptn+lg
+  4249at2759_37040_0:00050a|CM061115:10267682-10267990|+  57 VMQRYRETHDLVHTLLGCPTNMLG 80 
+                                                             **********************97 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (245 nodes)
+Target sequences:                            8  (1249 residues searched)
+Passed MSV filter:                         7  (0.875); expected 0.2 (0.02)
+Passed bias filter:                        7  (0.875); expected 0.2 (0.02)
+Passed Vit filter:                         7  (0.875); expected 0.0 (0.001)
+Passed Fwd filter:                         7  (0.875); expected 0.0 (1e-05)
+Initial search space (Z):                  8  [actual number of targets]
+Domain search space  (domZ):               7  [number of targets reported over threshold]
+# CPU time: 0.00u 0.00s 00:00:00.00 Elapsed: 00:00:00.01
+# Mc/sec: 30.60
+//
+[ok]

@@ -1,0 +1,26 @@
+#nexus
+
+BEGIN Taxa;
+DIMENSIONS ntax=4;
+TAXLABELS
+[1] 'Species_1'
+[2] 'Root_species'
+[3] 'Species_2'
+[4] 'Species_3'
+;
+END; [Taxa]
+
+BEGIN Splits;
+DIMENSIONS ntax=4 nsplits=7;
+FORMAT labels=no weights=yes confidences=no intervals=no;
+MATRIX
+	100	 2,
+	100	 4,
+	63	 1 3,
+	100	 3,
+	100	 1,
+	32	 1 4,
+	5	 1 2,
+;
+END; [Splits]
+

@@ -1,0 +1,12 @@
+metric	value
+canonical_sequence_ids	8
+user_facing_gene_ids	8
+mapped_species	3
+outgroup_genes	2
+subst_model	LG+G4
+validation	passed
+raw_generax_nhx	GeneRax/reconciliations/gene_family_reconciliated.nhx
+raw_generax_nhx_leaves	8
+nhx_internal_labels_replaced	2
+normalised_nhx_leaves	8
+validation	passed

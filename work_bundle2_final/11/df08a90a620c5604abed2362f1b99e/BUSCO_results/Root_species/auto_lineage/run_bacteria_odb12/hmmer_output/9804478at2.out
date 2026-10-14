@@ -1,0 +1,21 @@
+#                                                                                    --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name                accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#        ------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+CM061115:3256308-3256706|+   -            133 9804478              -            303     6e-11   42.0   0.0   1   1   2.9e-14   7.9e-11   41.6   0.0    32   104    26   106     3   128 0.75 CM061115_4247 # 3256308 # 3256706 # 1 # ID=1_4247;partial=00;start_type=GTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.461
+CM061115:11352338-11352964|+ -            209 9804478              -            303   9.5e-05   21.6   0.0   1   1     5e-08   0.00014   21.1   0.0    38    63    91   116    86   124 0.91 CM061115_15878 # 11352338 # 11352964 # 1 # ID=1_15878;partial=00;start_type=TTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.376
+CM061115:3256743-3257069|+   -            109 9804478              -            303     0.035   13.2   0.0   1   1   1.5e-05     0.039   13.0   0.0   134   197     8    72     5    96 0.79 CM061115_4248 # 3256743 # 3257069 # 1 # ID=1_4248;partial=00;start_type=TTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.379
+CM061115:1586496-1587884|+   -            463 9804478              -            303     0.088   11.9   0.1   1   2    0.0068        18    4.3   0.1    39    50    51    62    47    71 0.87 CM061115_2334 # 1586496 # 1587884 # 1 # ID=1_2334;partial=00;start_type=TTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.451
+CM061115:1586496-1587884|+   -            463 9804478              -            303     0.088   11.9   0.1   2   2    0.0044        12    4.9   0.0   244   296    93   147    86   152 0.83 CM061115_2334 # 1586496 # 1587884 # 1 # ID=1_2334;partial=00;start_type=TTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.451
+CM061115:7386681-7386941|-   -             87 9804478              -            303     0.094   11.8   0.0   1   1   3.5e-05     0.094   11.8   0.0    30    53    52    73    25    86 0.78 CM061115_9683 # 7386681 # 7386941 # -1 # ID=1_9683;partial=00;start_type=TTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.452
+CM061115:683047-683289|+     -             81 9804478              -            303      0.12   11.4   0.0   1   1   4.6e-05      0.12   11.4   0.0    35    50    46    61     7    68 0.84 CM061115_1046 # 683047 # 683289 # 1 # ID=1_1046;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.407
+CM061115:10334838-10335542|+ -            235 9804478              -            303      0.15   11.1   0.0   1   1   7.6e-05       0.2   10.7   0.0   126   183    90   151    80   164 0.79 CM061115_14234 # 10334838 # 10335542 # 1 # ID=1_14234;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.418
+#
+# Program:         hmmsearch
+# Version:         3.1b2 (February 2015)
+# Pipeline mode:   SEARCH
+# Query file:      /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco_downloads/lineages/bacteria_odb12/hmms/9804478at2.hmm
+# Target file:     /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco/Root_species/prodigal_output/predicted_genes/predicted.faa
+# Option settings: hmmsearch --domtblout /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco/Root_species/auto_lineage/run_bacteria_odb12/hmmer_output/9804478at2.out --cpu 1 /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco_downloads/lineages/bacteria_odb12/hmms/9804478at2.hmm /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco/Root_species/prodigal_output/predicted_genes/predicted.faa 
+# Current dir:     /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5
+# Date:            Wed Oct 14 08:41:17 2026
+# [ok]

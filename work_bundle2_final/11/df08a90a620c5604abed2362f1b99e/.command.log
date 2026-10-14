@@ -1,0 +1,65 @@
+Writing sequences:   0%|          | 0/10 [00:00<?, ?it/s]Writing sequences: 100%|██████████| 10/10 [00:00<00:00, 6605.20it/s]
+14-10-2026 08:45:41	Starting BUSCO Phylogenomics Pipeline
+14-10-2026 08:45:41	User provided arguments: ['/opt/conda/bin/BUSCO_phylogenomics.py', '-i', 'BUSCO_results', '-o', 'busco_phylogenomics', '--gene_tree_program', 'iqtree', '--min_species_gene_tree', '3', '-t', '64']
+14-10-2026 08:45:41	Parsed arguments: {'input': 'BUSCO_results', 'output': 'busco_phylogenomics', 'threads': 64, 'supermatrix_only': False, 'gene_trees_only': False, 'nt': False, 'psc': 100.0, 'mafft': False, 'muscle': False, 'trimal_strategy': 'automated1', 'missing_character': '?', 'gene_tree_program': 'iqtree', 'min_species_gene_tree': 3, 'max_markers': None, 'random_seed': None, 'busco_version_3': False}
+iqtree
+14-10-2026 08:45:41	Looking for BUSCO runs in /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/BUSCO_results
+14-10-2026 08:45:41	Found 4 BUSCO directories:
+Species_1 /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/BUSCO_results/Species_1/run_eukaryota_odb12
+Root_species /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/BUSCO_results/Root_species/run_eukaryota_odb12
+Species_2 /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/BUSCO_results/Species_2/run_eukaryota_odb12
+Species_3 /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/BUSCO_results/Species_3/run_eukaryota_odb12
+
+14-10-2026 08:45:41	Identifying complete and single-copy BUSCO sequences
+Name	Complete and single-copy BUSCOs:
+Species_1 12
+Root_species 12
+Species_2 10
+Species_3 11
+
+14-10-2026 08:45:41	13 unique BUSCO sequences considered
+
+BUSCO	Number of species (complete and single-copy only)
+10249667at2759	4
+1847590at2759	4
+124397at2759	4
+3763at2759	3
+15082at2759	4
+17948at2759	4
+10267436at2759	4
+10263536at2759	4
+28947at2759	4
+1726137at2759	4
+4249at2759	4
+3370at2759	1
+308449at2759	1
+
+14-10-2026 08:45:41	Identifying BUSCOs that are complete and single-copy in all species
+14-10-2026 08:45:41	Identified 10 BUSCO sequences that are complete and single-copy in all species:
+10249667at2759,1847590at2759,124397at2759,15082at2759,17948at2759,10267436at2759,10263536at2759,28947at2759,1726137at2759,4249at2759
+
+14-10-2026 08:45:41	Writing protein sequences to /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/supermatrix/sequences
+14-10-2026 08:45:41	Aligning protein sequences using MAFFT (--auto) with 64 parallel jobs to: /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/supermatrix/alignments
+Aligning sequences:   0%|          | 0/10 [00:00<?, ?it/s]Aligning sequences:  10%|█         | 1/10 [00:00<00:01,  7.58it/s]Aligning sequences: 100%|██████████| 10/10 [00:00<00:00, 49.40it/s]Aligning sequences: 100%|██████████| 10/10 [00:00<00:00, 42.33it/s]
+14-10-2026 08:45:42	Trimming alignments using trimAL (-automated1) with 64 parallel jobs to: /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/supermatrix/trimmed_alignments
+Trimming alignments:   0%|          | 0/10 [00:00<?, ?it/s]Trimming alignments: 100%|██████████| 10/10 [00:00<00:00, 1713.99it/s]
+Writing sequences:   0%|          | 0/11 [00:00<?, ?it/s]14-10-2026 08:45:42	Concatenating all trimmed alignments
+14-10-2026 08:45:42	Writing concatenated supermatrix alignment to fasta format: /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/supermatrix/SUPERMATRIX.fasta
+14-10-2026 08:45:42	Writing concatenated supermatrix alignment to phylip format: /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/supermatrix/SUPERMATRIX.phylip
+14-10-2026 08:45:42	Writing NEXUS partitions file to: /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/supermatrix/SUPERMATRIX.partitions.nex
+14-10-2026 08:45:42	Supermatrix alignment length is  3886
+
+14-10-2026 08:45:42	Identifying BUSCOs that are complete and single-copy in at least 3 species
+14-10-2026 08:45:42	Identified 11 BUSCO sequences that are complete and single-copy in at least 3 species:
+10249667at2759,1847590at2759,124397at2759,3763at2759,15082at2759,17948at2759,10267436at2759,10263536at2759,28947at2759,1726137at2759,4249at2759
+
+14-10-2026 08:45:42	Writing protein sequences to /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/gene_trees/sequences
+Writing sequences: 100%|██████████| 11/11 [00:00<00:00, 7973.96it/s]
+14-10-2026 08:45:42	Aligning protein sequences using MAFFT (--auto) with 64 parallel jobs to: /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/gene_trees/alignments
+Aligning sequences:   0%|          | 0/11 [00:00<?, ?it/s]Aligning sequences:   9%|▉         | 1/11 [00:00<00:01,  7.47it/s]Aligning sequences: 100%|██████████| 11/11 [00:00<00:00, 53.28it/s]Aligning sequences: 100%|██████████| 11/11 [00:00<00:00, 45.58it/s]
+14-10-2026 08:45:42	Trimming alignments using trimAL (-automated1) with 64 parallel jobs to: /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/gene_trees/trimmed_alignments
+Trimming sequences:   0%|          | 0/11 [00:00<?, ?it/s]Trimming sequences: 100%|██████████| 11/11 [00:00<00:00, 2199.74it/s]
+14-10-2026 08:45:42	Generating gene trees using iqtree with 64 parallel jobs to: /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/gene_trees/trees
+Generating gene trees:   0%|          | 0/11 [00:00<?, ?it/s]Generating gene trees:   9%|▉         | 1/11 [00:00<00:02,  4.78it/s]Generating gene trees:  36%|███▋      | 4/11 [00:00<00:00,  9.28it/s]Generating gene trees:  55%|█████▍    | 6/11 [00:00<00:00, 10.32it/s]Generating gene trees:  91%|█████████ | 10/11 [00:01<00:00,  9.70it/s]Generating gene trees: 100%|██████████| 11/11 [00:01<00:00,  7.97it/s]Generating gene trees: 100%|██████████| 11/11 [00:01<00:00,  8.47it/s]
+14-10-2026 08:45:44	Concatenating all 11 gene trees to: /home/primeline/Data/Reconaming/work_bundle2_final/11/df08a90a620c5604abed2362f1b99e/busco_phylogenomics/gene_trees/ALL.tree
+14-10-2026 08:45:44	Done

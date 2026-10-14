@@ -1,0 +1,19 @@
+#                                                                                     --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name                 accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#         ------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+NC_081337.1:7967894-7968730|- -            279 9808150              -            191   1.5e-08   34.3   0.0   1   2   2.6e-11   1.1e-07   31.5   0.0    54   103     3    52     1    61 0.95 NC_081337.1_11684 # 7967894 # 7968730 # -1 # ID=1_11684;partial=00;start_type=ATG;rbs_motif=GGAG/GAGG;rbs_spacer=5-10bp;gc_cont=0.387
+NC_081337.1:7967894-7968730|- -            279 9808150              -            191   1.5e-08   34.3   0.0   2   2     0.078   3.4e+02    0.5   0.0   113   130    84   105    67   115 0.76 NC_081337.1_11684 # 7967894 # 7968730 # -1 # ID=1_11684;partial=00;start_type=ATG;rbs_motif=GGAG/GAGG;rbs_spacer=5-10bp;gc_cont=0.387
+NC_081337.1:8726281-8726937|+ -            219 9808150              -            191      0.02   14.4   0.0   1   1     7e-06      0.03   13.7   0.0     7    36   145   173   142   180 0.84 NC_081337.1_12943 # 8726281 # 8726937 # 1 # ID=1_12943;partial=00;start_type=GTG;rbs_motif=GGA/GAG/AGG;rbs_spacer=5-10bp;gc_cont=0.379
+NC_081337.1:5527190-5527747|- -            186 9808150              -            191      0.14   11.6   1.3   1   2    0.0044        19    4.6   0.1    32    57    19    44    11    48 0.84 NC_081337.1_7737 # 5527190 # 5527747 # -1 # ID=1_7737;partial=00;start_type=ATG;rbs_motif=GGA/GAG/AGG;rbs_spacer=5-10bp;gc_cont=0.430
+NC_081337.1:5527190-5527747|- -            186 9808150              -            191      0.14   11.6   1.3   2   2    0.0014       6.3    6.2   0.2    23    54    48    79    44    89 0.84 NC_081337.1_7737 # 5527190 # 5527747 # -1 # ID=1_7737;partial=00;start_type=ATG;rbs_motif=GGA/GAG/AGG;rbs_spacer=5-10bp;gc_cont=0.430
+NC_081337.1:5772490-5773029|+ -            180 9808150              -            191      0.15   11.5   0.1   1   1   4.9e-05      0.21   11.0   0.1     5    39    65    99    62   104 0.85 NC_081337.1_8141 # 5772490 # 5773029 # 1 # ID=1_8141;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.407
+#
+# Program:         hmmsearch
+# Version:         3.1b2 (February 2015)
+# Pipeline mode:   SEARCH
+# Query file:      /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco_downloads/lineages/bacteria_odb12/hmms/9808150at2.hmm
+# Target file:     /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco/Species_3/prodigal_output/predicted_genes/predicted.faa
+# Option settings: hmmsearch --domtblout /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco/Species_3/auto_lineage/run_bacteria_odb12/hmmer_output/9808150at2.out --cpu 1 /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco_downloads/lineages/bacteria_odb12/hmms/9808150at2.hmm /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco/Species_3/prodigal_output/predicted_genes/predicted.faa 
+# Current dir:     /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975
+# Date:            Wed Oct 14 08:40:46 2026
+# [ok]

@@ -1,0 +1,22 @@
+#                                                                                    --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name                accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#        ------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+CM061115:11165066-11165302|- -             79 85892                -            392     0.039   12.8   0.0   1   1   1.6e-05     0.043   12.6   0.0   138   190    20    70     4    72 0.89 CM061115_15352 # 11165066 # 11165302 # -1 # ID=1_15352;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.380
+CM061115:1926330-1927082|-   -            251 85892                -            392      0.17   10.6   0.8   1   1   8.7e-05      0.23   10.2   0.8    17    85    87   154    78   179 0.86 CM061115_2709 # 1926330 # 1927082 # -1 # ID=1_2709;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.351
+CM061115:10197805-10198311|- -            169 85892                -            392       0.3    9.8   4.1   1   2     0.032        85    1.8   0.4    43    77    14    48     2    59 0.47 CM061115_13834 # 10197805 # 10198311 # -1 # ID=1_13834;partial=00;start_type=GTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.479
+CM061115:10197805-10198311|- -            169 85892                -            392       0.3    9.8   4.1   2   2    0.0002      0.53    9.0   1.7    40    89    62   111    30   127 0.66 CM061115_13834 # 10197805 # 10198311 # -1 # ID=1_13834;partial=00;start_type=GTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.479
+CM061115:8154601-8154825|-   -             75 85892                -            392      0.34    9.6   1.1   1   1   0.00013      0.33    9.7   1.1    40    89     3    52     1    70 0.73 CM061115_10672 # 8154601 # 8154825 # -1 # ID=1_10672;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.413
+CM061115:11896999-11898258|- -            420 85892                -            392       0.5    9.1   3.5   1   2   0.00032      0.83    8.4   0.7    23    80    15    72    10    88 0.86 CM061115_16447 # 11896999 # 11898258 # -1 # ID=1_16447;partial=00;start_type=GTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.375
+CM061115:11896999-11898258|- -            420 85892                -            392       0.5    9.1   3.5   2   2     0.059   1.6e+02    0.9   0.1    51    85   278   312   263   322 0.78 CM061115_16447 # 11896999 # 11898258 # -1 # ID=1_16447;partial=00;start_type=GTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.375
+CM061115:4914399-4914602|+   -             68 85892                -            392      0.78    8.5   2.8   1   1   0.00031      0.81    8.4   2.8    19    74     8    64     2    67 0.49 CM061115_6145 # 4914399 # 4914602 # 1 # ID=1_6145;partial=00;start_type=GTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.480
+CM061115:12817272-12817619|- -            116 85892                -            392       2.8    6.7   6.6   1   1    0.0013       3.5    6.3   5.2    36   103    12    79     1    98 0.76 CM061115_17859 # 12817272 # 12817619 # -1 # ID=1_17859;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.394
+#
+# Program:         hmmsearch
+# Version:         3.1b2 (February 2015)
+# Pipeline mode:   SEARCH
+# Query file:      /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco_downloads/lineages/archaea_odb12/hmms/85892at2157.hmm
+# Target file:     /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco/Root_species/prodigal_output/predicted_genes/predicted.faa
+# Option settings: hmmsearch --domtblout /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco/Root_species/auto_lineage/run_archaea_odb12/hmmer_output/85892at2157.out --cpu 1 /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco_downloads/lineages/archaea_odb12/hmms/85892at2157.hmm /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco/Root_species/prodigal_output/predicted_genes/predicted.faa 
+# Current dir:     /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5
+# Date:            Wed Oct 14 08:40:16 2026
+# [ok]

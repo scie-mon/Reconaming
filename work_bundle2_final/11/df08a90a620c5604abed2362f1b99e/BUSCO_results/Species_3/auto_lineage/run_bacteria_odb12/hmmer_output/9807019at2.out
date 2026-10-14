@@ -1,0 +1,16 @@
+#                                                                                     --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name                 accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#         ------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+NC_081337.1:8726281-8726937|+ -            219 9807019              -            427     0.042   12.9   0.0   1   1   6.3e-06     0.055   12.5   0.0   132   155   146   169   136   200 0.87 NC_081337.1_12943 # 8726281 # 8726937 # 1 # ID=1_12943;partial=00;start_type=GTG;rbs_motif=GGA/GAG/AGG;rbs_spacer=5-10bp;gc_cont=0.379
+NC_081337.1:3495394-3497046|+ -            551 9807019              -            427     0.076   12.0   0.0   1   2   3.3e-05      0.29   10.1   0.0    84   165    80   172    17   184 0.68 NC_081337.1_4722 # 3495394 # 3497046 # 1 # ID=1_4722;partial=00;start_type=ATG;rbs_motif=GGA/GAG/AGG;rbs_spacer=5-10bp;gc_cont=0.455
+NC_081337.1:3495394-3497046|+ -            551 9807019              -            427     0.076   12.0   0.0   2   2     0.056   4.9e+02   -0.5   0.0   283   314   176   206   172   229 0.81 NC_081337.1_4722 # 3495394 # 3497046 # 1 # ID=1_4722;partial=00;start_type=ATG;rbs_motif=GGA/GAG/AGG;rbs_spacer=5-10bp;gc_cont=0.455
+#
+# Program:         hmmsearch
+# Version:         3.1b2 (February 2015)
+# Pipeline mode:   SEARCH
+# Query file:      /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco_downloads/lineages/bacteria_odb12/hmms/9807019at2.hmm
+# Target file:     /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco/Species_3/prodigal_output/predicted_genes/predicted.faa
+# Option settings: hmmsearch --domtblout /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco/Species_3/auto_lineage/run_bacteria_odb12/hmmer_output/9807019at2.out --cpu 1 /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco_downloads/lineages/bacteria_odb12/hmms/9807019at2.hmm /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco/Species_3/prodigal_output/predicted_genes/predicted.faa 
+# Current dir:     /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975
+# Date:            Wed Oct 14 08:40:46 2026
+# [ok]

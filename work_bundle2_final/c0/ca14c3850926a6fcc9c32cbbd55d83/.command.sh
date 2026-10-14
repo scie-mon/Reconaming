@@ -1,0 +1,5 @@
+#!/bin/bash -euo pipefail
+set -euo pipefail
+python3 prepare_generax_inputs.py --gene-tree gene_tree.treefile --iqtree-report gene_tree.iqtree --alignment representative_proteins.clipkit.faa --species-tree species_tree.rooted_pruned.nwk --gene-to-species gene_to_species.tsv --representative-manifest representative_manifest.tsv --outgroup-genes 'outgroup_genes.txt' --families-out families.txt --mapping-out generax_mapping.tsv --generax-tree-out generax_gene_tree.nwk --generax-alignment-out generax_alignment.faa --summary-out reconciliation_input_summary.tsv
+mpiexec --oversubscribe -np 64 generax --families families.txt --species-tree species_tree.rooted_pruned.nwk --rec-model 'UndatedDL' --strategy 'SPR' --seed '12345'  > generax.log 2>&1
+python3 normalise_generax_output.py --generax-results . --expected-gene-tree generax_gene_tree.nwk --input-summary reconciliation_input_summary.tsv --raw-out generax_raw_reconciled_tree.nhx --normalised-out reconciled_gene_tree.nhx --summary-out reconciliation_summary.tsv

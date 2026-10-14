@@ -1,0 +1,15 @@
+#                                                                                                               --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name                                           accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#                                   ------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+407922at2759_37344_0:0025eb|CM061115:6472168-6473449|+  -            127 407922               -            925   4.8e-28   84.5   0.5   1   1   2.2e-27   2.2e-27   82.3   0.5   102   215     2   126     1   127 0.90 <unknown description>
+407922at2759_763406_0:00016b|CM061115:6472189-6472654|+ -            130 407922               -            925   2.8e-26   78.6   0.5   1   1     9e-26     9e-26   77.0   0.5    67   190     2   130     1   130 0.90 <unknown description>
+#
+# Program:         hmmsearch
+# Version:         3.1b2 (February 2015)
+# Pipeline mode:   SEARCH
+# Query file:      /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco_downloads/lineages/eukaryota_odb12/hmms/407922at2759.hmm
+# Target file:     /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco/Root_species/auto_lineage/run_eukaryota_odb12/miniprot_output/translated_proteins/407922at2759.faa
+# Option settings: hmmsearch --domtblout /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco/Root_species/auto_lineage/run_eukaryota_odb12/hmmer_output/407922at2759.out --cpu 1 /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco_downloads/lineages/eukaryota_odb12/hmms/407922at2759.hmm /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5/busco/Root_species/auto_lineage/run_eukaryota_odb12/miniprot_output/translated_proteins/407922at2759.faa 
+# Current dir:     /home/primeline/Data/Reconaming/work_bundle2_final/af/06b974cec77c39ac44b1a75b820bc5
+# Date:            Wed Oct 14 08:42:10 2026
+# [ok]

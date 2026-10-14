@@ -10,10 +10,9 @@ process SELECT_SPECIES_TREE_INPUTS {
     select_species_tree_inputs.py --representative-manifest ${representative_manifest} --sequence-inputs ${sequence_inputs} --busco-mode ${params.busco_mode} --output selected_species_inputs.tsv
     """
 }
-
 process RUN_BUSCO {
     tag { species_id }
-    cpus { params.busco_threads as int }
+    cpus { params.process_cpus.RUN_BUSCO }
     container { params.species_tree_container ?: null }
     input:
     tuple val(species_id), path(input_file), val(input_type)
@@ -28,7 +27,6 @@ process RUN_BUSCO {
     busco -i ${input_file} -o ${species_id} --out_path busco -m ${mode} ${lineage_arg} -c ${task.cpus}
     """
 }
-
 process ASSESS_BUSCO_COMPLETENESS {
     tag 'BUSCO completeness'
     container { params.species_tree_container ?: null }
@@ -41,10 +39,9 @@ process ASSESS_BUSCO_COMPLETENESS {
     assess_busco_completeness.py --busco-dirs ${busco_dirs} --warning-threshold ${params.busco_warn_complete} --output busco_completeness.tsv
     """
 }
-
 process RUN_BUSCO_PHYLOGENOMICS {
     tag 'BUSCO phylogenomics'
-    cpus { params.species_tree_threads as int }
+    cpus { params.process_cpus.RUN_BUSCO_PHYLOGENOMICS }
     container { params.species_tree_container ?: null }
     input:
     path busco_dirs
@@ -54,16 +51,13 @@ process RUN_BUSCO_PHYLOGENOMICS {
     script:
     """
     mkdir BUSCO_results
-    for result in ${busco_dirs}; do
-        cp -aL "\$result" "BUSCO_results/\$(basename "\$result")"
-    done
+    for result in ${busco_dirs}; do cp -aL "\$result" "BUSCO_results/\$(basename "\$result")"; done
     BUSCO_phylogenomics.py -i BUSCO_results -o busco_phylogenomics --gene_tree_program iqtree --min_species_gene_tree ${params.species_tree_min_taxa} -t ${task.cpus}
     """
 }
-
 process INFER_SUPERMATRIX_TREE {
     tag 'IQ-TREE species tree'
-    cpus { params.species_tree_threads as int }
+    cpus { params.process_cpus.INFER_SUPERMATRIX_TREE }
     container { params.species_tree_container ?: null }
     input:
     path supermatrix
@@ -76,7 +70,6 @@ process INFER_SUPERMATRIX_TREE {
     iqtree -s ${supermatrix} -p ${partitions} ${bootstrap_arg} -T ${task.cpus} --prefix species_tree_unrooted
     """
 }
-
 process ROOT_AND_PRUNE_SPECIES_TREE {
     tag 'root and prune auxiliary outgroup'
     container { params.species_tree_container ?: null }
@@ -90,16 +83,13 @@ process ROOT_AND_PRUNE_SPECIES_TREE {
     root_and_prune_species_tree.py --tree ${unrooted_tree} --species-tree-inputs ${selected_inputs} --output species_tree.rooted_pruned.nwk
     """
 }
-
 workflow INFER_SPECIES_TREE {
     take:
     representative_manifest
     sequence_inputs
     main:
     SELECT_SPECIES_TREE_INPUTS(representative_manifest, sequence_inputs)
-    busco_rows = SELECT_SPECIES_TREE_INPUTS.out.selected_inputs
-        .splitCsv(header: true, sep: '\t')
-        .map { row -> tuple(row.species_id, file(row.input_file), row.input_type) }
+    busco_rows = SELECT_SPECIES_TREE_INPUTS.out.selected_inputs.splitCsv(header: true, sep: '\t').map { row -> tuple(row.species_id, file(row.input_file), row.input_type) }
     RUN_BUSCO(busco_rows)
     busco_dirs = RUN_BUSCO.out.busco_dir.map { species_id, directory -> directory }.collect()
     ASSESS_BUSCO_COMPLETENESS(busco_dirs)

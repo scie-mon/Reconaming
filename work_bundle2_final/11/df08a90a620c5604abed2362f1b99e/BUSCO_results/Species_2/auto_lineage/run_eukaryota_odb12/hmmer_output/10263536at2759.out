@@ -1,0 +1,25 @@
+#                                                                                                                    --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name                                                accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#                                        ------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+10263536at2759_1841481_0:003c79|CM023194.1:8108985-8110273|- -            383 10263536             -            315  4.7e-118  383.1   0.0   1   1  5.4e-118  5.4e-118  382.9   0.0     1   314    26   382    26   383 0.86 <unknown description>
+10263536at2759_43146_0:0010a4|CM023194.1:8108979-8111460|-   -            418 10263536             -            315  6.4e-118  382.7   0.0   1   1  7.5e-118  7.5e-118  382.4   0.0     1   314    59   415    59   416 0.86 <unknown description>
+10263536at2759_5454_0:00040c|CM023194.1:8108985-8110864|-    -            469 10263536             -            315  9.3e-118  382.1   0.0   1   1  1.1e-117  1.1e-117  381.9   0.0     1   314   112   468   112   469 0.86 <unknown description>
+10263536at2759_8103_0:00174d|CM023194.1:8109385-8110273|-    -            276 10263536             -            315   5.2e-93  300.8   0.0   1   1     6e-93     6e-93  300.6   0.0     1   227    26   276    26   276 0.87 <unknown description>
+10263536at2759_75366_0:006c54|CM023194.1:8108976-8109955|-   -            300 10263536             -            315   2.9e-87  281.9   0.0   1   1   3.3e-87   3.3e-87  281.7   0.0    60   314     2   297     1   298 0.84 <unknown description>
+10263536at2759_160734_0:0057dd|CM023194.1:8109574-8110198|-  -            188 10263536             -            315   1.7e-66  213.7   0.1   1   1   1.9e-66   1.9e-66  213.5   0.1     1   169     1   188     1   188 0.86 <unknown description>
+10263536at2759_7160_0:00120a|CM023194.1:8109120-8109787|-    -            197 10263536             -            315   1.2e-55  178.0   0.0   1   1   1.4e-55   1.4e-55  177.9   0.0   113   274     6   196     1   197 0.83 <unknown description>
+10263536at2759_175836_0:0034ed|CM023194.1:8109391-8110003|-  -            170 10263536             -            315   4.4e-51  163.1   0.4   1   2   5.4e-33   5.4e-33  103.7   0.0    43   159     1   134     1   134 0.81 <unknown description>
+10263536at2759_175836_0:0034ed|CM023194.1:8109391-8110003|-  -            170 10263536             -            315   4.4e-51  163.1   0.4   2   2   3.6e-20   3.6e-20   61.5   0.0   185   224   130   169   126   170 0.93 <unknown description>
+10263536at2759_259920_0:0022d7|CM023194.1:8108976-8109583|-  -            176 10263536             -            315   6.1e-50  159.3   0.0   1   1   6.9e-50   6.9e-50  159.2   0.0   166   314     1   173     1   174 0.86 <unknown description>
+10263536at2759_50402_0:0006c2|CM023194.1:8109553-8110009|-   -            153 10263536             -            315   1.1e-44  142.1   0.0   1   1   1.2e-44   1.2e-44  142.0   0.0    43   174     3   151     1   153 0.83 <unknown description>
+10263536at2759_38727_0:004461|CM023194.1:8108976-8109234|-   -             86 10263536             -            315   1.2e-19   59.8   0.0   1   1   1.4e-19   1.4e-19   59.6   0.0   245   314     1    83     1    84 0.86 <unknown description>
+#
+# Program:         hmmsearch
+# Version:         3.1b2 (February 2015)
+# Pipeline mode:   SEARCH
+# Query file:      /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco_downloads/lineages/eukaryota_odb12/hmms/10263536at2759.hmm
+# Target file:     /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/auto_lineage/run_eukaryota_odb12/miniprot_output/translated_proteins/10263536at2759.faa
+# Option settings: hmmsearch --domtblout /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/auto_lineage/run_eukaryota_odb12/hmmer_output/10263536at2759.out --cpu 1 /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco_downloads/lineages/eukaryota_odb12/hmms/10263536at2759.hmm /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/auto_lineage/run_eukaryota_odb12/miniprot_output/translated_proteins/10263536at2759.faa 
+# Current dir:     /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b
+# Date:            Wed Oct 14 08:41:32 2026
+# [ok]

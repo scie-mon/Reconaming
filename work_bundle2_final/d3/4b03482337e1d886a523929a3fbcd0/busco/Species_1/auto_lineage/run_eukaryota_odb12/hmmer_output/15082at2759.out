@@ -1,0 +1,28 @@
+#                                                                                                                 --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name                                             accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#                                     ------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+15082at2759_161450_0:0047f0|CM058173.1:1561161-1564595|+  -            540 15082                -            510  6.6e-239  783.6   3.5   1   1  7.6e-239  8.2e-239  783.3   3.5     8   504    40   539    35   540 0.98 <unknown description>
+15082at2759_32264_0:00219f|CM058173.1:1558033-1564589|+   -            563 15082                -            510  2.2e-231  758.8   8.7   1   2  3.9e-148  4.2e-148  484.0   6.4     8   306    45   347    40   362 0.98 <unknown description>
+15082at2759_32264_0:00219f|CM058173.1:1558033-1564589|+   -            563 15082                -            510  2.2e-231  758.8   8.7   2   2   6.5e-85     7e-85  275.4   0.0   303   501   364   561   349   563 0.98 <unknown description>
+15082at2759_50954_0:002f7a|CM058173.1:1562465-1564418|+   -            490 15082                -            510    3e-217  712.1   3.9   1   1  3.5e-217  3.7e-217  711.8   3.9     8   465    29   489    24   490 0.98 <unknown description>
+15082at2759_1230840_0:001c1c|CM058173.1:1563425-1564595|+ -            293 15082                -            510  4.8e-142  464.0   1.4   1   1  4.9e-142  5.3e-142  463.9   1.4   212   504     1   292     1   293 0.99 <unknown description>
+15082at2759_75366_0:004ee4|CM058173.1:1562857-1563959|+   -            266 15082                -            510  9.7e-134  436.6   4.1   1   1    1e-133  1.1e-133  436.4   4.1    87   349     1   265     1   266 0.98 <unknown description>
+15082at2759_56723_0:005dc8|CM058173.1:1563078-1564595|+   -            291 15082                -            510    4e-119  388.4   2.1   1   2   3.5e-20   3.8e-20   61.8   0.1   138   193     1    56     1    59 0.96 <unknown description>
+15082at2759_56723_0:005dc8|CM058173.1:1563078-1564595|+   -            291 15082                -            510    4e-119  388.4   2.1   2   2  1.4e-100  1.5e-100  327.1   0.1   274   504    60   290    56   291 0.98 <unknown description>
+15082at2759_35019_0:001194|CM058173.1:1562465-1563533|+   -            273 15082                -            510  8.4e-116  377.4   1.8   1   1  9.1e-116  9.8e-116  377.2   1.8     8   246    29   271    23   273 0.98 <unknown description>
+15082at2759_6183_0:00159a|CM058173.1:1562728-1563527|+    -            205 15082                -            510  3.7e-103  335.7   0.5   1   1  3.8e-103  4.1e-103  335.6   0.5    46   246     2   205     1   205 0.99 <unknown description>
+15082at2759_35883_0:004105|CM058173.1:1562465-1563313|+   -            221 15082                -            510   3.5e-85  276.4   2.1   1   1   3.7e-85     4e-85  276.2   2.1     8   194    29   218    23   221 0.97 <unknown description>
+15082at2759_885580_0:002a5d|CM058173.1:1563836-1564595|+  -            196 15082                -            510   3.2e-83  269.9   0.0   1   1   3.3e-83   3.5e-83  269.8   0.0   309   504     1   195     1   196 0.98 <unknown description>
+15082at2759_259920_0:003dad|CM058173.1:1564029-1564595|+  -            151 15082                -            510   1.9e-67  217.9   0.0   1   1   1.9e-67     2e-67  217.8   0.0   355   504     1   150     1   151 0.99 <unknown description>
+15082at2759_9601_0:002b94|CM058173.1:1564268-1564595|+    -             90 15082                -            510   1.1e-39  126.2   0.0   1   1   1.2e-39   1.2e-39  126.1   0.0   416   504     1    89     1    90 0.98 <unknown description>
+15082at2759_10047_0:0053e2|CM058173.1:1562465-1562872|+   -            115 15082                -            510   5.9e-31   97.5   0.1   1   1   6.2e-31   6.7e-31   97.3   0.1     8    91    29   114    23   115 0.95 <unknown description>
+#
+# Program:         hmmsearch
+# Version:         3.1b2 (February 2015)
+# Pipeline mode:   SEARCH
+# Query file:      /home/primeline/Data/Reconaming/work_bundle2_final/d3/4b03482337e1d886a523929a3fbcd0/busco_downloads/lineages/eukaryota_odb12/hmms/15082at2759.hmm
+# Target file:     /home/primeline/Data/Reconaming/work_bundle2_final/d3/4b03482337e1d886a523929a3fbcd0/busco/Species_1/auto_lineage/run_eukaryota_odb12/miniprot_output/translated_proteins/15082at2759.faa
+# Option settings: hmmsearch --domtblout /home/primeline/Data/Reconaming/work_bundle2_final/d3/4b03482337e1d886a523929a3fbcd0/busco/Species_1/auto_lineage/run_eukaryota_odb12/hmmer_output/15082at2759.out --cpu 1 /home/primeline/Data/Reconaming/work_bundle2_final/d3/4b03482337e1d886a523929a3fbcd0/busco_downloads/lineages/eukaryota_odb12/hmms/15082at2759.hmm /home/primeline/Data/Reconaming/work_bundle2_final/d3/4b03482337e1d886a523929a3fbcd0/busco/Species_1/auto_lineage/run_eukaryota_odb12/miniprot_output/translated_proteins/15082at2759.faa 
+# Current dir:     /home/primeline/Data/Reconaming/work_bundle2_final/d3/4b03482337e1d886a523929a3fbcd0
+# Date:            Wed Oct 14 08:42:22 2026
+# [ok]

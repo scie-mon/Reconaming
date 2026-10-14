@@ -1,0 +1,1 @@
+gene_family 4 8 optimizeGeneTrees generax_gene_tree.nwk generax_mapping.tsv generax_alignment.faa GeneRax/species_trees/inferred_species_tree.newick LG+G4 GeneRax/gene_optimization_0/dtl_rates.txt 0 0 0 1 0 0.000001 NONE 0 -1 1 1 1 1 GeneRax/results/gene_family/geneTree.newick GeneRax/results/gene_family/stats.txt 0

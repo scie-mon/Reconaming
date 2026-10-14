@@ -1,40 +1,6 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 
-params.sequence_inputs    = params.sequence_inputs ?: null
-params.annotation        = params.annotation ?: null
-params.protein_fasta     = params.protein_fasta ?: null
-params.id_species        = params.id_species ?: null
-params.selection_table   = params.selection_table ?: null
-params.outgroup_genes    = params.outgroup_genes ?: null
-params.outdir            = params.outdir ?: 'results'
-params.famsa_args        = params.famsa_args ?: null
-params.iqtree_args       = params.iqtree_args ?: null
-params.species_tree        = params.species_tree ?: null
-params.species_tree_outgroup = params.species_tree_outgroup ?: null
-params.busco_lineage       = params.busco_lineage ?: null
-params.busco_auto_lineage  = params.busco_auto_lineage ?: true
-params.busco_threads       = params.busco_threads ?: 8
-params.busco_mode          = params.busco_mode ?: 'auto'
-params.busco_warn_complete = params.busco_warn_complete ?: 90
-params.species_tree_bootstrap = params.species_tree_bootstrap ?: 1000
-params.species_tree_threads   = params.species_tree_threads ?: params.busco_threads
-params.species_tree_min_taxa  = params.species_tree_min_taxa ?: 3
-params.species_tree_container = params.species_tree_container ?: null
-params.generax_cpus          = params.generax_cpus ?: 64
-params.generax_rec_model     = params.generax_rec_model ?: 'UndatedDL'
-params.generax_strategy      = params.generax_strategy ?: 'SPR'
-params.generax_seed          = params.generax_seed ?: 12345
-params.generax_args          = params.generax_args ?: ''
-params.generax_container     = params.generax_container ?: 'reconaming-generax:2.0.4'
-params.gene_id_attribute       = params.gene_id_attribute ?: 'ID'
-params.transcript_id_attribute = params.transcript_id_attribute ?: 'ID'
-params.protein_id_attribute    = params.protein_id_attribute ?: ''
-params.revision_registry       = params.revision_registry ?: null
-params.revision_tag            = params.revision_tag ?: null
-params.reconaming_opt          = params.reconaming_opt ?: "${projectDir}/conf/reconaming_opt.ctl"
-params.reconaming_container    = params.reconaming_container ?: 'reconaming-core:6.2'
-params.gff_output              = params.gff_output ?: 'update'
 
 include { PREPARE_FOCAL_GENOME_MAP }      from './modules/local/prepare_focal_genome_map'
 include { BUILD_INPUT_MANIFEST }          from './modules/local/build_input_manifest'
@@ -55,6 +21,16 @@ include { POSTPROCESS_RECONAMING_ANNOTATION } from './modules/local/postprocess_
 include { POSTPROCESS_RECONAMING_PROTEIN }    from './modules/local/postprocess_reconaming'
 
 workflow {
+    def cpu_processes = ['PREPARE_PROTEINS', 'RUN_BUSCO', 'RUN_BUSCO_PHYLOGENOMICS', 'INFER_SUPERMATRIX_TREE', 'ALIGN_PROTEINS', 'INFER_GENE_TREE', 'RECONCILE_GENE_TREE']
+    if (!(params.process_cpus instanceof Map)) error 'params.process_cpus must be a map in nextflow.config.'
+    cpu_processes.each { process_name ->
+        def allocation = params.process_cpus[process_name]
+        if (!(allocation instanceof Number) || !(allocation.toString() ==~ /[1-9][0-9]*/)) error "params.process_cpus.${process_name} must be a positive integer."
+    }
+    def iqtree_setting = params.iqtree_threads?.toString()
+    if (!(iqtree_setting?.equalsIgnoreCase('AUTO') || (iqtree_setting ==~ /[1-9][0-9]*/))) error "params.iqtree_threads must be AUTO or a positive integer."
+    if (!iqtree_setting.equalsIgnoreCase('AUTO') && (iqtree_setting as int) > (params.process_cpus.INFER_GENE_TREE as int)) error 'params.iqtree_threads cannot exceed params.process_cpus.INFER_GENE_TREE.'
+
     // BEGIN INPUT SELECTION
     // Resolve analysis mode and species-tree source once; reuse below.
     inputProvided = { Object value -> value != null && value.toString().trim() != '' }
@@ -190,7 +166,7 @@ workflow {
         reconciliation_input,
         file("${projectDir}/bin/prepare_generax_inputs.py", checkIfExists: true),
         file("${projectDir}/bin/normalise_generax_output.py", checkIfExists: true),
-        params.generax_cpus, params.generax_rec_model, params.generax_strategy,
+        params.generax_rec_model, params.generax_strategy,
         params.generax_seed, params.generax_args, params.generax_container
     )
 

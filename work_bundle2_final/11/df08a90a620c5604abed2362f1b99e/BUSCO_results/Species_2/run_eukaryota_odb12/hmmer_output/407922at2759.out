@@ -1,0 +1,17 @@
+#                                                                                                                 --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name                                             accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#                                     ------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+407922at2759_48498_0:0007de|CM023194.1:5763229-5764439|-  -            233 407922               -            925   5.7e-44  137.8   2.9   1   2   6.6e-12   6.6e-12   31.7   0.0   100   158     3    62     1    67 0.83 <unknown description>
+407922at2759_48498_0:0007de|CM023194.1:5763229-5764439|-  -            233 407922               -            925   5.7e-44  137.8   2.9   2   2     3e-34     3e-34  105.6   2.3    54   215    65   232    56   233 0.88 <unknown description>
+407922at2759_210225_0:0044d3|CM023194.1:449760-450277|+   -            152 407922               -            925   1.9e-28   86.4   0.9   1   1   5.1e-28   5.1e-28   85.0   0.9    72   219     1   151     1   152 0.93 <unknown description>
+407922at2759_763406_0:00016b|CM023194.1:5763949-5764409|- -            130 407922               -            925   1.1e-26   80.5   0.5   1   1   8.7e-18   8.7e-18   51.1   0.3    64   147    41   130    40   130 0.88 <unknown description>
+#
+# Program:         hmmsearch
+# Version:         3.1b2 (February 2015)
+# Pipeline mode:   SEARCH
+# Query file:      /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco_downloads/lineages/eukaryota_odb12/hmms/407922at2759.hmm
+# Target file:     /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/auto_lineage/run_eukaryota_odb12/miniprot_output/translated_proteins/407922at2759.faa
+# Option settings: hmmsearch --domtblout /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/auto_lineage/run_eukaryota_odb12/hmmer_output/407922at2759.out --cpu 1 /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco_downloads/lineages/eukaryota_odb12/hmms/407922at2759.hmm /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/auto_lineage/run_eukaryota_odb12/miniprot_output/translated_proteins/407922at2759.faa 
+# Current dir:     /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b
+# Date:            Wed Oct 14 08:41:32 2026
+# [ok]

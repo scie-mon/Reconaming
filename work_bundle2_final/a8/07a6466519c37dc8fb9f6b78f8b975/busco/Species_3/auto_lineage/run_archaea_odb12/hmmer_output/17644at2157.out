@@ -1,0 +1,18 @@
+#                                                                                     --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name                 accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#         ------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+NC_081337.1:8726281-8726937|+ -            219 17644                -            143     0.011   15.6   0.0   1   1   5.3e-06     0.024   14.5   0.0     1    24   146   169   146   196 0.84 NC_081337.1_13322 # 8726281 # 8726937 # 1 # ID=1_13322;partial=00;start_type=GTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.379
+NC_081337.1:9505527-9505793|- -             89 17644                -            143     0.023   14.5   0.0   1   1     7e-06     0.032   14.1   0.0     3    30    59    86    57    88 0.86 NC_081337.1_14651 # 9505527 # 9505793 # -1 # ID=1_14651;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.494
+NC_081337.1:6554259-6554966|+ -            236 17644                -            143     0.037   13.9   0.0   1   1   1.6e-05     0.072   12.9   0.0     5    72   152   219   148   223 0.87 NC_081337.1_9694 # 6554259 # 6554966 # 1 # ID=1_9694;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.390
+NC_081337.1:3754453-3754755|- -            101 17644                -            143      0.12   12.3   0.2   1   2   0.00017      0.78    9.6   0.1     4    22     2    20     1    23 0.88 NC_081337.1_5203 # 3754453 # 3754755 # -1 # ID=1_5203;partial=00;start_type=TTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.462
+NC_081337.1:3754453-3754755|- -            101 17644                -            143      0.12   12.3   0.2   2   2     0.084   3.8e+02    0.9   0.0    51    75    44    68    34    88 0.74 NC_081337.1_5203 # 3754453 # 3754755 # -1 # ID=1_5203;partial=00;start_type=TTG;rbs_motif=None;rbs_spacer=None;gc_cont=0.462
+#
+# Program:         hmmsearch
+# Version:         3.1b2 (February 2015)
+# Pipeline mode:   SEARCH
+# Query file:      /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco_downloads/lineages/archaea_odb12/hmms/17644at2157.hmm
+# Target file:     /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco/Species_3/prodigal_output/predicted_genes/predicted.faa
+# Option settings: hmmsearch --domtblout /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco/Species_3/auto_lineage/run_archaea_odb12/hmmer_output/17644at2157.out --cpu 1 /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco_downloads/lineages/archaea_odb12/hmms/17644at2157.hmm /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco/Species_3/prodigal_output/predicted_genes/predicted.faa 
+# Current dir:     /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975
+# Date:            Wed Oct 14 08:40:07 2026
+# [ok]

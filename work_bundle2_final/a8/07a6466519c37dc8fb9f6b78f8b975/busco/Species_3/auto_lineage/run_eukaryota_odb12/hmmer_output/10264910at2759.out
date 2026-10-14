@@ -1,0 +1,20 @@
+#                                                                                                                      --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name                                                  accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#                                          ------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+10264910at2759_1203425_0:0022ad|NC_081337.1:8322032-8327935|-  -            163 10264910             -            571     1e-06   17.5  21.7   1   1   4.9e-07   1.1e-06   17.4  21.7   453   557    52   146     1   162 0.37 <unknown description>
+10264910at2759_29144_0:005441|NC_081337.1:408096-417609|-      -            118 10264910             -            571    0.0048    5.3  29.6   1   1    0.0025    0.0054    5.1  29.6   464   570     5   110     1   114 0.53 <unknown description>
+10264910at2759_54374_0:000e9d|NC_081337.1:10153391-10153619|-  -             77 10264910             -            571     0.013    3.9  10.1   1   1    0.0067     0.014    3.7  10.1   465   519     5    57     1    65 0.28 <unknown description>
+10264910at2759_42526_0:00525e|NC_081337.1:8732662-8733001|-    -            114 10264910             -            571     0.025    2.9  20.7   1   1     0.013     0.027    2.8  20.7   445   526    25    99    11   114 0.30 <unknown description>
+10264910at2759_10020_0:00152e|NC_081337.1:10153301-10153628|-  -            110 10264910             -            571     0.041    2.2  12.4   1   1     0.021     0.045    2.1  12.4   466   519     6    60     1    79 0.37 <unknown description>
+10264910at2759_992332_0:0006bc|NC_081337.1:10153445-10153613|- -             57 10264910             -            571      0.16    0.3  13.4   1   1     0.075      0.16    0.3  13.4   466   518     4    54     1    57 0.21 <unknown description>
+10264910at2759_1775924_0:00145b|NC_081337.1:8732653-8732911|-  -             87 10264910             -            571      0.46   -1.2  23.9   1   1      0.22      0.47   -1.3  23.9   451   524     8    76     1    87 0.17 <unknown description>
+#
+# Program:         hmmsearch
+# Version:         3.1b2 (February 2015)
+# Pipeline mode:   SEARCH
+# Query file:      /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco_downloads/lineages/eukaryota_odb12/hmms/10264910at2759.hmm
+# Target file:     /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco/Species_3/auto_lineage/run_eukaryota_odb12/miniprot_output/translated_proteins/10264910at2759.faa
+# Option settings: hmmsearch --domtblout /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco/Species_3/auto_lineage/run_eukaryota_odb12/hmmer_output/10264910at2759.out --cpu 1 /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco_downloads/lineages/eukaryota_odb12/hmms/10264910at2759.hmm /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco/Species_3/auto_lineage/run_eukaryota_odb12/miniprot_output/translated_proteins/10264910at2759.faa 
+# Current dir:     /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975
+# Date:            Wed Oct 14 08:41:33 2026
+# [ok]

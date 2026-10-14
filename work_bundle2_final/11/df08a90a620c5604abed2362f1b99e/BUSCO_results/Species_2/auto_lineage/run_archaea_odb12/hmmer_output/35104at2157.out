@@ -1,0 +1,17 @@
+#                                                                                    --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name                accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#        ------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+CM023194.1:9609363-9609875|+ -            171 35104                -             53      0.36   10.5   4.4   1   2   7.8e-05      0.63    9.8   1.2    18    37     5    24     1    46 0.80 CM023194.1_14761 # 9609363 # 9609875 # 1 # ID=1_14761;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.441
+CM023194.1:9609363-9609875|+ -            171 35104                -             53      0.36   10.5   4.4   2   2      0.06   4.8e+02    0.5   0.1    21    27    92    98    74   109 0.74 CM023194.1_14761 # 9609363 # 9609875 # 1 # ID=1_14761;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.441
+CM023194.1:3562700-3563032|- -            111 35104                -             53      0.71    9.6   9.7   1   2    0.0064        51    3.7   9.6     8    49    27    73     8    76 0.74 CM023194.1_5879 # 3562700 # 3563032 # -1 # ID=1_5879;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.450
+CM023194.1:3562700-3563032|- -            111 35104                -             53      0.71    9.6   9.7   2   2    0.0084        67    3.3   0.2     4    13    67    76    64    82 0.60 CM023194.1_5879 # 3562700 # 3563032 # -1 # ID=1_5879;partial=00;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.450
+#
+# Program:         hmmsearch
+# Version:         3.1b2 (February 2015)
+# Pipeline mode:   SEARCH
+# Query file:      /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco_downloads/lineages/archaea_odb12/hmms/35104at2157.hmm
+# Target file:     /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/prodigal_output/predicted_genes/predicted.faa
+# Option settings: hmmsearch --domtblout /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/auto_lineage/run_archaea_odb12/hmmer_output/35104at2157.out --cpu 1 /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco_downloads/lineages/archaea_odb12/hmms/35104at2157.hmm /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b/busco/Species_2/prodigal_output/predicted_genes/predicted.faa 
+# Current dir:     /home/primeline/Data/Reconaming/work_bundle2_final/f1/46536e171eddc938eb220b2fd19c4b
+# Date:            Wed Oct 14 08:40:04 2026
+# [ok]

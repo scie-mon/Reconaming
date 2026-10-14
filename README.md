@@ -49,7 +49,7 @@ Prebuilt Reconaming images are not currently published. The profiles do not buil
 
 The repository includes small integration-test datasets under `test/`, including a species-tree-inference case in `test/spec_tree/` and supplied-species-tree cases in `test/provide_spec_tree/`. These datasets include test genome FASTA files, a GFF3, a species-input table, and—where relevant—outgroup genes or a supplied species tree.
 
-The following is the intended smoke-test pattern. Run it in a new output directory and set a deliberately modest GeneRax CPU allocation appropriate to the machine:
+The following is the intended smoke-test pattern. Run it in a new output directory after setting process_cpus in nextflow.config:
 
 ```bash
 nextflow run main.nf \
@@ -58,7 +58,6 @@ nextflow run main.nf \
   --annotation test/spec_tree/merged.rev0.gff3 \
   --outgroup_genes test/spec_tree/outgroup_genes.txt \
   --revision_tag test_rev_001 \
-  --generax_cpus 4 \
   --outdir results_test
 ```
 
@@ -72,7 +71,6 @@ nextflow run main.nf \
   --sequence_inputs path/to/sequence_inputs.tsv \
   --annotation 'path/to/annotations/*.gff3' \
   --revision_tag rev_001 \
-  --generax_cpus 8 \
   --outdir results \
   -resume
 ```
@@ -88,7 +86,6 @@ nextflow run main.nf \
   --id_species path/to/gene_to_species.tsv \
   --species_tree path/to/species_tree.nwk \
   --revision_tag rev_001 \
-  --generax_cpus 8 \
   --gff_output none \
   --outdir results \
   -resume
@@ -109,7 +106,6 @@ Required inputs:
 | `--sequence_inputs` | Tab-separated sequence-input table identifying focal species and their genome FASTA files |
 | `--annotation` | annotation GFF/GFF3 file or path/glob resolving to the annotation file(s) |
 | `--revision_tag` | Identifier for this naming revision round |
-| `--generax_cpus` | CPU allocation to use for GeneRax reconciliation |
 
 The pipeline prepares proteins from the annotations, builds an input manifest, and selects one representative isoform per gene. Supply `--selection_table` when manual representative-isoform choices are required. Without it, the pipeline applies its automatic representative-selection procedure; if a required manual selection remains unresolved, the run stops and writes material for completion under the output directory.
 
@@ -124,7 +120,6 @@ Required inputs:
 | `--protein_fasta` | Protein FASTA containing the representative sequences to analyse |
 | `--id_species` | Gene-ID-to-species-ID mapping file corresponding to the protein FASTA |
 | `--revision_tag` | Identifier for this naming revision round |
-| `--generax_cpus` | CPU allocation to use for GeneRax reconciliation |
 
 `--id_species` is a TSV with `sequence_id` and `species_id` columns; sequence IDs must match protein FASTA identifiers. Protein mode validates the supplied proteins and mapping, but does not have source GFF/GFF3 records to rewrite. Use `--gff_output none` in this mode.
 
@@ -172,7 +167,7 @@ Annotation preparation still requires focal genomes. If a tree is supplied, auxi
 
 ## Parameters
 
-Provide Nextflow parameters as `--name value`. The parameters below are grouped by purpose. Values in `nextflow.config` and `main.nf` are the authoritative defaults for the checked-out pipeline version.
+Set pipeline parameters in the params block of nextflow.config. It is the authoritative source of defaults; main.nf uses and validates them. Command-line --name value and native Nextflow parameter files are optional overrides. Core-only naming options are separate in conf/reconaming_opt.ctl.
 
 ### Core run parameters
 
@@ -205,9 +200,7 @@ Provide Nextflow parameters as `--name value`. The parameters below are grouped 
 | `--busco_lineage` | none | BUSCO lineage dataset to use, if specified |
 | `--busco_auto_lineage` | `true` | Let BUSCO choose a lineage automatically |
 | `--busco_mode` | `auto` | Follow each row's `input_type`; `genome` or `proteome` forces one type for all inference inputs |
-| `--busco_threads` | `4` | Threads for BUSCO |
 | `--busco_warn_complete` | `90` | Completeness threshold that triggers a warning |
-| `--species_tree_threads` | `4` | Threads for species-tree inference |
 | `--species_tree_bootstrap` | `1000` | Number of species-tree bootstrap replicates |
 | `--species_tree_min_taxa` | `3` | Minimum number of taxa required for species-tree inference |
 
@@ -218,7 +211,6 @@ Provide Nextflow parameters as `--name value`. The parameters below are grouped 
 | `--famsa_args` | empty | Additional arguments passed to FAMSA |
 | `--iqtree_args` | empty | Additional arguments passed to IQ-TREE |
 | `--gene_tree_container` | `reconaming-gene-tree:0.1.0` | Container for the labelled gene-tree process |
-| `--generax_cpus` | **set explicitly** | CPUs allocated to GeneRax reconciliation |
 | `--generax_rec_model` | `UndatedDL` | GeneRax reconciliation model |
 | `--generax_strategy` | `SPR` | GeneRax search strategy |
 | `--generax_seed` | `12345` | Random seed for GeneRax |
@@ -226,6 +218,33 @@ Provide Nextflow parameters as `--name value`. The parameters below are grouped 
 | `--generax_container` | `reconaming-generax:2.0.4` | Container for GeneRax reconciliation |
 
 `--generax_cpus` should always be selected for the resources available to the run. The README intentionally treats it as an explicit user decision rather than recommending a high fixed default.
+
+### Per-process CPU allocation
+
+Set numeric CPU requests in `params.process_cpus` in `nextflow.config`:
+
+```nextflow
+process_cpus = [
+    PREPARE_PROTEINS:          1,
+    RUN_BUSCO:                16,
+    RUN_BUSCO_PHYLOGENOMICS:  64,
+    INFER_SUPERMATRIX_TREE:   64,
+    ALIGN_PROTEINS:           64,
+    INFER_GENE_TREE:          64,
+    RECONCILE_GENE_TREE:      64
+]
+iqtree_threads = 'AUTO'
+```
+
+These are current 64-CPU development defaults, not release defaults. `RUN_BUSCO=16` permits four independent BUSCO species/outgroup tasks concurrently on 64 CPUs. The aggregate downstream stages receive 64. `PREPARE_PROTEINS` is a single-threaded Python task but runs once per focal species, so it retains one CPU per task.
+
+`iqtree_threads` owns gene-tree IQ-TREE `-T`: use `AUTO` or a positive integer no greater than `process_cpus.INFER_GENE_TREE`. The pipeline always sets `-ntmax` to the effective process allocation. `iqtree_args` remains available for model, bootstrap and other advanced arguments, but must not contain `-T`, `-nt`, `--threads`, `-ntmax` or `--threads-max`.
+
+There is no pipeline hardware detection, CPU Auto mode, launcher, generated configuration or automatic clamping. Run normally:
+
+```bash
+nextflow run main.nf -profile docker
+```
 
 ### Advanced naming configuration
 
@@ -271,7 +290,7 @@ The actual policy is controlled by the Reconaming control file. In particular:
 
 `conf/reconaming_opt.ctl` is an advanced configuration file for the Reconaming core. Empty values are ignored. It contains options for support thresholds, aliases, outgroup treatment, ParentGroup limits and overrides, rooting, tree ordering, and boundary behaviour.
 
-Do not use its input-preparation-looking entries as a substitute for the Nextflow command-line interface. Invoke the pipeline with `--sequence_inputs`, `--annotation`, `--protein_fasta`, `--id_species`, and the other documented Nextflow options; use `--reconaming_opt` only to select the naming-core configuration file.
+The control file accepts only naming-core options. Pipeline inputs, outputs, tools and CPU allocations belong in nextflow.config; non-core control-file keys are errors.
 
 ## Output
 

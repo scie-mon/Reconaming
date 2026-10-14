@@ -1,0 +1,30 @@
+#                                                                                                                    --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name                                                accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#                                        ------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+1726137at2759_400727_0:0005ef|NC_081337.1:6385932-6388381|+  -            423 1726137              -            382  8.7e-165  538.0   3.8   1   1    1e-164    1e-164  537.7   3.8    16   379    59   419    44   422 0.95 <unknown description>
+1726137at2759_7108_0:0037bf|NC_081337.1:6386696-6388381|+    -            392 1726137              -            382  5.8e-164  535.3   6.2   1   1  6.9e-164  6.9e-164  535.0   6.2    19   379    31   388    14   391 0.95 <unknown description>
+1726137at2759_931890_0:000dc6|NC_081337.1:6386941-6391810|+  -            378 1726137              -            382  9.4e-149  485.2  11.9   1   1  1.3e-146  1.3e-146  478.1  11.9    52   380     2   347     1   349 0.93 <unknown description>
+1726137at2759_27406_0:003ede|NC_081337.1:6387050-6388381|+   -            315 1726137              -            382  8.7e-146  475.4   4.3   1   1  9.7e-146  9.7e-146  475.3   4.3    67   379     1   311     1   314 0.98 <unknown description>
+1726137at2759_411798_0:002398|NC_081337.1:6386765-6388092|+  -            308 1726137              -            382    3e-138  450.6   2.7   1   1  3.5e-138  3.5e-138  450.4   2.7    25   321    14   307     3   308 0.96 <unknown description>
+1726137at2759_1477025_0:0023c5|NC_081337.1:6386953-6387968|+ -            244 1726137              -            382  2.4e-124  404.9   0.9   1   1  2.6e-124  2.6e-124  404.7   0.9    55   299     1   243     1   244 0.98 <unknown description>
+1726137at2759_51031_0:000abb|NC_081337.1:6386864-6387727|+   -            203 1726137              -            382   1.8e-99  323.0   3.3   1   1     2e-99     2e-99  322.8   3.3    45   249     1   202     1   203 0.97 <unknown description>
+1726137at2759_70779_0:0031b3|NC_081337.1:6387253-6388146|+   -            224 1726137              -            382   8.3e-98  317.5   3.4   1   1   9.3e-98   9.3e-98  317.3   3.4   116   339     1   223     1   224 0.98 <unknown description>
+1726137at2759_66420_0:000b3a|NC_081337.1:6387652-6388381|+   -            160 1726137              -            382     5e-66  212.9   1.6   1   1   5.5e-66   5.5e-66  212.8   1.6   226   379     2   156     1   159 0.98 <unknown description>
+1726137at2759_9713_0:002d7c|NC_081337.1:6386953-6387367|+    -             99 1726137              -            382   1.1e-54  175.6   4.0   1   1   1.2e-54   1.2e-54  175.4   4.0    55   153     1    98     1    99 0.98 <unknown description>
+1726137at2759_13642_0:001670|NC_081337.1:6387806-6388372|+   -            155 1726137              -            382   7.2e-52  166.3   5.3   1   2   4.3e-26   4.3e-26   81.5   0.0   248   304     2    59     1    73 0.92 <unknown description>
+1726137at2759_13642_0:001670|NC_081337.1:6387806-6388372|+   -            155 1726137              -            382   7.2e-52  166.3   5.3   2   2   5.4e-27   5.4e-27   84.4   4.2   300   379    74   153    67   155 0.95 <unknown description>
+1726137at2759_8236_0:003ccc|NC_081337.1:6387625-6387971|+    -             87 1726137              -            382   1.1e-34  109.7   0.0   1   1   1.2e-34   1.2e-34  109.6   0.0   223   299     8    85     1    86 0.93 <unknown description>
+1726137at2759_93504_0:0038d7|NC_081337.1:6388065-6388381|+   -             71 1726137              -            382   7.3e-26   80.7   0.7   1   1   7.6e-26   7.6e-26   80.6   0.7   314   379     2    67     1    70 0.96 <unknown description>
+1726137at2759_7897_0:00514b|NC_081337.1:6387866-6388143|+    -             74 1726137              -            382   3.6e-25   78.4   0.1   1   1   3.9e-25   3.9e-25   78.3   0.1   268   338     3    73     1    74 0.97 <unknown description>
+1726137at2759_8355_0:005d8d|NC_081337.1:6387472-6387634|+    -             55 1726137              -            382   5.6e-25   77.8   0.2   1   1     6e-25     6e-25   77.7   0.2   163   215     1    54     1    55 0.93 <unknown description>
+1726137at2759_747676_0:000833|NC_081337.1:6387679-6387923|+  -             53 1726137              -            382   2.7e-22   68.9   0.0   1   1   2.9e-22   2.9e-22   68.9   0.0   235   285     2    53     1    53 0.97 <unknown description>
+#
+# Program:         hmmsearch
+# Version:         3.1b2 (February 2015)
+# Pipeline mode:   SEARCH
+# Query file:      /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco_downloads/lineages/eukaryota_odb12/hmms/1726137at2759.hmm
+# Target file:     /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco/Species_3/auto_lineage/run_eukaryota_odb12/miniprot_output/translated_proteins/1726137at2759.faa
+# Option settings: hmmsearch --domtblout /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco/Species_3/auto_lineage/run_eukaryota_odb12/hmmer_output/1726137at2759.out --cpu 1 /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco_downloads/lineages/eukaryota_odb12/hmms/1726137at2759.hmm /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975/busco/Species_3/auto_lineage/run_eukaryota_odb12/miniprot_output/translated_proteins/1726137at2759.faa 
+# Current dir:     /home/primeline/Data/Reconaming/work_bundle2_final/a8/07a6466519c37dc8fb9f6b78f8b975
+# Date:            Wed Oct 14 08:41:33 2026
+# [ok]

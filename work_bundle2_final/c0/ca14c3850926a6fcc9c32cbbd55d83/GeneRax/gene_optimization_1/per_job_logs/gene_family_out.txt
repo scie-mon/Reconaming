@@ -1,0 +1,16 @@
+mpi-scheduler optimizeGeneTrees GeneRax/results/gene_family/geneTree.newick generax_mapping.tsv generax_alignment.faa GeneRax/species_trees/inferred_species_tree.newick LG+G4 GeneRax/gene_optimization_1/dtl_rates.txt 0 0 0 1 0 0.000001 NONE 0 -1 1 1 1 2 GeneRax/results/gene_family/geneTree.newick GeneRax/results/gene_family/stats.txt 0 
+[00:00:00] Starting optimizeGeneTreesSlave
+LibpllModel LG+G4
+[00:00:00] Starting optimizing gene tree
+Number of ranks 3
+(0.293045, 0.160567, score = 0)
+Taxa number: 8
+joint: -9382.77  libpll: -9368.7  reconciliation: -14.0714  
+Initial ll = -9382.77
+Start SPR round (std::hash=48455, (best ll=-9382.77, radius=2, possible moves: 50)
+best;; -9382.77 0
+joint: -9382.77  libpll: -9368.7  reconciliation: -14.0714  
+Saving tree in GeneRax/results/gene_family/geneTree.newick
+Finished saving  GeneRax/results/gene_family/geneTree.newick
+[00:00:00] End of optimizing gene tree
+[00:00:00] End of optimizeGeneTreesSlave

@@ -1,0 +1,284 @@
+IQ-TREE version 3.1.4 for Linux x86 64-bit built Sep 29 2026
+Developed by Bui Quang Minh, Thomas Wong, Nhan Ly-Trong, Huaiyan Ren
+Contributed by Lam-Tung Nguyen, Dominik Schrempf, Chris Bielow,
+Olga Chernomor, Michael Woodhams, Diep Thi Hoang, Heiko Schmidt
+
+Host:    696a61f606d6 (AVX512, FMA3, 503 GB RAM)
+Command: iqtree -s SUPERMATRIX.phylip -p SUPERMATRIX.partitions.nex -B 1000 -T 64 --prefix species_tree_unrooted
+Seed:    726591 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Wed Oct 14 08:45:46 2026
+Kernel:  AVX+FMA - 64 threads (64 CPU cores detected)
+
+Reading partition model file SUPERMATRIX.partitions.nex ...
+Partition file is in NEXUS format...
+Reading alignment file SUPERMATRIX.phylip ... Phylip format detected
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.0106108 secs using 3803% CPU
+Alignment has 4 sequences with 3886 columns, 461 distinct patterns
+53 parsimony-informative, 508 singleton sites, 3325 constant sites
+              Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.00016284 secs using 3546% CPU
+   1  Species_1       0.05%    passed    100.00%
+   2  Root_species    2.26%    passed    100.00%
+   3  Species_2       2.08%    passed    100.00%
+   4  Species_3       0.28%    passed    100.00%
+****  TOTAL           1.17%  0 sequences failed composition chi2 test (p-value<5%; df=19)
+NOTE: No CharPartition defined, use all CharSets
+Loading 10 partitions...
+Reading alignment file SUPERMATRIX.phylip ... Phylip format detected
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.0106308 secs using 3794% CPU
+Alignment has 4 sequences with 3886 columns, 461 distinct patterns
+53 parsimony-informative, 508 singleton sites, 3325 constant sites
+              Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.000210047 secs using 4228% CPU
+   1  Species_1       0.05%    passed    100.00%
+   2  Root_species    2.26%    passed    100.00%
+   3  Species_2       2.08%    passed    100.00%
+   4  Species_3       0.28%    passed    100.00%
+****  TOTAL           1.17%  0 sequences failed composition chi2 test (p-value<5%; df=19)
+Reading alignment file SUPERMATRIX.phylip ... Phylip format detected
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.0105369 secs using 3756% CPU
+Alignment has 4 sequences with 3886 columns, 461 distinct patterns
+53 parsimony-informative, 508 singleton sites, 3325 constant sites
+              Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.000202894 secs using 3654% CPU
+   1  Species_1       0.05%    passed    100.00%
+   2  Root_species    2.26%    passed    100.00%
+   3  Species_2       2.08%    passed    100.00%
+   4  Species_3       0.28%    passed    100.00%
+****  TOTAL           1.17%  0 sequences failed composition chi2 test (p-value<5%; df=19)
+Reading alignment file SUPERMATRIX.phylip ... Phylip format detected
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.0107429 secs using 3692% CPU
+Alignment has 4 sequences with 3886 columns, 461 distinct patterns
+53 parsimony-informative, 508 singleton sites, 3325 constant sites
+              Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.000168085 secs using 4045% CPU
+   1  Species_1       0.05%    passed    100.00%
+   2  Root_species    2.26%    passed    100.00%
+   3  Species_2       2.08%    passed    100.00%
+   4  Species_3       0.28%    passed    100.00%
+****  TOTAL           1.17%  0 sequences failed composition chi2 test (p-value<5%; df=19)
+Reading alignment file SUPERMATRIX.phylip ... Phylip format detected
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.0106819 secs using 3743% CPU
+Alignment has 4 sequences with 3886 columns, 461 distinct patterns
+53 parsimony-informative, 508 singleton sites, 3325 constant sites
+              Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.000167131 secs using 3867% CPU
+   1  Species_1       0.05%    passed    100.00%
+   2  Root_species    2.26%    passed    100.00%
+   3  Species_2       2.08%    passed    100.00%
+   4  Species_3       0.28%    passed    100.00%
+****  TOTAL           1.17%  0 sequences failed composition chi2 test (p-value<5%; df=19)
+Reading alignment file SUPERMATRIX.phylip ... Phylip format detected
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.010674 secs using 3746% CPU
+Alignment has 4 sequences with 3886 columns, 461 distinct patterns
+53 parsimony-informative, 508 singleton sites, 3325 constant sites
+              Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.000211954 secs using 3687% CPU
+   1  Species_1       0.05%    passed    100.00%
+   2  Root_species    2.26%    passed    100.00%
+   3  Species_2       2.08%    passed    100.00%
+   4  Species_3       0.28%    passed    100.00%
+****  TOTAL           1.17%  0 sequences failed composition chi2 test (p-value<5%; df=19)
+Reading alignment file SUPERMATRIX.phylip ... Phylip format detected
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.0106511 secs using 3693% CPU
+Alignment has 4 sequences with 3886 columns, 461 distinct patterns
+53 parsimony-informative, 508 singleton sites, 3325 constant sites
+              Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.000207186 secs using 3681% CPU
+   1  Species_1       0.05%    passed    100.00%
+   2  Root_species    2.26%    passed    100.00%
+   3  Species_2       2.08%    passed    100.00%
+   4  Species_3       0.28%    passed    100.00%
+****  TOTAL           1.17%  0 sequences failed composition chi2 test (p-value<5%; df=19)
+Reading alignment file SUPERMATRIX.phylip ... Phylip format detected
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.010798 secs using 3890% CPU
+Alignment has 4 sequences with 3886 columns, 461 distinct patterns
+53 parsimony-informative, 508 singleton sites, 3325 constant sites
+              Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.000169992 secs using 3741% CPU
+   1  Species_1       0.05%    passed    100.00%
+   2  Root_species    2.26%    passed    100.00%
+   3  Species_2       2.08%    passed    100.00%
+   4  Species_3       0.28%    passed    100.00%
+****  TOTAL           1.17%  0 sequences failed composition chi2 test (p-value<5%; df=19)
+Reading alignment file SUPERMATRIX.phylip ... Phylip format detected
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.010747 secs using 3917% CPU
+Alignment has 4 sequences with 3886 columns, 461 distinct patterns
+53 parsimony-informative, 508 singleton sites, 3325 constant sites
+              Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.000140905 secs using 3710% CPU
+   1  Species_1       0.05%    passed    100.00%
+   2  Root_species    2.26%    passed    100.00%
+   3  Species_2       2.08%    passed    100.00%
+   4  Species_3       0.28%    passed    100.00%
+****  TOTAL           1.17%  0 sequences failed composition chi2 test (p-value<5%; df=19)
+Reading alignment file SUPERMATRIX.phylip ... Phylip format detected
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.01106 secs using 3823% CPU
+Alignment has 4 sequences with 3886 columns, 461 distinct patterns
+53 parsimony-informative, 508 singleton sites, 3325 constant sites
+              Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.000118971 secs using 4247% CPU
+   1  Species_1       0.05%    passed    100.00%
+   2  Root_species    2.26%    passed    100.00%
+   3  Species_2       2.08%    passed    100.00%
+   4  Species_3       0.28%    passed    100.00%
+****  TOTAL           1.17%  0 sequences failed composition chi2 test (p-value<5%; df=19)
+Reading alignment file SUPERMATRIX.phylip ... Phylip format detected
+Alignment most likely contains protein sequences
+Constructing alignment: done in 0.0111959 secs using 3792% CPU
+Alignment has 4 sequences with 3886 columns, 461 distinct patterns
+53 parsimony-informative, 508 singleton sites, 3325 constant sites
+              Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.000111103 secs using 3712% CPU
+   1  Species_1       0.05%    passed    100.00%
+   2  Root_species    2.26%    passed    100.00%
+   3  Species_2       2.08%    passed    100.00%
+   4  Species_3       0.28%    passed    100.00%
+****  TOTAL           1.17%  0 sequences failed composition chi2 test (p-value<5%; df=19)
+Subset	Type	Seqs	Sites	Infor	Invar	Model	Name
+1		4	256	12	192		4249at2759
+2		4	199	0	175		10249667at2759
+WARNING: No parsimony-informative sites in partition 10249667at2759
+3		4	535	2	506		15082at2759
+4		4	923	13	755		28947at2759
+5		4	212	7	165		17948at2759
+6		4	260	0	249		1847590at2759
+WARNING: No parsimony-informative sites in partition 1847590at2759
+7		4	222	2	197		124397at2759
+8		4	416	6	329		1726137at2759
+9		4	383	5	335		10263536at2759
+10		4	480	6	422		10267436at2759
+Degree of missing data: 0.000
+Info: multi-threading strategy over partitions and number of threads is changed to 10
+
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.000 seconds
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+Perform fast likelihood tree search using LG+I+G model...
+Estimate model parameters (epsilon = 5.000)
+Initial log-likelihood: -15551.717
+Current log-likelihood at step 1: -15424.428
+Current log-likelihood at step 2: -15420.296
+Parameters optimization took 1 rounds (0.020 sec)
+
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+Initial log-likelihood: -15420.296
+Current log-likelihood at step 1: -15419.825
+Partition-specific rates:  1.789 2.454 0.322 1.020 1.153 0.156 0.458 2.070 0.633 0.701
+Parameters optimization took 0 rounds (0.005 sec)
+
+Time for fast ML tree search: 0.029 seconds
+
+NOTE: ModelFinder requires 9 MB RAM!
+Selecting individual models for 10 charsets using BIC...
+ModelFinder will allocate partition-specific threads based on partition sizes
+ Finished subset 1/10     10.00  percent done     0h:0m:0s (0h:0m:1s left)      Finished subset 2/10     20.00  percent done     0h:0m:0s (0h:0m:0s left)      Finished subset 3/10     30.00  percent done     0h:0m:0s (0h:0m:1s left)      Finished subset 4/10     40.00  percent done     0h:0m:0s (0h:0m:0s left)      Finished subset 5/10     50.00  percent done     0h:0m:0s (0h:0m:0s left)      Finished subset 6/10     60.00  percent done     0h:0m:0s (0h:0m:0s left)      Finished subset 7/10     70.00  percent done     0h:0m:0s (0h:0m:0s left)      Finished subset 8/10     80.00  percent done     0h:0m:0s (0h:0m:0s left)      Finished subset 9/10     90.00  percent done     0h:0m:0s (0h:0m:0s left)      Finished subset 10/10     100.00  percent done     0h:0m:1s (0h:0m:0s left)                                                                                                         Full partition model BIC score: 30841.023 (LnL: -15325.462  df:23)
+Partition information was printed to species_tree_unrooted.best_scheme.nex
+Partition information in Raxml format was printed to species_tree_unrooted.best_scheme
+
+All model information printed to species_tree_unrooted.model.gz
+CPU time for ModelFinder: 15.103 seconds (0h:0m:15s)
+Wall-clock time for ModelFinder: 1.291 seconds (0h:0m:1s)
+WARNING: 1 states (see below) not observed in partition 5
+WARNING: State(s) W not present in partition 5 and may cause numerical problems
+Generating 1000 samples for ultrafast bootstrap (seed: 726591)...
+
+NOTE: 4 MB RAM (0 GB) is required!
+WARNING: Number of threads seems too high for short alignments. Use -T AUTO to determine best number of threads.
+Estimate model parameters (epsilon = 0.100)
+Initial log-likelihood: -15325.991
+Current log-likelihood at step 1: -15325.400
+Current log-likelihood at step 2: -15325.396
+Partition-specific rates:  1.999 1.835 0.369 1.164 1.262 0.167 0.517 1.707 0.664 0.723
+Parameters optimization took 1 rounds (0.006 sec)
+
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 3.69549e-05 secs using 1112% CPU
+Computing ML distances took 0.000075 sec (of wall-clock time) 0.000747 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 7.70092e-05 secs using 953.1% CPU
+Constructing RapidNJ tree: done in 7.82013e-05 secs using 259.6% CPU
+Computing RapidNJ tree took 0.000232 sec (of wall-clock time) 0.002185 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -15335.689
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 0.025 second
+Computing log-likelihood of 1 initial trees ... 0.001 seconds
+Current best score: -15325.396
+
+Do NNI search on 3 best initial trees
+Finish initializing candidate tree set (3)
+Current best tree score: -15325.396 / CPU time: 0.039
+Number of iterations: 3
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+UPDATE BEST LOG-LIKELIHOOD: -15325.396
+UPDATE BEST LOG-LIKELIHOOD: -15325.396
+Iteration 10 / LogL: -15325.418 / Time: 0h:0m:1s
+Iteration 20 / LogL: -15325.396 / Time: 0h:0m:1s
+Iteration 30 / LogL: -15325.414 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 40 / LogL: -15325.396 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 50 / LogL: -15325.419 / Time: 0h:0m:1s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -15335.776
+Iteration 60 / LogL: -15325.434 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 70 / LogL: -15325.396 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 80 / LogL: -15325.418 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 90 / LogL: -15325.414 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 100 / LogL: -15325.418 / Time: 0h:0m:2s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -15335.776
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 1.000
+TREE SEARCH COMPLETED AFTER 101 ITERATIONS / Time: 0h:0m:2s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+Initial log-likelihood: -15325.396
+Current log-likelihood at step 1: -15325.396
+Partition-specific rates:  1.998 1.836 0.369 1.164 1.262 0.167 0.517 1.709 0.663 0.723
+Parameters optimization took 0 rounds (0.002 sec)
+
+Partition information was printed to species_tree_unrooted.best_model.nex
+BEST SCORE FOUND : -15325.396
+Creating bootstrap support values...
+Split supports printed to NEXUS file species_tree_unrooted.splits.nex
+Total tree length: 0.251
+
+Total number of iterations: 101
+CPU time used for tree search: 6.683 sec (0h:0m:6s)
+Wall-clock time used for tree search: 0.685 sec (0h:0m:0s)
+Total CPU time used: 22.504 sec (0h:0m:22s)
+Total wall-clock time used: 2.054 sec (0h:0m:2s)
+
+Computing bootstrap consensus tree...
+Reading input file species_tree_unrooted.splits.nex...
+4 taxa and 7 splits.
+Consensus tree written to species_tree_unrooted.contree
+Reading input trees file species_tree_unrooted.contree
+Log-likelihood of consensus tree: -15325.396
+
+Analysis results written to: 
+  IQ-TREE report:                species_tree_unrooted.iqtree
+  Maximum-likelihood tree:       species_tree_unrooted.treefile
+  Likelihood distances:          species_tree_unrooted.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          species_tree_unrooted.splits.nex
+  Consensus tree:                species_tree_unrooted.contree
+  Screen log file:               species_tree_unrooted.log
+
+Date and Time: Wed Oct 14 08:45:48 2026

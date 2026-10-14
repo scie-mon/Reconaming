@@ -1,0 +1,7 @@
+metric	value
+canonical_sequence_ids	8
+user_facing_gene_ids	8
+mapped_species	3
+outgroup_genes	2
+subst_model	LG+G4
+validation	passed
