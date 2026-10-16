@@ -86,7 +86,6 @@ nextflow run main.nf \
   --id_species path/to/gene_to_species.tsv \
   --species_tree path/to/species_tree.nwk \
   --revision_tag rev_001 \
-  --gff_output none \
   --outdir results \
   -resume
 ```
@@ -121,7 +120,7 @@ Required inputs:
 | `--id_species` | Gene-ID-to-species-ID mapping file corresponding to the protein FASTA |
 | `--revision_tag` | Identifier for this naming revision round |
 
-`--id_species` is a TSV with `sequence_id` and `species_id` columns; sequence IDs must match protein FASTA identifiers. Protein mode validates the supplied proteins and mapping, but does not have source GFF/GFF3 records to rewrite. Use `--gff_output none` in this mode.
+`--id_species` is a TSV with `sequence_id` and `species_id` columns; sequence IDs must match protein FASTA identifiers. Protein mode validates the supplied proteins and mapping, but does not have source GFF/GFF3 records to rewrite. No GFF output is produced. Omit `--gff_output`; an explicit `--gff_output none` is also accepted. Requests for `update` or `minimal` fail during startup validation.
 
 ### Shared optional inputs
 
@@ -176,7 +175,7 @@ Set pipeline parameters in the params block of nextflow.config. It is the author
 | `--outdir` | `results` | Final-results directory |
 | `--revision_tag` | none; required | Name for the current revision round, for example `rev_001` |
 | `--revision_registry` | empty project registry | Previous revision registry to continue from |
-| `--gff_output` | `update` | Annotation-mode output policy: `update`, `minimal`, or `none` |
+| `--gff_output` | unset (`null`) | Route-specific default: `update` for annotation, `none` for protein. Annotation accepts `update`, `minimal`, or `none`; protein accepts only omission or `none` |
 
 ### Annotation and protein inputs
 
@@ -321,11 +320,11 @@ The Reconaming stage produces the material needed to interpret and continue a na
 
 ### Annotation-mode outputs
 
-When annotation mode is selected and `--gff_output update` is used, post-processing applies Reconaming results to the supplied annotation data. `--gff_output minimal` requests a reduced annotation-oriented output, while `--gff_output none` suppresses GFF/GFF3 output.
+In annotation mode, omitting `--gff_output` defaults to `update`. With `update`, post-processing applies Reconaming results to the supplied annotation data. `--gff_output minimal` requests a reduced annotation-oriented output, while `--gff_output none` suppresses GFF/GFF3 output.
 
 ### Protein-mode outputs
 
-Protein mode produces the naming outputs but has no source GFF/GFF3 records to update. Set `--gff_output none`.
+Protein mode produces the naming outputs but has no source GFF/GFF3 records to update, so it never produces GFF output. No `--gff_output` setting is required; explicit `none` is accepted, while `update` and `minimal` are rejected during startup validation.
 
 ### Run state and intermediate files
 

@@ -101,6 +101,20 @@ workflow {
     tree_source = suppliedTree ? 'supplied' : 'inferred'
     // END INPUT SELECTION
 
+    // BEGIN GFF OUTPUT POLICY
+    def gff_output_setting = params.gff_output
+    if (gff_output_setting != null &&
+        (!(gff_output_setting instanceof CharSequence) ||
+         !(gff_output_setting.toString() in ['update', 'minimal', 'none']))) {
+        error '--gff_output must be update, minimal, or none; omit it to use the route-specific default.'
+    }
+    if (input_mode == 'protein' && gff_output_setting != null && gff_output_setting.toString() != 'none') {
+        error '--gff_output update and minimal require annotation inputs; omit --gff_output or use none in protein mode.'
+    }
+    def gff_output = gff_output_setting == null ?
+        (input_mode == 'annotation' ? 'update' : 'none') : gff_output_setting.toString()
+    // END GFF OUTPUT POLICY
+
     sequence_rows.findAll { tree_source == 'inferred' || (input_mode == 'annotation' && it.role == 'focal') }
         .each { row -> file(row.input_file, checkIfExists: true) }
     if (input_mode == 'protein') {
@@ -209,7 +223,7 @@ workflow {
         POSTPROCESS_RECONAMING_ANNOTATION(
             annotation_postprocess_input,
             file("${projectDir}/bin/postprocess_reconaming.py", checkIfExists: true),
-            params.gff_output, params.gene_id_attribute, params.revision_tag,
+            gff_output, params.gene_id_attribute, params.revision_tag,
             params.outdir, params.reconaming_container
         )
     }
@@ -217,7 +231,7 @@ workflow {
         POSTPROCESS_RECONAMING_PROTEIN(
             postprocess_common,
             file("${projectDir}/bin/postprocess_reconaming.py", checkIfExists: true),
-            'none', params.revision_tag, params.outdir, params.reconaming_container
+            gff_output, params.revision_tag, params.outdir, params.reconaming_container
         )
     }
 }
