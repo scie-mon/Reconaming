@@ -19,8 +19,10 @@ process RUN_BUSCO {
     output:
     tuple val(species_id), path("busco/${species_id}"), emit: busco_dir
     script:
-    if (!params.busco_lineage && !params.busco_auto_lineage) error 'Set --busco_lineage or enable --busco_auto_lineage.'
-    def lineage_arg = params.busco_lineage ? "-l ${params.busco_lineage}" : '--auto-lineage'
+    // Blank or omitted lineage selects auto; invalid explicit lineages remain BUSCO errors.
+    def lineage = params.busco_lineage?.toString()?.trim()
+    def quoted_lineage = "'" + (lineage ?: '').replace("'", "'\"'\"'") + "'"
+    def lineage_arg = lineage ? "-l ${quoted_lineage}" : '--auto-lineage'
     def mode = input_type == 'genome' ? 'genome' : 'proteins'
     """
     mkdir -p busco
@@ -52,7 +54,8 @@ process RUN_BUSCO_PHYLOGENOMICS {
     """
     mkdir BUSCO_results
     for result in ${busco_dirs}; do cp -aL "\$result" "BUSCO_results/\$(basename "\$result")"; done
-    BUSCO_phylogenomics.py -i BUSCO_results -o busco_phylogenomics --gene_tree_program iqtree --min_species_gene_tree ${params.species_tree_min_taxa} -t ${task.cpus}
+    # Only the concatenated alignment and partitions are consumed downstream.
+    BUSCO_phylogenomics.py -i BUSCO_results -o busco_phylogenomics --supermatrix_only -t ${task.cpus}
     """
 }
 process INFER_SUPERMATRIX_TREE {

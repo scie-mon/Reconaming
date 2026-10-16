@@ -197,12 +197,22 @@ Set pipeline parameters in the params block of nextflow.config. It is the author
 |---|---:|---|
 | `--species_tree` | none | Supplied species tree; skips internal species-tree inference |
 | `--species_tree_outgroup` | none | Outgroup for supplied-tree validation/rooting |
-| `--busco_lineage` | none | BUSCO lineage dataset to use, if specified |
-| `--busco_auto_lineage` | `true` | Let BUSCO choose a lineage automatically |
+| `--busco_lineage` | none | BUSCO lineage dataset used for all species-tree inputs; omitted or blank enables automatic selection independently for each input |
 | `--busco_mode` | `auto` | Follow each row's `input_type`; `genome` or `proteome` forces one type for all inference inputs |
 | `--busco_warn_complete` | `90` | Completeness threshold that triggers a warning |
 | `--species_tree_bootstrap` | `1000` | Number of species-tree bootstrap replicates |
-| `--species_tree_min_taxa` | `3` | Minimum number of taxa required for species-tree inference |
+
+#### BUSCO lineage selection
+
+When `--busco_lineage` is specified with a non-empty value, Reconaming uses that dataset for all species-tree inputs, including every focal species and the auxiliary outgroup. For example, add `--busco_lineage arthropoda_odb12` to the run command to use that dataset throughout the analysis.
+
+When `--busco_lineage` is omitted or blank, BUSCO selects a lineage independently for each input using `--auto-lineage`. Reconaming does not harmonise automatically selected datasets across species. This lineage selection is separate from `--busco_mode auto`, which follows each row's genome/proteome input type.
+
+An invalid explicit lineage causes the run to fail; it does not trigger automatic lineage selection as a fallback. These settings apply only to internal species-tree inference and are not used when `--species_tree` supplies the tree.
+
+#### Species-tree alignment and inference
+
+BUSCO_phylogenomics prepares only the concatenated supermatrix and its partitions (`--supermatrix_only`). IQ-TREE infers the species tree from those outputs. Individual BUSCO marker trees are not generated, so no marker-gene-tree minimum-species threshold is exposed. The workflow then roots the species tree on the auxiliary outgroup and prunes that outgroup.
 
 ### Gene-tree and reconciliation parameters
 
