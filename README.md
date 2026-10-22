@@ -340,6 +340,10 @@ Resource requests remain separate from the reconciliation command: `params.proce
 
 Future HPC deployment will require site-specific executor, memory, walltime, filesystem and container configuration, plus validation of MPI launching and CPU placement. That work is outside the current development scope.
 
+## Experimental interactive gene evolution example
+
+[![Open the interactive example](assets/evolution_example_preview.png)](https://scie-mon.github.io/Reconaming/assets/gene_family_evolution_example.html)
+
 ## License
 
 Reconaming is distributed under the GNU General Public License v3.0. See [`LICENSE`](LICENSE).

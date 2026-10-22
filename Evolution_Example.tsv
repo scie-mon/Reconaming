@@ -1,0 +1,63 @@
+How does gene family evolution work?
+
+Suppose we are starting with a single gene. Let us call it 'Gene0' which exist in a single species of origin, 'Species0':	Species Tree: (Species0:1);	Gene Tree: (Sp0-Gene0:1);
+
+Two things can happen now.
+
+
+A speciation:	Species Tree: ((SpeciesA,SpeciesB));	Gene Tree: ((SpA-Gene0,SpB-Gene0));
+
+which leaves us with two versions of the same gene, one in each species.
+
+
+or a gene duplication:	Species Tree: (Species0:1);	Gene Tree: ((Sp0-Gene1,Sp0-Gene2));
+
+which leaves us two different genes in the same one species.
+
+
+Let us continue the 2nd case. Assume now a speciation happens:	Species Tree: ((SpeciesA,SpeciesB));	Gene Tree: (((SpA-Gene1,SpB-Gene1),(SpA-Gene2,SpB-Gene2)));
+
+
+or again a duplication of Gene2:	Species Tree: (Species0:1);	Gene Tree: ((Sp0-Gene1,(Sp0-Gene3,Sp0-Gene4)));
+
+and then a duplication of Gene3 and Gene4:	Species Tree: (Species0:1);	Gene Tree: ((Sp0-Gene1,((Sp0-Gene5,Sp0-Gene6),(Sp0-Gene7,Sp0-Gene8))));
+
+
+
+(Note: when considering the multi gene family phylogeny of some recent taxon, there should be a relevantnumber of gene duplications before any speciation appears in that evolutionary history.)
+
+
+Let us now introduce the first speciation.	Species Tree: ((SpeciesA,SpeciesB));	Gene Tree: (((SpA-Gene1,SpB-Gene1),(((SpA-Gene5,SpB-Gene5),(SpA-Gene6,SpB-Gene6)),((SpA-Gene7,SpB-Gene7),(SpA-Gene8,SpB-Gene8)))));
+
+
+but assumme that SpA lost its Gene5 ortholog and SpB lost Gene6 and Gene7(Note: at this point most of all information is lost that would indicated the duplication of Gene3 -> Gene5/Gene6.Without this lost knowledge they are mostly indistinguishable from orthologs, though biologically they are none.)	Species Tree: ((SpeciesA,SpeciesB));	Gene Tree: (((SpA-Gene1,SpB-Gene1),(((SpB-Gene5),(SpA-Gene6)),((SpA-Gene7),(SpA-Gene8,SpB-Gene8)))));
+
+but assumme that SpA lost its Gene5 ortholog and SpB lost Gene6 and Gene7	Species Tree: ((SpeciesA,SpeciesB));	Gene Tree: (((SpA-Gene1,SpB-Gene1),(((SpB-Gene3),(SpA-Gene3)),((SpA-Gene7),(SpA-Gene8,SpB-Gene8)))));
+
+
+Now assume a speciation event in SpeciesB	Species Tree: ((SpeciesA,(SpeciesC,SpeciesD)));	Gene Tree: (((SpA-Gene1,(SpC-Gene1,SpD-Gene1)),((((SpC-Gene3,SpD-Gene3)),(SpA-Gene3)),((SpA-Gene7),(SpA-Gene8,(SpC-Gene8,SpD-Gene8))))));
+
+
+and another speciation event in SpeciesD	Species Tree: ((SpeciesA,(SpeciesC,(SpeciesE,SpeciesF))));	Gene Tree: (((SpA-Gene1,(SpC-Gene1,(SpE-Gene1,SpF-Gene1))),((((SpC-Gene3,(SpE-Gene3,SpF-Gene3))),(SpA-Gene3)),((SpA-Gene7),(SpA-Gene8,(SpC-Gene8,(SpE-Gene8,SpF-Gene8)))))));
+
+
+Next, let's have a duplication of Gene8 in SpeciesC.	Species Tree: ((SpeciesA,(SpeciesC,(SpeciesE,SpeciesF))));	Gene Tree: (((SpA-Gene1,(SpC-Gene1,(SpE-Gene1,SpF-Gene1))),((((SpC-Gene3,(SpE-Gene3,SpF-Gene3))),(SpA-Gene3)),((SpA-Gene7),(SpA-Gene8,((SpC-Gene9,SpC-Gene10),(SpE-Gene8,SpF-Gene8)))))));
+
+Notably, even though all Gene8 tips are still true biological single-copy orthologsthey do not constitute a monophyletic group anymore.
+
+
+Next, assume a speciation in SpeciesC.	Species Tree: ((SpeciesA,((SpeciesG,SpeciesH),(SpeciesE,SpeciesF))));	Gene Tree: (((SpA-Gene1,((SpG-Gene1,SpH-Gene1),(SpE-Gene1,SpF-Gene1))),(((((SpG-Gene3,SpH-Gene3),(SpE-Gene3,SpF-Gene3))),(SpA-Gene3)),((SpA-Gene7),(SpA-Gene8,(((SpG-Gene9,SpH-Gene9),(SpG-Gene10,SpH-Gene10)),(SpE-Gene8,SpF-Gene8)))))));
+
+
+Now, Gene9 and Gene10 constitute each an orthology group, again nested inside their ancestral Gene8 orthology group.
+
+
+Considering common large multi gene family groups like chemoreceptors which originated from countless repeated speciationand duplication events, the representation of this phylogenetic topology in numeric gene IDs remains completely unfeasable;especially with potentially changing and growing input sets by new available sequencing data. Thus, the only thing that canbe reasonably represented by such IDs is immediate nested orthology.
+
+Under the assumption of a reconciled gene family phylogeny duplication nodes naturally define the boundaries of ortholgygroups (orthogroups).
+
+Additionally, under the assumption of a defined fixed taxonomic focus, e.g. a genus, recognising the first occuring speciationnode allows the definition of a 'ParentGroup' as starting point of a nested orthogroup.	Species Tree: ((SpeciesA,((SpeciesG,SpeciesH),(SpeciesE,SpeciesF))));	Gene Tree: (((SpA-Gene1,((SpG-Gene1,SpH-Gene1),(SpE-Gene1,SpF-Gene1))),(((((SpG-Gene3,SpH-Gene3),(SpE-Gene3,SpF-Gene3))),(SpA-Gene3)),((SpA-Gene7),(SpA-Gene8-1,(((SpG-Gene8-2,SpH-Gene8-2),(SpG-Gene8-3,SpH-Gene8-3)),(SpE-Gene8-1,SpF-Gene8-1)))))));
+
+Thereby, duplication nodes serve as boundaries orthogroups, assigning all genes to the same orthogroup as long as theyare connected without crossing any duplication node. The concept of an orthology boundary becomes even more powerful asphylogenies are no truth but probabilistic predictions where each node comes with a measure of its reliability. Since the morerestrictive statement is the declaration of orthology, the conservative approach is to accept a speciation node as non-boundary only under the restriction of a high enough support value. This extends boundaries from duplication as well asundersupported non-duplication nodes.
+
+
