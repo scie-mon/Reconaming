@@ -121,9 +121,9 @@ nextflow run main.nf \
 
 Follow a fictional multigene family through speciation, duplication and gene loss. Paired species and gene trees show why orthology alone does not provide the gene-identity distinction that Reconaming's names are intended to convey, and how ParentGroups and naming-group suffixes provide a practical compromise.
 
-Choose between the alternative evolutionary paths, then follow the expanded family to its final naming example. The diagrams show topology, not elapsed time or substitution distances. JavaScript is required to explore the alternative paths.
+Choose between the alternative evolutionary paths, then follow the expanded family to its final naming example. The diagrams show topology, not elapsed time or substitution distances.
 
-> The example begins with a known fictional history. Real analyses must infer that history from surviving data, and some events may remain unresolved or undetectable. The example is an explanation of the naming principle, not a pipeline run, validation dataset or demonstration of revision-registry operation.
+> The example follows a known fictional history. Real analyses must infer that history from surviving data, and some events may remain unresolved or undetectable. The example is an explanation of the naming principle, not a pipeline run, validation dataset or demonstration of revision-registry operation.
 
 The sections below summarise the principle without requiring the interactive page. Installation and execution instructions remain separate from this biological explanation.
 
@@ -133,9 +133,9 @@ For a pair of homologous genes, orthology describes a relationship arising throu
 
 For example, a gene retained in one species can be orthologous to both copies produced by a later duplication in another species. Those two copies are nevertheless distinct genes and paralogs of each other. A useful naming scheme should preserve the distinction between the corresponding gene identity across species and the broader orthology relationship to later duplicates.
 
-Reconaming derives this distinction from a reconciled gene tree. Reconciliation relates the gene tree to the species tree and annotates duplication events. The naming stage reads that inferred history rather than independently reconstructing another evolutionary tree.
+Reconaming derives this distinction from a reconciled gene tree. Reconciliation relates the gene tree to the species tree and annotates gene duplication events. The naming stage reads that inferred history rather than independently reconstructing another evolutionary tree.
 
-Reconaming assigns genes to naming groups using this tree. A shared assignment extends along branches until a naming boundary is reached; separate groups are assigned beyond that boundary. The boundary-delimited groups form the orthology-group partition used for naming, referred to here as orthogroups or naming groups. Genes in different naming groups can still be orthologous, particularly when duplications create nested relationships. Naming-group membership is therefore not a substitute for inspecting the full evolutionary relationship.
+Reconaming assigns genes to naming groups using this tree. Genes belong to the same naming group if the path connecting them passes only through well-supported speciation nodes. Duplication nodes and low-support non-duplication nodes therefore act as boundaries between naming groups. These groups form the partitions used for naming and are referred to here as orthogroups. Genes in different naming groups can still be orthologous, particularly when duplications create nested relationships. Naming-group membership is therefore not a substitute for inspecting the full evolutionary relationship.
 
 Here, inferred gene identity means the correspondence that the naming scheme seeks to preserve across species. It does not mean identical sequences, interchangeable function or independent proof that the inferred history is correct.
 
@@ -149,24 +149,6 @@ In the simplified, duplication-based explanation, ParentGroup roots are identifi
 
 The scope is established by the evolutionary history represented in the input; this does not imply a separate option for selecting an arbitrary ancestral reference node inside an unchanged tree. In the interactive example, several gene lineages have already separated by duplication before the first speciation and define separate ParentGroups. If the input instead included an older speciation preceding those duplications, the lineages shown could fall within a single broader ParentGroup. Widening the input does not automatically merge groups: the included history and active boundary rules determine the result.
 
-#### The Gene8 example
-
-In the interactive history, Gene8 duplicates in SpeciesC, producing Gene9 and Gene10. SpeciesC subsequently splits into SpeciesG and SpeciesH. The remaining Gene8 copies in SpeciesA, SpeciesE and SpeciesF retain the narrower Gene8 identity; the Gene9 and Gene10 descendants have distinct identities, although all belong to the broader ancestral Gene8 lineage.
-
-The final naming illustration represents these relationships as follows:
-
-| Gene lineage in the example | Species carrying the illustrated copies | Naming label after grouping |
-|---|---|---|
-| Remaining Gene8 copies | SpeciesA, SpeciesE, SpeciesF | `Gene8-1` |
-| Gene9 descendants | SpeciesG, SpeciesH | `Gene8-2` |
-| Gene10 descendants | SpeciesG, SpeciesH | `Gene8-3` |
-
-The shared leading number identifies the ParentGroup; the suffix distinguishes the narrower naming groups. Ignoring the species prefix, the same complete label denotes the same inferred gene identity across species.
-
-Different suffixes do not automatically mean paralogy. A Gene8-1 copy remains orthologous to copies in both other groups, while the Gene8-2 and Gene8-3 lineages are separated by the duplication that produced Gene9 and Gene10. Further nested duplications can create additional naming groups, but the identifier does not encode the complete duplication hierarchy. Use the reconciled tree for that detail.
-
-The numbers in this fictional example were chosen to explain the relationship. They do not promise the exact numbers that a fresh pipeline run would allocate. Actual identifiers also depend on the current partition, traversal and historical assignments in the supplied registry.
-
 ### Boundaries and uncertain relationships
 
 The interactive example first uses duplication nodes as naming boundaries: a shared identity continues along speciation branches, while new identities are distinguished across duplications.
@@ -178,15 +160,9 @@ These two boundary types have different meanings:
 - A duplication boundary separates gene identities on the basis of the inferred evolutionary history.
 - A support-based boundary separates naming assignments conservatively; it is not evidence of a duplication or proof of paralogy.
 
-The core treats an internal node as an automatic boundary if it is labelled as a duplication (`D=Y`), or if its numeric support is below the configured threshold or cannot be recognised. The default threshold is `70`.
+The core script treats an internal node as an automatic boundary if it is labelled as a duplication (`D=Y`), or if its numeric support is below the configured threshold or cannot be recognised. The default threshold is `70`.
 
 By default, `ignore_sco=true` suppresses automatic boundaries in subtrees with no repeated species assignments after species-alias mapping. This exception applies to both duplication-based and support-based candidates. Explicit boundary overrides take precedence. These implementation settings are described under [Advanced control file](#advanced-control-file).
-
-#### Known history versus inferred history
-
-The reciprocal-loss sequence in the interactive example illustrates a separate limitation: a real duplication can be hidden by later losses. In the constructed history, SpB-Gene5 and SpA-Gene6 are paralogs, but their surviving topology alone does not distinguish that history from speciation. The example then deliberately continues under the interpretation that misses the duplication and relabels the surviving copies Gene3.
-
-That relabelling is a change in interpretation, not an additional evolutionary event. The hollow duplication marker preserves the reader's knowledge of the fictional history; it is not information assumed to be available to the naming procedure. Naming follows the inferred history and cannot by itself recover an event for which the necessary distinguishing evidence is absent.
 
 ### How to read a generated name
 
@@ -196,11 +172,15 @@ Displayed names have this structure:
 <species alias><family prefix><ParentGroup>[-<naming-group number>]
 ```
 
-The within-ParentGroup naming-group number is called `ParaNr` internally. Despite that technical name, different values alone do not establish paralogy.
+Example:
 
-The `aliases` mapping supplies species aliases; without a mapping, the species identifier is used. The `prefix` setting supplies the family label or separator. No additional separator is inserted automatically. When `prefix` is unset, the core default is `_`.
+```text
+DmagIR123-4
+```
 
-For example, with species alias `SpA-`, prefix `Gene`, ParentGroup `8` and subgroup `1`, the displayed name is `SpA-Gene8-1`. The tutorial's shortened labels such as `Gene8-1` omit the species prefix when discussing group relationships.
+The naming-group number within each ParentGroup is labeled ParaNr in exported tables and annotated trees and supplies the corresponding suffix in generated gene names. Different numbers identify different naming groups; they do not, by themselves, establish paralogy.
+
+The `aliases` mapping supplies species aliases; without a mapping, the species identifier is used. The `prefix` setting supplies the family label or separator. No additional separator is inserted automatically. When `prefix` is unset, the default is `_`.
 
 By default, the displayed `-1` suffix is omitted when every current member of the ParentGroup has `ParaNr=1`. Set `show_single_para=true` to retain it. A sole remaining subgroup numbered `2` or higher still retains its suffix. The revision registry always stores an explicit `ParentGroup-ParaNr` assignment, such as `8-1`, irrespective of display shortening.
 
@@ -445,7 +425,7 @@ Legacy registry identifiers with letter suffixes, such as `25a`, are accepted as
 
 ### Advanced control file
 
-`conf/reconaming_opt.ctl` contains naming-core options. Empty values leave the core defaults in effect. For the biological rationale, see [How Reconaming works](#how-reconaming-works).
+`conf/reconaming_opt.ctl` contains naming options. Empty values leave the defaults in effect. For the biological rationale, see [How Reconaming works](#how-reconaming-works).
 
 | Setting | Purpose |
 |---|---|
@@ -456,14 +436,22 @@ Legacy registry identifiers with letter suffixes, such as `25a`, are accepted as
 | `prefix` | Family label or separator used in displayed names; core default `_` |
 | `aliases` | Species-to-alias mappings used in displayed names and the single-copy boundary exception |
 | `show_single_para` | Retain the displayed `-1` suffix even when all members of a ParentGroup have subgroup number `1`; default `false` |
+| `include_outgroup` | Include outgroup genes in naming; default `false` |
+| `root_by` | Root the tree using the common ancestor of the specified tip identifiers |
+| `sort_tree` | Sort the tree before assigning node IDs and naming groups; default `true` |
+| `max_pg_size` | Maximum number of descendant genes allowed for an automatically selected ParentGroup root; default `0` means no limit |
+| `pgignore_nodes` | Exclude specified `NodeID` values from automatic ParentGroup-root selection |
+| `force_pg_root` | Force specified `NodeID` values to become ParentGroup roots |
+| `force_boundary_true` | Force specified `NodeID` values to act as naming boundaries, overriding automatic detection |
+| `force_boundary_false` | Prevent specified `NodeID` values from acting as naming boundaries, overriding automatic detection |
 
-The control file also accepts outgroup treatment, rooting, tree ordering, ParentGroup size limits, and explicit ParentGroup-root and boundary overrides. Node-based overrides refer to IDs assigned after the core's rooting and sorting steps; these IDs need not remain unchanged when the tree or preprocessing settings change.
+Node-specific settings use the `NodeID` values recorded in the output NHX tree. These numbers are assigned after rooting and sorting; they are not the historical gene or group identifiers preserved in the revision registry. Check the node numbers again before reusing overrides if the input tree, rooting or sorting settings change.
 
-The control file accepts only naming-core options. Pipeline inputs, outputs, tools and CPU allocations belong in `nextflow.config`; non-core control-file keys are errors.
+The control file accepts only core script options. Pipeline inputs, outputs, tools and CPU allocations belong in `nextflow.config`; non-core control-file keys are errors.
 
-#### Support values supplied to the naming core
+#### Support values supplied to the core script
 
-The support rule operates on numeric internal-node labels in the tree passed to the core. The current GeneRax-output normaliser replaces internal labels matching `n<number>` with `100`. These replacement values are not measured branch-support estimates. Do not interpret the naming threshold as a guarantee that every retained relationship has independently measured support above that threshold.
+The support rule operates on numeric internal-node labels in the tree passed to the core script. The current GeneRax-output normaliser replaces internal labels matching `n<number>` with `100`. These replacement values are not measured branch-support estimates. Do not interpret the naming threshold as a guarantee that every retained relationship has independently measured support above that threshold.
 
 ## Output
 
