@@ -2,7 +2,6 @@
 import argparse
 import csv
 import statistics
-import sys
 from collections import defaultdict
 
 
@@ -33,19 +32,14 @@ def table_rows(path):
     reader = csv.DictReader(rows, delimiter='\t')
     expected = ['gene_id', 'transcript_id']
     if reader.fieldnames != expected:
-        raise ValueError('Selection table must have exactly these tab-separated columns in this order: gene_id, transcript_id.')
+        raise ValueError('Selection table must have exactly these tab-separated columns in this order: gene_id, transcript_id (CDS ID).')
     return expected, list(reader)
 
 
 def choose_automatic(group_rows, median_length):
-    return sorted(
-        group_rows,
-        key=lambda row: (
-            abs(int(row['protein_length']) - median_length),
-            -int(row['protein_length']),
-            row['sequence_id'],
-        ),
-    )[0]
+    return sorted(group_rows, key=lambda row: (
+        abs(int(row['protein_length']) - median_length),
+        -int(row['protein_length']), row['sequence_id']))[0]
 
 
 def write_tsv(path, header, rows):
@@ -58,25 +52,22 @@ def write_tsv(path, header, rows):
 def main(args):
     with open(args.manifest, newline='') as handle:
         manifest_rows = list(csv.DictReader(handle, delimiter='\t'))
-
     required = {'sequence_id', 'gene_key', 'gene_id', 'transcript_id', 'protein_length'}
     if not manifest_rows or not required.issubset(manifest_rows[0]):
         raise SystemExit('Manifest lacks required columns: sequence_id, gene_key, gene_id, transcript_id, protein_length.')
-
     proteins = fasta(args.proteins)
     by_gene_key = defaultdict(list)
     sequence_lookup = {}
     transcript_lookup = defaultdict(list)
     gene_lookup = defaultdict(set)
     errors = []
-
     for row in manifest_rows:
         sequence_id = row['sequence_id'].strip()
         gene_key = row['gene_key'].strip()
         gene_id = row['gene_id'].strip()
         transcript_id = row['transcript_id'].strip()
         if not sequence_id or not gene_key or not gene_id or not transcript_id:
-            raise SystemExit('Manifest contains an empty sequence_id, gene_key, gene_id, or transcript_id.')
+            raise SystemExit('Manifest contains an empty sequence_id, gene_key, gene_id, or transcript_id (CDS ID).')
         if sequence_id in sequence_lookup:
             raise SystemExit(f'Manifest contains duplicate sequence_id: {sequence_id}')
         if sequence_id not in proteins:
@@ -90,17 +81,12 @@ def main(args):
         transcript_lookup[transcript_id].append(row)
         gene_lookup[gene_id].add(gene_key)
         by_gene_key[gene_key].append(row)
-
     extra_fasta_ids = set(proteins) - set(sequence_lookup)
     if extra_fasta_ids:
         raise SystemExit(f'FASTA contains IDs absent from manifest: {", ".join(sorted(extra_fasta_ids)[:10])}')
-
     multi_groups = {key: rows for key, rows in by_gene_key.items() if len(rows) > 1}
     median_length = statistics.median(int(row['protein_length']) for row in manifest_rows)
-    chosen = {}
-    modes = {}
-    validation_rows = []
-
+    chosen, modes, validation_rows = {}, {}, []
     if not args.selection_table_supplied:
         for gene_key, rows in by_gene_key.items():
             chosen[gene_key] = choose_automatic(rows, median_length)
@@ -112,23 +98,19 @@ def main(args):
         except ValueError as exc:
             supplied_rows = []
             errors.append(str(exc))
-
         selected = {}
         unresolved_marker_groups = set()
-
         for line_number, supplied in enumerate(supplied_rows, start=2):
             gene_id = (supplied.get('gene_id') or '').strip()
             transcript_id = (supplied.get('transcript_id') or '').strip()
             context = f'line {line_number}'
-
             if not gene_id:
                 validation_rows.append(['info', context, '', '', transcript_id, '', 'ignored_candidate_row', 'Row has an empty gene_id and is ignored.'])
                 continue
-            if gene_id and not transcript_id:
+            if not transcript_id:
                 unresolved_marker_groups.add(gene_id)
-                validation_rows.append(['warning', context, gene_id, '', '', '', 'unresolved_marker', 'Gene has no selected transcript.'])
+                validation_rows.append(['warning', context, gene_id, '', '', '', 'unresolved_marker', 'Gene has no selected CDS candidate.'])
                 continue
-
             gene_keys = gene_lookup.get(gene_id, set())
             if len(gene_keys) != 1:
                 message = 'Unknown gene_id.' if not gene_keys else f'Ambiguous gene_id maps to {len(gene_keys)} gene groups.'
@@ -137,19 +119,19 @@ def main(args):
                 continue
             gene_key = next(iter(gene_keys))
             if gene_key not in multi_groups:
-                errors.append(f'{context}: gene_id {gene_id!r} has one isoform and must not be listed in a manual selection table.')
-                validation_rows.append(['error', context, gene_id, gene_key, transcript_id, '', 'single_isoform_gene_listed', 'Single-isoform genes are selected automatically.'])
+                errors.append(f'{context}: gene_id {gene_id!r} has one CDS candidate and must not be listed in a manual selection table.')
+                validation_rows.append(['error', context, gene_id, gene_key, transcript_id, '', 'single_isoform_gene_listed', 'Genes with one CDS candidate are selected automatically.'])
                 continue
             matches = transcript_lookup.get(transcript_id, [])
             if len(matches) != 1:
-                message = 'Unknown transcript_id.' if not matches else f'Ambiguous transcript_id matches {len(matches)} sequences.'
+                message = "Unknown CDS ID in column 'transcript_id'." if not matches else f"Ambiguous CDS ID in column 'transcript_id' matches {len(matches)} sequences."
                 errors.append(f'{context}: {message} ({transcript_id!r})')
                 validation_rows.append(['error', context, gene_id, gene_key, transcript_id, '', 'invalid_transcript_id', message])
                 continue
             row = matches[0]
             if row['gene_key'] != gene_key:
-                errors.append(f'{context}: transcript_id {transcript_id!r} belongs to a different gene group.')
-                validation_rows.append(['error', context, gene_id, gene_key, transcript_id, row['sequence_id'], 'transcript_gene_mismatch', 'Transcript does not belong to the stated gene_id.'])
+                errors.append(f'{context}: CDS ID {transcript_id!r} belongs to a different gene group.')
+                validation_rows.append(['error', context, gene_id, gene_key, transcript_id, row['sequence_id'], 'transcript_gene_mismatch', 'CDS candidate does not belong to the stated gene_id.'])
                 continue
             if gene_key in selected:
                 errors.append(f'{context}: duplicate selection for gene_id {gene_id!r}.')
@@ -157,19 +139,15 @@ def main(args):
                 continue
             selected[gene_key] = row
             validation_rows.append(['info', context, gene_id, gene_key, transcript_id, row['sequence_id'], 'valid_selection', 'Selection accepted.'])
-
         for gene_key, rows in by_gene_key.items():
             if len(rows) == 1:
                 chosen[gene_key] = rows[0]
                 modes[gene_key] = 'automatic_single_isoform'
-
         missing = set(multi_groups) - set(selected)
         for gene_key, row in selected.items():
             chosen[gene_key] = row
             modes[gene_key] = 'manual'
-
-        needs_template = bool(errors or missing or unresolved_marker_groups)
-        if needs_template:
+        if errors or missing or unresolved_marker_groups:
             status = 'manual_selection_required'
             template_rows = []
             for gene_key, rows in sorted(multi_groups.items(), key=lambda item: (item[1][0]['gene_id'], item[0])):
@@ -183,18 +161,13 @@ def main(args):
             write_tsv(args.template, ['gene_id', 'transcript_id'], template_rows)
             for gene_key in sorted(missing):
                 gene_id = multi_groups[gene_key][0]['gene_id']
-                validation_rows.append(['warning', '', gene_id, gene_key, '', '', 'missing_selection', 'No valid manual selection was supplied; candidate transcripts were written to the template.'])
-            chosen = {}
-            modes = {}
+                validation_rows.append(['warning', '', gene_id, gene_key, '', '', 'missing_selection', 'No valid manual selection was supplied; candidate CDS IDs were written to the template.'])
+            chosen, modes = {}, {}
         else:
             status = 'complete'
-
-    write_tsv(
-        args.validation_report,
-        ['severity', 'source', 'gene_id', 'gene_key', 'transcript_id', 'sequence_id', 'code', 'message'],
-        validation_rows,
-    )
-
+    write_tsv(args.validation_report,
+              ['severity', 'source', 'gene_id', 'gene_key', 'transcript_id', 'sequence_id', 'code', 'message'], validation_rows)
+    report_rows = []
     if status == 'complete':
         with open(args.representatives, 'w') as handle:
             for gene_key, row in sorted(chosen.items()):
@@ -208,32 +181,18 @@ def main(args):
                 output = dict(row)
                 output['selection_mode'] = modes[gene_key]
                 writer.writerow(output)
-        report_rows = []
         for gene_key, row in sorted(chosen.items()):
             report_rows.append([gene_key, row['gene_id'], row['sequence_id'], row['transcript_id'], modes[gene_key], 'selected'])
-    else:
-        report_rows = []
-
-    write_tsv(
-        args.report,
-        ['gene_key', 'gene_id', 'selected_sequence_id', 'selected_transcript_id', 'selection_mode', 'status'],
-        report_rows,
-    )
+    write_tsv(args.report, ['gene_key', 'gene_id', 'selected_sequence_id', 'selected_transcript_id', 'selection_mode', 'status'], report_rows)
     write_tsv(args.status, ['status'], [[status]])
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--proteins', required=True)
-    parser.add_argument('--manifest', required=True)
+    for name in ('proteins', 'manifest', 'representatives', 'output-manifest', 'report', 'validation-report', 'template', 'status'):
+        parser.add_argument('--' + name, required=True)
     parser.add_argument('--selection-table')
     parser.add_argument('--selection-table-supplied', choices=('true', 'false'), required=True)
-    parser.add_argument('--representatives', required=True)
-    parser.add_argument('--output-manifest', required=True)
-    parser.add_argument('--report', required=True)
-    parser.add_argument('--validation-report', required=True)
-    parser.add_argument('--template', required=True)
-    parser.add_argument('--status', required=True)
     arguments = parser.parse_args()
     arguments.selection_table_supplied = arguments.selection_table_supplied == 'true'
     if arguments.selection_table_supplied and not arguments.selection_table:

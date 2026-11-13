@@ -30,7 +30,7 @@ def parse_attributes(text):
 
 
 def parent_ids(attributes):
-    return [value for value in attributes.get('Parent', '').split(',') if value]
+    return [value.strip() for value in attributes.get('Parent', '').split(',') if value.strip()]
 
 
 def fasta(path):
@@ -73,7 +73,8 @@ def register_feature(features, feature_id, feature_type, parents, attributes, at
             'attributes_text': attributes_text,
             'line_number': line_number,
         }
-    elif prior['type'] != feature_type or prior['parents'] != parents or prior['attributes'] != attributes:
+    elif (prior['type'] != feature_type or prior['parents'] != parents
+          or (feature_type != 'CDS' and prior['attributes'] != attributes)):
         raise SystemExit(
             f'Inconsistent repeated GFF3 ID {feature_id!r} at line {line_number}; '
             f'first seen at line {prior["line_number"]}.'
@@ -81,7 +82,7 @@ def register_feature(features, feature_id, feature_type, parents, attributes, at
 
 
 def gene_ancestor(feature_id, features):
-    visited, current = set(), feature_id
+    visited, current, gene_id = set(), feature_id, ''
     while current:
         if current in visited:
             raise SystemExit(f'Cycle in GFF3 Parent graph while resolving {feature_id!r}.')
@@ -89,14 +90,15 @@ def gene_ancestor(feature_id, features):
         feature = features.get(current)
         if feature is None:
             raise SystemExit(f'GFF3 feature {current!r} referenced while resolving {feature_id!r} is missing.')
-        if feature['type'].lower() == 'gene':
-            return current
-        if not feature['parents']:
-            return ''
-        if len(feature['parents']) != 1:
-            raise SystemExit(f'Cannot resolve one gene ancestor for {feature_id!r}: multiple Parents.')
-        current = feature['parents'][0]
-    return ''
+        if feature['type'].lower() == 'gene' and not gene_id:
+            gene_id = current
+        if len(feature['parents']) > 1:
+            raise SystemExit(
+                f'Multiple Parents on GFF3 feature {current!r} at line '
+                f'{feature["line_number"]} while resolving {feature_id!r}.'
+            )
+        current = feature['parents'][0] if feature['parents'] else ''
+    return gene_id
 
 
 def required_attribute(feature, feature_id, attribute, context):
@@ -117,10 +119,10 @@ def required_attribute(feature, feature_id, attribute, context):
 
 
 
-def corrected_translation(source_feature_id, source_feature, cds_rows):
+def corrected_translation(source_feature_id, cds_rows):
     """Resolve complete corrected proteins; never concatenate per-CDS values."""
     sequences = defaultdict(list)
-    for row in [source_feature] + cds_rows:
+    for row in cds_rows:
         value = row['attributes'].get('translation', '')
         if not value.strip():
             continue
@@ -167,10 +169,15 @@ for option in ('gene_id_attribute', 'transcript_id_attribute', 'protein_id_attri
         raise SystemExit(f'Invalid attribute name for --{option.replace("_", "-")}: {value!r}')
     setattr(args, option, value)
 
+if not args.transcript_id_attribute:
+    raise SystemExit('--transcript-id-attribute must name a CDS attribute.')
+
 genome = fasta(args.genome)
 features = {}
 cds_by_unit = defaultdict(list)
 parentless_cds = []
+missing_cds_ids = []
+cds_unit_by_feature = {}
 
 with open(args.gff) as handle:
     for line_number, line in enumerate(handle, start=1):
@@ -183,6 +190,9 @@ with open(args.gff) as handle:
         attributes = parse_attributes(attributes_text)
         feature_id = attributes.get('ID')
         parents = parent_ids(attributes)
+        if feature_type == 'CDS' and not (feature_id or '').strip():
+            missing_cds_ids.append(line_number)
+            continue
         if feature_type == 'CDS' and not any(parent.strip() for parent in parents):
             parentless_cds.append((feature_id or '', line_number))
             continue
@@ -193,11 +203,37 @@ with open(args.gff) as handle:
             start, end = int(start), int(end)
         except ValueError:
             start = end = None
-        for unit_id in parents:
-            cds_by_unit[unit_id].append({
-                'start': start, 'end': end, 'contig': contig, 'strand': strand,
-                'attributes': attributes, 'line_number': line_number,
-            })
+        unit_id = required_attribute(
+            {'type': 'CDS', 'attributes': attributes},
+            f'{feature_id} (CDS line {line_number})',
+            args.transcript_id_attribute, 'CDS candidate ID',
+        )
+        prior_unit = cds_unit_by_feature.setdefault(feature_id, unit_id)
+        if prior_unit != unit_id:
+            raise SystemExit(
+                f'Inconsistent {args.transcript_id_attribute!r} values for repeated '
+                f'CDS ID {feature_id!r} at line {line_number}.'
+            )
+        if cds_by_unit[unit_id]:
+            prior = cds_by_unit[unit_id][0]
+            if (prior['contig'] != contig or prior['strand'] != strand
+                    or prior['parents'] != parents):
+                raise SystemExit(
+                    f'Inconsistent chromosome, strand or Parent for CDS candidate {unit_id!r} '
+                    f'at line {line_number}; first seen at line {prior["line_number"]}.'
+                )
+        cds_by_unit[unit_id].append({
+            'start': start, 'end': end, 'contig': contig, 'strand': strand,
+            'attributes': attributes, 'line_number': line_number,
+            'feature_id': feature_id, 'parents': parents,
+        })
+
+if missing_cds_ids:
+    raise SystemExit(
+        'CDS records missing a nonempty ID at GFF line(s): '
+        + ', '.join(str(number) for number in missing_cds_ids)
+        + '. CDS IDs are required, including with --no-parent-cds ignore.'
+    )
 
 accepted_rows = []
 report_rows = []
@@ -232,10 +268,14 @@ if parentless_cds:
 
 with open(args.proteins, 'w') as protein_handle:
     for source_feature_id in sorted(cds_by_unit):
-        source_feature = features.get(source_feature_id)
-        if source_feature is None:
-            raise SystemExit(f'CDS Parent {source_feature_id!r} has no corresponding GFF3 feature with that ID.')
-        source_gene_id = gene_ancestor(source_feature_id, features)
+        cds_rows = cds_by_unit[source_feature_id]
+        feature_ids = sorted({row['feature_id'] for row in cds_rows})
+        source_feature = features[feature_ids[0]]
+        source_ids = ','.join(feature_ids)
+        gene_ids = {gene_ancestor(feature_id, features) for feature_id in feature_ids}
+        if len(gene_ids) != 1:
+            raise SystemExit(f'Inconsistent gene membership for CDS candidate {source_feature_id!r}.')
+        source_gene_id = next(iter(gene_ids))
         gene_feature = features.get(source_gene_id) if source_gene_id else None
         if args.gene_id_attribute and gene_feature is None:
             raise SystemExit(
@@ -250,8 +290,7 @@ with open(args.proteins, 'w') as protein_handle:
         seen_ids.add(canonical_id)
 
         gene_id = required_attribute(gene_feature, source_gene_id, args.gene_id_attribute, 'gene ID') if gene_feature else ''
-        transcript_id = required_attribute(source_feature, source_feature_id, args.transcript_id_attribute, 'transcript ID')
-        cds_rows = cds_by_unit[source_feature_id]
+        transcript_id = source_feature_id  # Configured CDS attribute, not a parent-feature identifier.
         protein_values = {
             required_attribute({'type': 'CDS', 'attributes': row['attributes']}, f'{source_feature_id} (CDS line {row["line_number"]})', args.protein_id_attribute, 'protein ID')
             for row in cds_rows
@@ -264,7 +303,7 @@ with open(args.proteins, 'w') as protein_handle:
         protein_id = next(iter(protein_values))
 
         reason = ''
-        corrected = corrected_translation(source_feature_id, source_feature, cds_rows)
+        corrected = corrected_translation(source_feature_id, cds_rows)
         translation_source = 'translation_attribute' if corrected is not None else 'genomic_CDS'
         contigs = {row['contig'] for row in cds_rows}
         strands = {row['strand'] for row in cds_rows}
@@ -296,16 +335,16 @@ with open(args.proteins, 'w') as protein_handle:
                         reason = 'internal_stop_codon'
     
         if reason:
-            report_rows.append([canonical_id, source_feature_id, source_gene_id, 'excluded', reason, translation_source])
+            report_rows.append([canonical_id, source_ids, source_gene_id, 'excluded', reason, translation_source])
             continue
         protein = protein.rstrip('*')
         protein_handle.write(f'>{canonical_id}\n{protein}\n')
         accepted_rows.append([
-            canonical_id, gene_key, source_feature_id, ','.join(source_feature['parents']), source_gene_id,
+            canonical_id, gene_key, source_ids, ','.join(source_feature['parents']), source_gene_id,
             gene_id, transcript_id, protein_id, source_feature['type'], source_feature['attributes_text'],
             args.species_id, len(protein), len(cds_rows),
         ])
-        report_rows.append([canonical_id, source_feature_id, source_gene_id, 'accepted', '', translation_source])
+        report_rows.append([canonical_id, source_ids, source_gene_id, 'accepted', '', translation_source])
 
 with open(args.manifest, 'w', newline='') as manifest_handle:
     writer = csv.writer(manifest_handle, delimiter='\t')

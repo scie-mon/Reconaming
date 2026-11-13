@@ -264,6 +264,8 @@ The pipeline prepares proteins from the annotations, builds an input manifest, a
 
 CDS records without a nonempty `Parent` cause preparation to fail by default (`--no_parent_cds fail`). Use `--no_parent_cds ignore` to skip them with a warning and an entry for each skipped CDS in the preparation report.
 
+CDS rows sharing an ID form one protein candidate; different IDs remain separate. Every CDS requires an ID. GFF Parent references link each CDS to its gene feature; the complete parent chain is checked for multiple parents, missing references and cycles, which cause failure. If a CDS has a translation attribute, its value is used as the protein sequence instead of translating the genomic CDS; conflicting or invalid values cause failure. Manual selection tables use gene_id and transcript_id columns, where transcript_id contains the CDS ID.
+
 ### Protein route
 
 Protein mode is selected automatically when both `--protein_fasta` and `--id_species` are supplied.
@@ -339,11 +341,11 @@ Set pipeline parameters in the params block of nextflow.config. It is the author
 |---|---:|---|
 | `--sequence_inputs` | none | Species-labelled genome/proteome table; focal genomes prepare annotations, while focal + outgroup sequences enable inference |
 | `--annotation` | none | annotation GFF/GFF3 for annotation mode |
-| `--selection_table` | empty project table | Optional manual representative-isoform selection table |
+| `--selection_table` | empty project table | Optional manual selection TSV: `gene_id` and `transcript_id` (CDS ID) |
 | `--protein_fasta` | none | Representative protein FASTA for protein mode |
 | `--id_species` | none | Gene-to-species mapping for protein mode |
 | `--gene_id_attribute` | `ID` | GFF attribute used as the gene identifier |
-| `--transcript_id_attribute` | `ID` | GFF attribute used as the transcript identifier |
+| `--transcript_id_attribute` | `ID` | CDS attribute identifying coding candidates; rows with the same value belong to one candidate |
 | `--protein_id_attribute` | empty | Optional GFF attribute used as the protein identifier |
 | `--no_parent_cds` | `fail` | Policy for CDS without a nonempty `Parent`: `fail` stops preparation; `ignore` skips them with a warning and report entries |
 
