@@ -176,7 +176,6 @@ genome = fasta(args.genome)
 features = {}
 cds_by_unit = defaultdict(list)
 parentless_cds = []
-missing_cds_ids = []
 cds_unit_by_feature = {}
 
 with open(args.gff) as handle:
@@ -190,9 +189,12 @@ with open(args.gff) as handle:
         attributes = parse_attributes(attributes_text)
         feature_id = attributes.get('ID')
         parents = parent_ids(attributes)
-        if feature_type == 'CDS' and not (feature_id or '').strip():
-            missing_cds_ids.append(line_number)
-            continue
+        if feature_type == 'CDS':
+            unit_id = required_attribute(
+                {'type': 'CDS', 'attributes': attributes},
+                f'{feature_id or "<missing ID>"} (CDS line {line_number})',
+                args.transcript_id_attribute, 'CDS candidate ID',
+            )
         if feature_type == 'CDS' and not any(parent.strip() for parent in parents):
             parentless_cds.append((feature_id or '', line_number))
             continue
@@ -203,12 +205,7 @@ with open(args.gff) as handle:
             start, end = int(start), int(end)
         except ValueError:
             start = end = None
-        unit_id = required_attribute(
-            {'type': 'CDS', 'attributes': attributes},
-            f'{feature_id} (CDS line {line_number})',
-            args.transcript_id_attribute, 'CDS candidate ID',
-        )
-        prior_unit = cds_unit_by_feature.setdefault(feature_id, unit_id)
+        prior_unit = cds_unit_by_feature.setdefault(feature_id, unit_id) if feature_id else unit_id
         if prior_unit != unit_id:
             raise SystemExit(
                 f'Inconsistent {args.transcript_id_attribute!r} values for repeated '
@@ -225,15 +222,9 @@ with open(args.gff) as handle:
         cds_by_unit[unit_id].append({
             'start': start, 'end': end, 'contig': contig, 'strand': strand,
             'attributes': attributes, 'line_number': line_number,
-            'feature_id': feature_id, 'parents': parents,
+            'feature_id': feature_id, 'parents': parents, 'type': 'CDS',
+            'attributes_text': attributes_text,
         })
-
-if missing_cds_ids:
-    raise SystemExit(
-        'CDS records missing a nonempty ID at GFF line(s): '
-        + ', '.join(str(number) for number in missing_cds_ids)
-        + '. CDS IDs are required, including with --no-parent-cds ignore.'
-    )
 
 accepted_rows = []
 report_rows = []
@@ -269,10 +260,16 @@ if parentless_cds:
 with open(args.proteins, 'w') as protein_handle:
     for source_feature_id in sorted(cds_by_unit):
         cds_rows = cds_by_unit[source_feature_id]
-        feature_ids = sorted({row['feature_id'] for row in cds_rows})
-        source_feature = features[feature_ids[0]]
+        feature_ids = sorted({row['feature_id'] for row in cds_rows if row['feature_id']})
+        source_feature = cds_rows[0]
         source_ids = ','.join(feature_ids)
-        gene_ids = {gene_ancestor(feature_id, features) for feature_id in feature_ids}
+        if len(source_feature['parents']) != 1:
+            raise SystemExit(
+                f'Multiple Parents on CDS candidate {source_feature_id!r} '
+                f'at line {source_feature["line_number"]}.'
+            )
+        # The CDS itself need not have an ID; its Parent starts the feature lookup.
+        gene_ids = {gene_ancestor(row['parents'][0], features) for row in cds_rows}
         if len(gene_ids) != 1:
             raise SystemExit(f'Inconsistent gene membership for CDS candidate {source_feature_id!r}.')
         source_gene_id = next(iter(gene_ids))
