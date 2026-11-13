@@ -116,6 +116,35 @@ def required_attribute(feature, feature_id, attribute, context):
     return value
 
 
+
+def corrected_translation(source_feature_id, source_feature, cds_rows):
+    """Resolve complete corrected proteins; never concatenate per-CDS values."""
+    sequences = defaultdict(list)
+    for row in [source_feature] + cds_rows:
+        value = row['attributes'].get('translation', '')
+        if not value.strip():
+            continue
+        protein = ''.join(value.split()).upper()
+        if protein.endswith('*'):
+            protein = protein[:-1]
+        location = f"line {row['line_number']}"
+        if not protein or '*' in protein or any(
+            residue not in 'ACDEFGHIKLMNPQRSTVWYBXZJUO' for residue in protein
+        ):
+            raise SystemExit(
+                f'Invalid translation attribute for {source_feature_id!r} at {location}; '
+                'expected a nonempty complete protein with no internal stops. '
+                'Genomic translation was not used as fallback.'
+            )
+        sequences[protein].append(location)
+    if len(sequences) > 1:
+        locations = '; '.join(', '.join(lines) for lines in sequences.values())
+        raise SystemExit(
+            f'Conflicting translation attributes for {source_feature_id!r} at {locations}.'
+        )
+    return next(iter(sequences), None)
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--genome', required=True)
 parser.add_argument('--gff', required=True)
@@ -179,7 +208,7 @@ if parentless_cds:
     for feature_id, line_number in parentless_cds:
         report_rows.append([
             '', feature_id, '', status,
-            f'parentless_CDS;line={line_number};policy={args.no_parent_cds}',
+            f'parentless_CDS;line={line_number};policy={args.no_parent_cds}', '',
         ])
     details = '\n'.join(
         f'  line {line_number}: ID={feature_id or "<missing>"}'
@@ -192,7 +221,7 @@ if parentless_cds:
     if args.no_parent_cds == 'fail':
         with open(args.report, 'w', newline='') as report_handle:
             writer = csv.writer(report_handle, delimiter='\t')
-            writer.writerow(['sequence_id', 'source_feature_id', 'source_gene_id', 'status', 'reason'])
+            writer.writerow(['sequence_id', 'source_feature_id', 'source_gene_id', 'status', 'reason', 'translation_source'])
             writer.writerows(report_rows)
         raise SystemExit(
             f'ERROR: {message}\n'
@@ -235,6 +264,8 @@ with open(args.proteins, 'w') as protein_handle:
         protein_id = next(iter(protein_values))
 
         reason = ''
+        corrected = corrected_translation(source_feature_id, source_feature, cds_rows)
+        translation_source = 'translation_attribute' if corrected is not None else 'genomic_CDS'
         contigs = {row['contig'] for row in cds_rows}
         strands = {row['strand'] for row in cds_rows}
         if len(contigs) != 1 or len(strands) != 1:
@@ -251,17 +282,21 @@ with open(args.proteins, 'w') as protein_handle:
                     if start is None or end is None or start < 1 or start > end or end > len(genome[contig]):
                         reason = 'invalid_CDS_interval'
                         break
-                    fragment = genome[contig][start - 1:end]
-                    fragments.append(reverse_complement(fragment) if strand == '-' else fragment)
-                coding_sequence = ''.join(fragments)
-                if not reason and len(coding_sequence) % 3:
-                    reason = 'incomplete_CDS'
-                protein = translate(coding_sequence) if not reason else ''
-                if not reason and '*' in protein[:-1]:
-                    reason = 'internal_stop_codon'
-
+                    if corrected is None:
+                        fragment = genome[contig][start - 1:end]
+                        fragments.append(reverse_complement(fragment) if strand == '-' else fragment)
+                if corrected is not None:
+                    protein = corrected
+                else:
+                    coding_sequence = ''.join(fragments)
+                    if not reason and len(coding_sequence) % 3:
+                        reason = 'incomplete_CDS'
+                    protein = translate(coding_sequence) if not reason else ''
+                    if not reason and '*' in protein[:-1]:
+                        reason = 'internal_stop_codon'
+    
         if reason:
-            report_rows.append([canonical_id, source_feature_id, source_gene_id, 'excluded', reason])
+            report_rows.append([canonical_id, source_feature_id, source_gene_id, 'excluded', reason, translation_source])
             continue
         protein = protein.rstrip('*')
         protein_handle.write(f'>{canonical_id}\n{protein}\n')
@@ -270,7 +305,7 @@ with open(args.proteins, 'w') as protein_handle:
             gene_id, transcript_id, protein_id, source_feature['type'], source_feature['attributes_text'],
             args.species_id, len(protein), len(cds_rows),
         ])
-        report_rows.append([canonical_id, source_feature_id, source_gene_id, 'accepted', ''])
+        report_rows.append([canonical_id, source_feature_id, source_gene_id, 'accepted', '', translation_source])
 
 with open(args.manifest, 'w', newline='') as manifest_handle:
     writer = csv.writer(manifest_handle, delimiter='\t')
@@ -283,5 +318,5 @@ with open(args.manifest, 'w', newline='') as manifest_handle:
 
 with open(args.report, 'w', newline='') as report_handle:
     writer = csv.writer(report_handle, delimiter='\t')
-    writer.writerow(['sequence_id', 'source_feature_id', 'source_gene_id', 'status', 'reason'])
+    writer.writerow(['sequence_id', 'source_feature_id', 'source_gene_id', 'status', 'reason', 'translation_source'])
     writer.writerows(report_rows)
