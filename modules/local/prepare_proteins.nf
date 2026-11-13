@@ -7,12 +7,13 @@ process PREPARE_PROTEINS {
     val gene_id_attribute
     val transcript_id_attribute
     val protein_id_attribute
+    val no_parent_cds
     output:
     path 'isoform_proteins.faa', emit: proteins
     path 'isoform_manifest.tsv', emit: manifest
     path 'protein_preparation_report.tsv', emit: report
     script:
     """
-    python3 prepare_proteins.py --genome ${genome} --gff ${gff} --species-id '${species_id}' --gene-id-attribute '${gene_id_attribute}' --transcript-id-attribute '${transcript_id_attribute}' --protein-id-attribute '${protein_id_attribute}' --proteins isoform_proteins.faa --manifest isoform_manifest.tsv --report protein_preparation_report.tsv
+    python3 prepare_proteins.py --genome ${genome} --gff ${gff} --species-id '${species_id}' --gene-id-attribute '${gene_id_attribute}' --transcript-id-attribute '${transcript_id_attribute}' --protein-id-attribute '${protein_id_attribute}' --no-parent-cds '${no_parent_cds}' --proteins isoform_proteins.faa --manifest isoform_manifest.tsv --report protein_preparation_report.tsv
     """
 }

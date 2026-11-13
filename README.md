@@ -47,24 +47,82 @@ cd Reconaming
 
 ### Container runtime
 
-Use one of the supplied profiles:
+Reconaming provides Docker and Singularity/Apptainer profiles. Container
+images must be available before execution; the profiles do not build them
+automatically.
+
+#### Docker
+
+Build the four images from the repository root:
 
 ```bash
-# Docker
-nextflow run main.nf -profile docker [options]
+docker build -f containers/Dockerfile.species-tree \
+  -t reconaming-species-tree:dev .
 
-# Apptainer/Singularity
-nextflow run main.nf -profile singularity [options]
+docker build -f containers/Dockerfile.gene-tree \
+  -t reconaming-gene-tree:0.1.0 .
+
+docker build -f containers/Dockerfile.generax \
+  -t reconaming-generax:2.0.4 .
+
+docker build -f containers/Dockerfile.reconaming-core \
+  -t reconaming-core:6.2 .
 ```
 
-The four container build recipes are supplied in the repository:
+These tags match the image names configured in `nextflow.config`:
 
-- Species-tree inference: `containers/Dockerfile.species-tree`
-- Gene-tree inference: `containers/Dockerfile.gene-tree`
-- GeneRax reconciliation: `containers/Dockerfile.generax`
-- Reconaming core: `containers/Dockerfile.reconaming-core`
+| Parameter | Image | Components |
+|---|---|---|
+| `species_tree_container` | `reconaming-species-tree:dev` | BUSCO and species-tree inference dependencies |
+| `gene_tree_container` | `reconaming-gene-tree:0.1.0` | FAMSA, ClipKIT and IQ-TREE |
+| `generax_container` | `reconaming-generax:2.0.4` | GeneRax and Open MPI |
+| `reconaming_container` | `reconaming-core:6.2` | Python dependencies for sequence preparation and naming |
 
-Prebuilt Reconaming images are not currently published. The profiles do not build images automatically: before running the pipeline, build or otherwise provide the required images under the names configured for the workflow. The Dockerfiles are recipes, not images that Apptainer/Singularity can run directly; building them on a system without Docker requires a suitable container-build facility.
+Run the pipeline with `-profile docker`. Alternative image names require
+corresponding changes to these configuration parameters.
+
+#### Singularity/Apptainer
+
+The locally built Docker images can be converted to SIF files with
+Apptainer. On a machine with access to those images and the Docker daemon,
+run:
+
+```bash
+apptainer build reconaming-species-tree.sif \
+  docker-daemon:reconaming-species-tree:dev
+
+apptainer build reconaming-gene-tree.sif \
+  docker-daemon:reconaming-gene-tree:0.1.0
+
+apptainer build reconaming-generax.sif \
+  docker-daemon:reconaming-generax:2.0.4
+
+apptainer build reconaming-core.sif \
+  docker-daemon:reconaming-core:6.2
+```
+
+For Singularity installations, replace `apptainer` with `singularity`.
+
+The SIF files can then be transferred to the execution system.
+Specify their absolute paths in a configuration file, for example
+`containers.config`:
+
+```groovy
+params {
+    species_tree_container = '/path/to/reconaming-species-tree.sif'
+    gene_tree_container    = '/path/to/reconaming-gene-tree.sif'
+    generax_container      = '/path/to/reconaming-generax.sif'
+    reconaming_container   = '/path/to/reconaming-core.sif'
+}
+```
+
+Run the pipeline with that configuration and the supplied profile:
+
+```bash
+nextflow run main.nf -profile singularity -c containers.config [options]
+```
+
+On HPC systems, the SIF paths must be accessible from the compute nodes.
 
 ### Run the bundled test dataset
 
@@ -204,6 +262,8 @@ Required inputs:
 
 The pipeline prepares proteins from the annotations, builds an input manifest, and selects one representative isoform per gene. Supply `--selection_table` when manual representative-isoform choices are required. Without it, the pipeline applies its automatic representative-selection procedure; if a required manual selection remains unresolved, the run stops and writes material for completion under the output directory.
 
+CDS records without a nonempty `Parent` cause preparation to fail by default (`--no_parent_cds fail`). Use `--no_parent_cds ignore` to skip them with a warning and an entry for each skipped CDS in the preparation report.
+
 ### Protein route
 
 Protein mode is selected automatically when both `--protein_fasta` and `--id_species` are supplied.
@@ -285,6 +345,7 @@ Set pipeline parameters in the params block of nextflow.config. It is the author
 | `--gene_id_attribute` | `ID` | GFF attribute used as the gene identifier |
 | `--transcript_id_attribute` | `ID` | GFF attribute used as the transcript identifier |
 | `--protein_id_attribute` | empty | Optional GFF attribute used as the protein identifier |
+| `--no_parent_cds` | `fail` | Policy for CDS without a nonempty `Parent`: `fail` stops preparation; `ignore` skips them with a warning and report entries |
 
 ### Species-tree parameters
 
@@ -445,7 +506,7 @@ Legacy registry identifiers with letter suffixes, such as `25a`, are accepted as
 | `force_boundary_true` | Force specified `NodeID` values to act as naming boundaries, overriding automatic detection |
 | `force_boundary_false` | Prevent specified `NodeID` values from acting as naming boundaries, overriding automatic detection |
 
-Node-specific settings use the `NodeID` values recorded in the output NHX tree. These numbers are assigned after rooting and sorting; they are not the historical gene or group identifiers preserved in the revision registry. Check the node numbers again before reusing overrides if the input tree, rooting or sorting settings change.
+Node-specific settings use the `NodeID` values recorded in the output NHX tree. These numbers are assigned after rooting and sorting; they are not the historical gene or group identifiers preserved in the revision registry. Check the node numbers again before reusing overrides if the input tree, rooting or sorting settings change. To refine an unexpected naming result, inspect the relevant `NodeID` values in the output NHX tree, add the corresponding overrides to `conf/reconaming_opt.ctl`, and rerun the same command with `-resume`. Provided the upstream inputs and settings are unchanged and the cache and work files remain available, Nextflow reuses the reconciled tree and reruns naming with the updated control file. The node IDs remain consistent as long as the tree, rooting and sorting are unchanged.
 
 The control file accepts only core script options. Pipeline inputs, outputs, tools and CPU allocations belong in `nextflow.config`; non-core control-file keys are errors.
 
@@ -455,31 +516,64 @@ The support rule operates on numeric internal-node labels in the tree passed to 
 
 ## Output
 
-Reconaming writes final, user-facing outputs under `--outdir` (default: `results`). Exact filenames and subdirectory names are part of the pipeline version and should be recorded with the run.
+Final naming results are written to
+`<outdir>/reconaming/<revision_tag>/`, where `--outdir` defaults to
+`results`.
 
-### Primary outputs
+### Naming results
 
-The Reconaming stage produces the material needed to interpret and continue a naming round:
+| File | Description |
+|---|---|
+| `named_reconaming.nhx` | Named reconciled gene tree with node and naming-group annotations |
+| `named_reconaming.csv` | Gene-name table linking original input identifiers to generated names and naming-group assignments |
+| `revision_registry_<revision_tag>.csv` | Updated gene-by-revision registry containing current and historical assignments |
+| `reconaming_run_report.tsv` | Report from the naming stage |
+| `reconaming_results_manifest.tsv` | Filenames and SHA-256 checksums for the naming-stage outputs and, when produced, the GFF3 |
+| `reconaming_validation_report.tsv` | Summary of the revision tag, named-locus count, GFF output mode and renamed GFF gene count |
+| `temporary_partition.csv` | Technical mapping of the current run's temporary naming partitions, retained for inspection and troubleshooting |
 
-- A named reconciled gene tree
-- A gene-name table linking original input identifiers to current generated names; see [How to read a generated name](#how-to-read-a-generated-name)
-- An updated revision registry preserving historical assignments for a subsequent revision round
-- A Reconaming report
-- A temporary partition artifact used by post-processing
+The named tree and gene-name table describe the current naming result;
+see [How to read a generated name](#how-to-read-a-generated-name).
+The revision registry preserves historical assignments and provides the
+`--revision_registry` input for a subsequent revision round.
+`temporary_partition.csv` is a diagnostic artifact, not a replacement
+for that registry.
 
-### Annotation-mode outputs
+The results manifest covers the named tree, gene-name table, revision
+registry, temporary partition table, naming-stage report and optional
+GFF3. It does not include itself or the validation report.
 
-In annotation mode, omitting `--gff_output` defaults to `update`. With `update`, post-processing applies Reconaming results to the supplied annotation data. `--gff_output minimal` requests a reduced annotation-oriented output, while `--gff_output none` suppresses GFF/GFF3 output.
+### Annotation output
 
-### Protein-mode outputs
+Annotation-route runs additionally produce
+`reconaming_<revision_tag>.gff3` unless `--gff_output none` is selected.
 
-Protein mode produces the naming outputs but has no source GFF/GFF3 records to update, so it never produces GFF output. No `--gff_output` setting is required; explicit `none` is accepted, while `update` and `minimal` are rejected during startup validation.
+- `update` retains the parsed source annotation records and updates the
+  `Name` attribute of gene records receiving a generated name. This is
+  the annotation-route default.
+- `minimal` retains named genes and their descendant features, with
+  reduced attributes.
+- `none` suppresses GFF3 output.
 
-### Run state and intermediate files
+Renamed gene records receive a `reconaming_revision` attribute.
+An existing `Name` is preserved as `source_name` unless that attribute
+already exists. Original feature identifiers remain unchanged.
+When multiple source annotations are supplied, their retained records
+are combined into one output GFF3.
 
-The Nextflow `work/` directory and `.nextflow/` contain execution state, staged inputs, logs, task scripts, caches, and intermediates. Remove them only after deciding that the associated run no longer needs to be resumed.
+Protein-route runs produce the naming results without a GFF3.
+Omission of `--gff_output` or an explicit `none` is accepted;
+`update` and `minimal` require annotation inputs.
 
-If reports, traces, or timelines are enabled for a run, treat them as execution diagnostics. They are useful for troubleshooting and provenance, but they are distinct from the final named tree, name table, revision registry, and annotation outputs.
+### Execution state
+
+The Nextflow task cache and work directory are separate from the
+published results. They allow `-resume` to restart an interrupted or
+failed execution without repeating valid completed work.
+
+A new revision uses a new `--revision_tag` and the registry from the
+previous accepted round. Cross-revision use of `-resume` is possible but has not been
+validated.
 
 ## HPC and container configuration
 

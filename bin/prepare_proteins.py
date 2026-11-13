@@ -2,6 +2,7 @@
 import argparse
 import base64
 import csv
+import sys
 from collections import defaultdict
 from urllib.parse import unquote
 
@@ -125,6 +126,10 @@ parser.add_argument('--report', required=True)
 parser.add_argument('--gene-id-attribute', default='ID')
 parser.add_argument('--transcript-id-attribute', default='ID')
 parser.add_argument('--protein-id-attribute', default='')
+parser.add_argument(
+    '--no-parent-cds', choices=('ignore', 'fail'), default='fail',
+    help='Policy for CDS without a nonempty Parent: fail (default) or ignore with warning.',
+)
 args = parser.parse_args()
 
 for option in ('gene_id_attribute', 'transcript_id_attribute', 'protein_id_attribute'):
@@ -136,6 +141,7 @@ for option in ('gene_id_attribute', 'transcript_id_attribute', 'protein_id_attri
 genome = fasta(args.genome)
 features = {}
 cds_by_unit = defaultdict(list)
+parentless_cds = []
 
 with open(args.gff) as handle:
     for line_number, line in enumerate(handle, start=1):
@@ -148,8 +154,11 @@ with open(args.gff) as handle:
         attributes = parse_attributes(attributes_text)
         feature_id = attributes.get('ID')
         parents = parent_ids(attributes)
+        if feature_type == 'CDS' and not any(parent.strip() for parent in parents):
+            parentless_cds.append((feature_id or '', line_number))
+            continue
         register_feature(features, feature_id, feature_type, parents, attributes, attributes_text, line_number)
-        if feature_type != 'CDS' or not parents:
+        if feature_type != 'CDS':
             continue
         try:
             start, end = int(start), int(end)
@@ -164,6 +173,33 @@ with open(args.gff) as handle:
 accepted_rows = []
 report_rows = []
 seen_ids = set()
+
+if parentless_cds:
+    status = 'error' if args.no_parent_cds == 'fail' else 'excluded'
+    for feature_id, line_number in parentless_cds:
+        report_rows.append([
+            '', feature_id, '', status,
+            f'parentless_CDS;line={line_number};policy={args.no_parent_cds}',
+        ])
+    details = '\n'.join(
+        f'  line {line_number}: ID={feature_id or "<missing>"}'
+        for feature_id, line_number in parentless_cds
+    )
+    message = (
+        f'{args.gff}: {len(parentless_cds)} CDS record(s) without a nonempty Parent:\n'
+        f'{details}'
+    )
+    if args.no_parent_cds == 'fail':
+        with open(args.report, 'w', newline='') as report_handle:
+            writer = csv.writer(report_handle, delimiter='\t')
+            writer.writerow(['sequence_id', 'source_feature_id', 'source_gene_id', 'status', 'reason'])
+            writer.writerows(report_rows)
+        raise SystemExit(
+            f'ERROR: {message}\n'
+            'Fix the annotation or explicitly use --no-parent-cds ignore '
+            '(pipeline: --no_parent_cds ignore) to skip these records.'
+        )
+    print(f'WARNING: {message}\nIgnored because --no-parent-cds ignore was supplied.', file=sys.stderr)
 
 with open(args.proteins, 'w') as protein_handle:
     for source_feature_id in sorted(cds_by_unit):

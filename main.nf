@@ -40,6 +40,14 @@ workflow {
     if (!(iqtree_setting?.equalsIgnoreCase('AUTO') || (iqtree_setting ==~ /[1-9][0-9]*/))) error "params.iqtree_threads must be AUTO or a positive integer."
     if (!iqtree_setting.equalsIgnoreCase('AUTO') && (iqtree_setting as int) > (params.process_cpus.INFER_GENE_TREE as int)) error 'params.iqtree_threads cannot exceed params.process_cpus.INFER_GENE_TREE.'
 
+    // Parentless-CDS policy: reject invalid settings before process dispatch.
+    def no_parent_cds_raw = params.no_parent_cds
+    if (!(no_parent_cds_raw instanceof CharSequence) ||
+        !(no_parent_cds_raw.toString() in ['ignore', 'fail'])) {
+        error '--no_parent_cds must be ignore or fail.'
+    }
+    def no_parent_cds = no_parent_cds_raw.toString()
+
     // BEGIN INPUT SELECTION
     // Resolve analysis mode and species-tree source once; reuse below.
     inputProvided = { Object value -> value != null && value.toString().trim() != '' }
@@ -142,7 +150,8 @@ workflow {
             prepare_proteins_script,
             params.gene_id_attribute,
             params.transcript_id_attribute,
-            params.protein_id_attribute
+            params.protein_id_attribute,
+            no_parent_cds
         )
         MERGE_ISOFORM_OUTPUTS(PREPARE_PROTEINS.out.proteins.collect(), PREPARE_PROTEINS.out.manifest.collect())
         selection_table = params.selection_table ? file(params.selection_table, checkIfExists: true) : []
