@@ -1,4 +1,5 @@
 work/
 .nextflow/
 .nextflow.log*
-test/
+/test/OLD/
+/test/GCA_041003635.1_ASM4100363v1_genomic.fna

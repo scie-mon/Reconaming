@@ -345,7 +345,7 @@ Set pipeline parameters in the params block of nextflow.config. It is the author
 | `--protein_fasta` | none | Representative protein FASTA for protein mode |
 | `--id_species` | none | Gene-to-species mapping for protein mode |
 | `--gene_id_attribute` | `ID` | GFF attribute used as the gene identifier |
-| `--transcript_id_attribute` | `ID` | CDS attribute identifying coding candidates; rows with the same value belong to one candidate |
+| `--transcript_id_attribute` | `ID` | CDS attribute identifying coding candidates; rows with the same value belong to one candidate. Must be unique per transcript! |
 | `--protein_id_attribute` | empty | Optional GFF attribute used as the protein identifier |
 | `--no_parent_cds` | `fail` | `--no_parent_cds fail` stops on parentless CDS; `--no_parent_cds ignore` skips them with warnings and report entries |
 
